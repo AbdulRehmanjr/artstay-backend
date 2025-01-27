@@ -8,7 +8,20 @@ datasource db {
 }
 
 model Account {
-  userId   String @id @default(cuid())
-  email    String @unique
-  password String @default("none")
+  userId      String      @id @default(cuid())
+  email       String      @unique
+  password    String      @default("none")
+  accountType AccountType @default(NONE)
+}
+
+enum AccountType {
+  NONE
+  ARTISAN
+  SAFARI
+  FAIRS
+  BUSINESS
+  HOTEL
+  ALL
+  ADMIN
+  SUPERADMIN
 }

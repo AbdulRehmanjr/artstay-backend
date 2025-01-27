@@ -1,0 +1,55 @@
+2025-01-27 09:15:21 [31merror[39m: [31mdata and salt arguments required[39m
+2025-01-27 09:17:17 [31merror[39m: [31mdata and salt arguments required[39m
+2025-01-27 09:18:12 [31merror[39m: [31m[39m
+[31mInvalid `prisma.account.create()` invocation in[39m
+[31mD:\DKC\ArtStay\art-stay-backend\src\controllers\account.controller.ts:13:27[39m
+
+[31m  10 const { email, password, accountType } : AccountProps = req.body[39m
+[31m  11 const hashedPassword = await bcrypt.hash(password, 10);[39m
+[31m  12 [39m
+[31m→ 13  await prisma.account.create({[39m
+[31m        data: {[39m
+[31m          email: 1,[39m
+[31m                 ~[39m
+[31m          password: "$2b$10$QdIopZRjkexts5m8MziUH.k4mvfHO35HW65AueiwObvnp6p/2h.Te",[39m
+[31m          accountType: undefined[39m
+[31m        }[39m
+[31m      })[39m
+
+[31mArgument `email`: Invalid value provided. Expected String, provided Int.[39m
+2025-01-27 09:19:57 [31merror[39m: [31m[39m
+[31mInvalid `prisma.account.create()` invocation in[39m
+[31mD:\DKC\ArtStay\art-stay-backend\src\controllers\account.controller.ts:13:27[39m
+
+[31m  10 const { email, password, accountType } : AccountProps = req.body[39m
+[31m  11 const hashedPassword = await bcrypt.hash(password, 10);[39m
+[31m  12 [39m
+[31m→ 13  await prisma.account.create({[39m
+[31m        data: {[39m
+[31m          email: 1,[39m
+[31m                 ~[39m
+[31m          password: "$2b$10$MDgRVjCM9HxY5dUNbIKo0uzZeJYiSvFHVlAHaQQcZp3BTLJaP9e7m",[39m
+[31m          accountType: undefined[39m
+[31m        }[39m
+[31m      })[39m
+
+[31mArgument `email`: Invalid value provided. Expected String, provided Int.[39m
+2025-01-27 09:20:36 [31merror[39m: [31m[39m
+[31mInvalid `prisma.account.create()` invocation in[39m
+[31mD:\DKC\ArtStay\art-stay-backend\src\controllers\account.controller.ts:13:27[39m
+
+[31m  10 const { email, password, accountType } : AccountProps = req.body[39m
+[31m  11 const hashedPassword = await bcrypt.hash(password, 10);[39m
+[31m  12 [39m
+[31m→ 13  await prisma.account.create({[39m
+[31m        data: {[39m
+[31m          email: 1,[39m
+[31m                 ~[39m
+[31m          password: "$2b$10$mYk8Ak9kUWEA5ULpfX7ECuh7DzoXhWfAjXuKzzoTcioiYQw5eUOoq",[39m
+[31m          accountType: undefined[39m
+[31m        }[39m
+[31m      })[39m
+
+[31mArgument `email`: Invalid value provided. Expected String, provided Int.[39m
+2025-01-27 09:51:10 [31merror[39m: [31mEmail not associted with any account[39m
+2025-01-27 09:54:38 [31merror[39m: [31mPassword not matched[39m
