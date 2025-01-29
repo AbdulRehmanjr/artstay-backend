@@ -8,6 +8,7 @@ export const validate = (schema: AnyZodObject) =>
       next();
     } catch (error) {
       if (error instanceof ZodError) {
+        console.error(error)
         res.status(400).json({
           status: 'error',
           errors: error.errors.map(err => ({
@@ -15,7 +16,7 @@ export const validate = (schema: AnyZodObject) =>
             message: err.message
           }))
         });
-        return;
+        return
       }
       next(error);
     }

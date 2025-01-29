@@ -7,4 +7,5 @@ const router = Router();
 
 router.post('/create',validate(AccountCreationSchema),createAccount);
 router.post('/login',validate(LoginSchema),loginAccount);
+
 export const accountRouter = router;

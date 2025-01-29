@@ -12,6 +12,89 @@ model Account {
   email       String      @unique
   password    String      @default("none")
   accountType AccountType @default(NONE)
+  Artisan     Artisan[]
+}
+
+model Craft {
+  craftId   String     @id @default(cuid())
+  craftName String     @default("none")
+  craftSlug String     @default("none")
+  createdAt DateTime   @default(now())
+  updateAt  DateTime   @updatedAt
+  SubCraft  SubCraft[]
+  Artisan   Artisan[]
+}
+
+model SubCraft {
+  subCraftId   String    @id @default(cuid())
+  subCraftName String    @default("none")
+  subCraftSlug String    @default("none")
+  craftId      String
+  createdAt    DateTime  @default(now())
+  updatedAt    DateTime  @updatedAt
+  craft        Craft     @relation(fields: [craftId], references: [craftId], onDelete: Cascade, onUpdate: Cascade)
+  Artisan      Artisan[]
+}
+
+model Artisan {
+  artisanId    String      @id @default(cuid())
+  firstName    String      @default("none")
+  lastName     String      @default("none")
+  dp           String      @default("none")
+  address      String      @default("none")
+  description  String      @default("none")
+  experience   Experience  @default(APPRENTICE)
+  education    Education   @default(NON_FORMAL)
+  training     Training    @default(NON_FORMAL)
+  certificate  Certificate @default(NONE)
+  recongnition Recognition @default(STATE)
+  craftId      String
+  subCraftId   String
+  accountId    String
+  account      Account     @relation(fields: [accountId], references: [userId], onDelete: Cascade, onUpdate: Cascade)
+  createdAt    DateTime    @default(now())
+  updatedAt    DateTime    @updatedAt
+
+  subCraft  SubCraft    @relation(fields: [subCraftId], references: [subCraftId], onDelete: Cascade, onUpdate: Cascade)
+  craft     Craft       @relation(fields: [craftId], references: [craftId], onDelete: Cascade, onUpdate: Cascade)
+  Portfolio Portfolio[]
+}
+
+model Portfolio {
+  portfolioId String   @id @default(cuid())
+  images      String[] @default([""])
+  artisanId   String
+  artisan     Artisan  @relation(fields: [artisanId], references: [artisanId], onDelete: Cascade, onUpdate: Cascade)
+}
+
+enum Education {
+  FORMAL
+  NON_FORMAL
+}
+
+enum Training {
+  FORMAL
+  NON_FORMAL
+}
+
+enum Certificate {
+  NONE
+  PROFESSIONAL
+  TRADE
+  WORKSHOP
+}
+
+enum Recognition {
+  STATE
+  NATIONAL
+  INTERNATIONAL
+}
+
+enum Experience {
+  APPRENTICE
+  CRAFTMAN
+  MASTER
+  GRANDMASTER
 }
 
 enum AccountType {

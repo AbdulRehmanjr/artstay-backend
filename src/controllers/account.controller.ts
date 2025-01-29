@@ -17,12 +17,13 @@ export const createAccount = async (req: Request, res: Response) => {
         accountType
       }
     });
-    res.status(201).json({status: 'authorized'});
+    res.status(201).json({ status: 'success', message: 'account created', data: null });
   } catch (error) {
     logger.error(error)
     res.status(500).json({
       status: 'error',
-      message: error instanceof Error ? error.message : 'Failed to create account'
+      message: error instanceof Error ? error.message : 'Failed to create account',
+      data: null
     });
   }
 };
@@ -37,7 +38,15 @@ export const loginAccount = async (req: Request, res: Response) => {
     const validPassword = await bcrypt.compare(password, user.password);
     if (!validPassword) throw new Error("Password not matched")
 
-    const token = jwt.sign({ userId: user.userId }, env.JWT_SECRET);
+    const token = jwt.sign(
+      {
+        userId: user.userId,
+        email: user.email,
+        role: user.accountType
+      },
+      env.JWT_SECRET,
+      { expiresIn: '7d' }
+    );
 
     res.cookie('token', token, {
       httpOnly: true,
@@ -46,12 +55,24 @@ export const loginAccount = async (req: Request, res: Response) => {
       maxAge: 7 * 24 * 60 * 60 * 1000
     });
 
-    res.status(201).json({ status: 'success', data: {} });
+    res.status(200).json({
+      status: 'success',
+      message:'login success',
+      data: {
+        token: token,
+        user: {
+          id: user.userId,
+          email: user.email,
+          accountType: user.accountType
+        }
+      }
+    });
   } catch (error) {
     logger.error(error)
     res.status(500).json({
       status: 'error',
-      message: error instanceof Error ? error.message : 'Failed to create account'
+      message: error instanceof Error ? error.message : 'Failed to create account',
+      data:null
     });
   }
 };

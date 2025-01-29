@@ -73,3 +73,435 @@
 2025-01-27 09:54:38 [31merror[39m: [31mPassword not matched[39m
 2025-01-27 09:54:38 [35mhttp[39m: [35mPOST /api/v1/account/login 500 71 - 912.662 ms[39m
 2025-01-27 09:54:46 [35mhttp[39m: [35mPOST /api/v1/account/login 201 30 - 3021.160 ms[39m
+2025-01-28 08:44:38 [31merror[39m: [31mEmail not associted with any account[39m
+2025-01-28 08:44:38 [35mhttp[39m: [35mPOST /api/v1/account/login 500 87 - 2062.256 ms[39m
+2025-01-28 08:45:12 [35mhttp[39m: [35mPOST /api/v1/account/login 200 371 - 499.582 ms[39m
+2025-01-28 08:49:23 [35mhttp[39m: [35mPOST /api/v1/account/login 200 371 - 309.648 ms[39m
+2025-01-28 09:18:47 [35mhttp[39m: [35mPOST /api/v1/account/login 200 371 - 2172.179 ms[39m
+2025-01-28 09:19:46 [35mhttp[39m: [35mPOST /api/v1/account/login 200 371 - 435.628 ms[39m
+2025-01-28 09:21:32 [31merror[39m: [31mEmail not associted with any account[39m
+2025-01-28 09:21:32 [35mhttp[39m: [35mPOST /api/v1/account/login 500 87 - 216.065 ms[39m
+2025-01-28 09:22:14 [35mhttp[39m: [35mPOST /api/v1/account/login 200 371 - 389.126 ms[39m
+2025-01-28 09:23:59 [35mhttp[39m: [35mPOST /api/v1/account/login 200 371 - 1529.318 ms[39m
+2025-01-28 09:24:22 [35mhttp[39m: [35mPOST /api/v1/account/login 200 371 - 1578.432 ms[39m
+2025-01-28 09:24:43 [35mhttp[39m: [35mPOST /api/v1/account/login 200 371 - 651.949 ms[39m
+2025-01-28 09:25:53 [35mhttp[39m: [35mPOST /api/v1/account/login 200 371 - 356.939 ms[39m
+2025-01-28 11:54:55 [35mhttp[39m: [35mPOST /api/v1/account/login 200 371 - 2105.058 ms[39m
+2025-01-28 12:34:48 [35mhttp[39m: [35mPOST /api/v1/craft/create-craft 400 72 - 9.321 ms[39m
+2025-01-28 12:35:34 [35mhttp[39m: [35mPOST /api/v1/craft/create-craft 400 91 - 40.098 ms[39m
+2025-01-28 12:39:45 [32minfo[39m: [32m----NEW CRAFT ADDED-----[39m
+2025-01-28 12:39:45 [35mhttp[39m: [35mPOST /api/v1/craft/create-craft 201 56 - 1801.875 ms[39m
+2025-01-28 12:40:06 [32minfo[39m: [32m----NEW CRAFT ADDED-----[39m
+2025-01-28 12:40:06 [35mhttp[39m: [35mPOST /api/v1/craft/create-craft 201 56 - 338.421 ms[39m
+2025-01-28 12:40:21 [32minfo[39m: [32m----NEW CRAFT ADDED-----[39m
+2025-01-28 12:40:21 [35mhttp[39m: [35mPOST /api/v1/craft/create-craft 201 56 - 220.520 ms[39m
+2025-01-28 12:40:46 [32minfo[39m: [32m----NEW CRAFT ADDED-----[39m
+2025-01-28 12:40:46 [35mhttp[39m: [35mPOST /api/v1/craft/create-craft 201 56 - 209.934 ms[39m
+2025-01-28 12:54:43 [32minfo[39m: [32m----NEW SUB CRAFT ADDED-----[39m
+2025-01-28 12:54:43 [31merror[39m: [31mres.status is not a function[39m
+2025-01-28 12:55:18 [32minfo[39m: [32m----NEW SUB CRAFT ADDED-----[39m
+2025-01-28 12:55:18 [35mhttp[39m: [35mGET /api/v1/craft/all-craft 201 752 - 976.047 ms[39m
+2025-01-28 12:57:32 [32minfo[39m: [32m----NEW SUB CRAFT ADDED-----[39m
+2025-01-28 12:57:32 [35mhttp[39m: [35mPOST /api/v1/craft/create-subcraft 201 60 - 1290.426 ms[39m
+2025-01-28 12:57:54 [32minfo[39m: [32m----NEW SUB CRAFT ADDED-----[39m
+2025-01-28 12:57:54 [35mhttp[39m: [35mPOST /api/v1/craft/create-subcraft 201 60 - 218.157 ms[39m
+2025-01-28 12:58:16 [32minfo[39m: [32m----NEW SUB CRAFT ADDED-----[39m
+2025-01-28 12:58:16 [35mhttp[39m: [35mPOST /api/v1/craft/create-subcraft 201 60 - 224.824 ms[39m
+2025-01-28 12:58:44 [32minfo[39m: [32m----NEW SUB CRAFT ADDED-----[39m
+2025-01-28 12:58:44 [35mhttp[39m: [35mPOST /api/v1/craft/create-subcraft 201 60 - 567.374 ms[39m
+2025-01-28 12:59:12 [32minfo[39m: [32m----NEW SUB CRAFT ADDED-----[39m
+2025-01-28 12:59:12 [35mhttp[39m: [35mPOST /api/v1/craft/create-subcraft 201 60 - 266.629 ms[39m
+2025-01-29 08:07:07 [31merror[39m: [31mEmail not associted with any account[39m
+2025-01-29 08:07:07 [35mhttp[39m: [35mPOST /api/v1/account/login 500 99 - 2487.184 ms[39m
+2025-01-29 08:07:24 [35mhttp[39m: [35mPOST /api/v1/account/login 200 397 - 510.379 ms[39m
+2025-01-29 13:20:38 [35mhttp[39m: [35mGET /api/v1/carft/all-craft 404 161 - 2.072 ms[39m
+2025-01-29 13:20:40 [35mhttp[39m: [35mGET /api/v1/carft/all-craft 404 161 - 0.666 ms[39m
+2025-01-29 13:20:42 [35mhttp[39m: [35mGET /api/v1/carft/all-craft 404 161 - 0.687 ms[39m
+2025-01-29 13:20:47 [35mhttp[39m: [35mGET /api/v1/carft/all-craft 404 161 - 0.306 ms[39m
+2025-01-29 13:22:52 [35mhttp[39m: [35mGET /api/v1/carft/ 404 152 - 2.045 ms[39m
+2025-01-29 13:22:54 [35mhttp[39m: [35mGET /api/v1/carft/ 404 152 - 0.848 ms[39m
+2025-01-29 13:22:56 [35mhttp[39m: [35mGET /api/v1/carft/ 404 152 - 0.363 ms[39m
+2025-01-29 13:23:01 [35mhttp[39m: [35mGET /api/v1/carft/ 404 152 - 0.341 ms[39m
+2025-01-29 13:23:54 [35mhttp[39m: [35mGET /api/v1/craft/ 201 752 - 1839.344 ms[39m
+2025-01-29 13:26:40 [35mhttp[39m: [35mGET /api/v1/carft/ 404 152 - 3.226 ms[39m
+2025-01-29 13:26:40 [35mhttp[39m: [35mGET /api/v1/carft/ 404 152 - 1.400 ms[39m
+2025-01-29 13:26:41 [35mhttp[39m: [35mGET /api/v1/carft/ 404 152 - 0.943 ms[39m
+2025-01-29 13:26:50 [35mhttp[39m: [35mGET /api/v1/carft/ 404 152 - 1.056 ms[39m
+2025-01-29 13:26:52 [35mhttp[39m: [35mGET /api/v1/carft/ 404 152 - 0.368 ms[39m
+2025-01-29 13:26:53 [35mhttp[39m: [35mGET /api/v1/carft/ 404 152 - 0.453 ms[39m
+2025-01-29 13:26:56 [35mhttp[39m: [35mGET /api/v1/carft/ 404 152 - 0.354 ms[39m
+2025-01-29 13:27:00 [35mhttp[39m: [35mGET /api/v1/carft/ 404 152 - 0.254 ms[39m
+2025-01-29 13:27:31 [35mhttp[39m: [35mGET /api/v1/carft/ 404 152 - 0.903 ms[39m
+2025-01-29 13:27:32 [35mhttp[39m: [35mGET /api/v1/carft/ 404 152 - 0.319 ms[39m
+2025-01-29 13:27:33 [35mhttp[39m: [35mGET /api/v1/carft/ 404 152 - 0.292 ms[39m
+2025-01-29 13:27:36 [35mhttp[39m: [35mGET /api/v1/carft/ 404 152 - 0.795 ms[39m
+2025-01-29 13:27:36 [35mhttp[39m: [35mGET /api/v1/carft/ 404 152 - 0.482 ms[39m
+2025-01-29 13:27:36 [35mhttp[39m: [35mGET /api/v1/carft/ 404 152 - 0.630 ms[39m
+2025-01-29 13:27:38 [35mhttp[39m: [35mGET /api/v1/carft/ 404 152 - 0.250 ms[39m
+2025-01-29 13:27:40 [35mhttp[39m: [35mGET /api/v1/carft/ 404 152 - 0.645 ms[39m
+2025-01-29 13:27:44 [35mhttp[39m: [35mGET /api/v1/carft/ 404 152 - 0.222 ms[39m
+2025-01-29 13:27:50 [35mhttp[39m: [35mGET /api/v1/carft/ 404 152 - 0.461 ms[39m
+2025-01-29 13:27:51 [35mhttp[39m: [35mGET /api/v1/carft/ 404 152 - 0.363 ms[39m
+2025-01-29 13:27:52 [35mhttp[39m: [35mGET /api/v1/carft/ 404 152 - 0.263 ms[39m
+2025-01-29 13:27:55 [35mhttp[39m: [35mGET /api/v1/carft/ 404 152 - 0.236 ms[39m
+2025-01-29 13:27:59 [35mhttp[39m: [35mGET /api/v1/carft/ 404 152 - 0.216 ms[39m
+2025-01-29 13:28:33 [35mhttp[39m: [35mGET /api/v1/craft/ 201 752 - 964.180 ms[39m
+2025-01-29 13:28:40 [35mhttp[39m: [35mGET /api/v1/craft/ 201 752 - 101.191 ms[39m
+2025-01-29 13:28:43 [35mhttp[39m: [35mGET /api/v1/craft/ 201 752 - 104.539 ms[39m
+2025-01-29 13:29:06 [35mhttp[39m: [35mGET /api/v1/carft/ 404 152 - 2.322 ms[39m
+2025-01-29 13:29:06 [35mhttp[39m: [35mGET /api/v1/carft/ 404 152 - 0.674 ms[39m
+2025-01-29 13:29:07 [35mhttp[39m: [35mGET /api/v1/carft/ 404 152 - 1.007 ms[39m
+2025-01-29 13:29:12 [35mhttp[39m: [35mGET /api/v1/carft/ 404 152 - 0.488 ms[39m
+2025-01-29 13:29:13 [35mhttp[39m: [35mGET /api/v1/carft/ 404 152 - 0.829 ms[39m
+2025-01-29 13:29:15 [35mhttp[39m: [35mGET /api/v1/carft/ 404 152 - 0.475 ms[39m
+2025-01-29 13:29:17 [35mhttp[39m: [35mGET /api/v1/carft/ 404 152 - 0.351 ms[39m
+2025-01-29 13:29:21 [35mhttp[39m: [35mGET /api/v1/carft/ 404 152 - 0.272 ms[39m
+2025-01-29 13:30:08 [35mhttp[39m: [35mGET /api/v1/carft/ 404 152 - 0.646 ms[39m
+2025-01-29 13:30:08 [35mhttp[39m: [35mGET /api/v1/carft/ 404 152 - 0.382 ms[39m
+2025-01-29 13:30:10 [35mhttp[39m: [35mGET /api/v1/carft/ 404 152 - 0.413 ms[39m
+2025-01-29 13:30:11 [35mhttp[39m: [35mGET /api/v1/carft/ 404 152 - 0.391 ms[39m
+2025-01-29 13:30:13 [35mhttp[39m: [35mGET /api/v1/carft/ 404 152 - 0.294 ms[39m
+2025-01-29 13:30:18 [35mhttp[39m: [35mGET /api/v1/carft/ 404 152 - 0.279 ms[39m
+2025-01-29 13:30:23 [35mhttp[39m: [35mGET /api/v1/carft/ 404 152 - 0.230 ms[39m
+2025-01-29 13:30:24 [35mhttp[39m: [35mGET /api/v1/carft/ 404 152 - 0.772 ms[39m
+2025-01-29 13:30:25 [35mhttp[39m: [35mGET /api/v1/carft/ 404 152 - 0.444 ms[39m
+2025-01-29 13:30:28 [35mhttp[39m: [35mGET /api/v1/carft/ 404 152 - 0.335 ms[39m
+2025-01-29 13:30:32 [35mhttp[39m: [35mGET /api/v1/carft/ 404 152 - 0.289 ms[39m
+2025-01-29 13:31:35 [35mhttp[39m: [35mGET /api/v1/carft/ 404 152 - 0.507 ms[39m
+2025-01-29 13:31:48 [35mhttp[39m: [35mGET /api/v1/carft/ 404 152 - 0.736 ms[39m
+2025-01-29 13:31:54 [35mhttp[39m: [35mGET /api/v1/carft/ 404 152 - 0.329 ms[39m
+2025-01-29 13:32:11 [35mhttp[39m: [35mGET /api/v1/carft/ 404 152 - 0.269 ms[39m
+2025-01-29 13:32:12 [35mhttp[39m: [35mGET /api/v1/carft/ 404 152 - 0.276 ms[39m
+2025-01-29 13:32:14 [35mhttp[39m: [35mGET /api/v1/carft/ 404 152 - 0.292 ms[39m
+2025-01-29 13:32:16 [35mhttp[39m: [35mGET /api/v1/carft/ 404 152 - 0.327 ms[39m
+2025-01-29 13:32:21 [35mhttp[39m: [35mGET /api/v1/carft/ 404 152 - 0.374 ms[39m
+2025-01-29 13:33:13 [35mhttp[39m: [35mGET /api/v1/carft/ 404 152 - 4.877 ms[39m
+2025-01-29 13:33:14 [35mhttp[39m: [35mGET /api/v1/carft/ 404 152 - 0.923 ms[39m
+2025-01-29 13:33:15 [35mhttp[39m: [35mGET /api/v1/carft/ 404 152 - 0.654 ms[39m
+2025-01-29 13:33:18 [35mhttp[39m: [35mGET /api/v1/carft/ 404 152 - 0.423 ms[39m
+2025-01-29 13:33:22 [35mhttp[39m: [35mGET /api/v1/carft/ 404 152 - 0.758 ms[39m
+2025-01-29 13:33:42 [35mhttp[39m: [35mGET /api/v1/carft/ 404 152 - 0.377 ms[39m
+2025-01-29 13:33:43 [35mhttp[39m: [35mGET /api/v1/carft/ 404 152 - 0.608 ms[39m
+2025-01-29 13:33:44 [35mhttp[39m: [35mGET /api/v1/carft/ 404 152 - 0.472 ms[39m
+2025-01-29 13:33:46 [35mhttp[39m: [35mGET /api/v1/carft/ 404 152 - 0.542 ms[39m
+2025-01-29 13:33:51 [35mhttp[39m: [35mGET /api/v1/carft/ 404 152 - 0.313 ms[39m
+2025-01-29 13:34:31 [35mhttp[39m: [35mGET /api/v1/carft/ 404 152 - 0.559 ms[39m
+2025-01-29 13:34:31 [35mhttp[39m: [35mGET /api/v1/carft/ 404 152 - 1.123 ms[39m
+2025-01-29 13:34:32 [35mhttp[39m: [35mGET /api/v1/carft/ 404 152 - 0.395 ms[39m
+2025-01-29 13:34:34 [35mhttp[39m: [35mGET /api/v1/carft/ 404 152 - 0.725 ms[39m
+2025-01-29 13:34:34 [35mhttp[39m: [35mGET /api/v1/carft/ 404 152 - 0.830 ms[39m
+2025-01-29 13:34:35 [35mhttp[39m: [35mGET /api/v1/carft/ 404 152 - 0.585 ms[39m
+2025-01-29 13:34:36 [35mhttp[39m: [35mGET /api/v1/carft/ 404 152 - 0.475 ms[39m
+2025-01-29 13:34:39 [35mhttp[39m: [35mGET /api/v1/carft/ 404 152 - 0.447 ms[39m
+2025-01-29 13:34:43 [35mhttp[39m: [35mGET /api/v1/carft/ 404 152 - 0.660 ms[39m
+2025-01-29 13:34:45 [35mhttp[39m: [35mGET /api/v1/carft/ 404 152 - 0.637 ms[39m
+2025-01-29 13:34:46 [35mhttp[39m: [35mGET /api/v1/carft/ 404 152 - 0.405 ms[39m
+2025-01-29 13:34:48 [35mhttp[39m: [35mGET /api/v1/carft/ 404 152 - 0.261 ms[39m
+2025-01-29 13:34:50 [35mhttp[39m: [35mGET /api/v1/carft/ 404 152 - 0.258 ms[39m
+2025-01-29 13:34:55 [35mhttp[39m: [35mGET /api/v1/carft/ 404 152 - 0.254 ms[39m
+2025-01-29 13:37:12 [35mhttp[39m: [35mGET /api/v1/carft/ 404 152 - 4.963 ms[39m
+2025-01-29 13:37:13 [35mhttp[39m: [35mGET /api/v1/carft/ 404 152 - 0.640 ms[39m
+2025-01-29 13:37:14 [35mhttp[39m: [35mGET /api/v1/carft/ 404 152 - 0.646 ms[39m
+2025-01-29 13:37:17 [35mhttp[39m: [35mGET /api/v1/carft/ 404 152 - 0.367 ms[39m
+2025-01-29 13:37:21 [35mhttp[39m: [35mGET /api/v1/carft/ 404 152 - 0.446 ms[39m
+2025-01-29 13:42:27 [35mhttp[39m: [35mGET /api/v1/craft/ 201 752 - 1736.484 ms[39m
+2025-01-29 13:42:28 [35mhttp[39m: [35mGET /api/v1/craft/ 201 752 - 926.351 ms[39m
+2025-01-29 13:45:21 [35mhttp[39m: [35mGET /api/v1/carfts/subcrafts/cm6g633al0000jpsgijp38zjl 404 188 - 0.280 ms[39m
+2025-01-29 13:45:22 [35mhttp[39m: [35mGET /api/v1/carfts/subcrafts/cm6g633al0000jpsgijp38zjl 404 188 - 1.104 ms[39m
+2025-01-29 13:45:25 [35mhttp[39m: [35mGET /api/v1/carfts/subcrafts/cm6g633al0000jpsgijp38zjl 404 188 - 0.491 ms[39m
+2025-01-29 13:45:29 [35mhttp[39m: [35mGET /api/v1/carfts/subcrafts/cm6g633al0000jpsgijp38zjl 404 188 - 0.769 ms[39m
+2025-01-29 13:45:32 [35mhttp[39m: [35mGET /api/v1/craft/ 201 752 - 206.475 ms[39m
+2025-01-29 13:45:34 [35mhttp[39m: [35mGET /api/v1/craft/ 201 752 - 103.381 ms[39m
+2025-01-29 13:45:43 [35mhttp[39m: [35mGET /api/v1/craft/subcrafts/cm6g63jz00001jpsgv61ejior 201 64 - 212.328 ms[39m
+2025-01-29 13:45:48 [35mhttp[39m: [35mGET /api/v1/craft/subcrafts/cm6g633al0000jpsgijp38zjl 201 1297 - 207.291 ms[39m
+2025-01-29 13:46:34 [35mhttp[39m: [35mPOST /api/v1/artisan/create 404 161 - 12.004 ms[39m
+2025-01-29 13:48:57 [35mhttp[39m: [35mPOST /api/v1/artisan/create 400 540 - 12.130 ms[39m
+2025-01-29 13:51:10 [35mhttp[39m: [35mPOST /api/v1/artisan/create 400 540 - 1.010 ms[39m
+2025-01-29 13:51:12 [35mhttp[39m: [35mPOST /api/v1/artisan/create 400 540 - 0.684 ms[39m
+2025-01-29 13:51:14 [35mhttp[39m: [35mPOST /api/v1/artisan/create 400 540 - 1.656 ms[39m
+2025-01-29 13:51:15 [35mhttp[39m: [35mPOST /api/v1/artisan/create 400 540 - 1.019 ms[39m
+2025-01-29 13:51:16 [35mhttp[39m: [35mPOST /api/v1/artisan/create 400 540 - 0.982 ms[39m
+2025-01-29 13:51:17 [35mhttp[39m: [35mPOST /api/v1/artisan/create 400 540 - 0.909 ms[39m
+2025-01-29 13:54:11 [31merror[39m: [31m[39m
+[31mInvalid `prisma.craft.findMany()` invocation in[39m
+[31mD:\DKC\ArtStay\art-stay-backend\src\controllers\craft.controller.ts:51:43[39m
+
+[31m  48 [39m
+[31m  49 export const getAllCrafts = async (req: Request, res: Response) => {[39m
+[31m  50     try {[39m
+[31m→ 51         const crafts = await prisma.craft.findMany([39m
+[31mCan't reach database server at `ep-dawn-surf-a1cdmogp-pooler.ap-southeast-1.aws.neon.tech:5432`[39m
+
+[31mPlease make sure your database server is running at `ep-dawn-surf-a1cdmogp-pooler.ap-southeast-1.aws.neon.tech:5432`.[39m
+2025-01-29 13:54:11 [35mhttp[39m: [35mGET /api/v1/craft/ 500 731 - 16.065 ms[39m
+2025-01-29 13:57:54 [31merror[39m: [31m[39m
+[31mInvalid `prisma.artisan.create()` invocation in[39m
+[31mD:\DKC\ArtStay\art-stay-backend\src\controllers\artisan.controller.ts:10:47[39m
+
+[31m   7 try {[39m
+[31m   8     const artisan: ArtisanProps = req.body[39m
+[31m   9 [39m
+[31m→ 10     const response = await prisma.artisan.create([39m
+[31mCan't reach database server at `ep-dawn-surf-a1cdmogp-pooler.ap-southeast-1.aws.neon.tech:5432`[39m
+
+[31mPlease make sure your database server is running at `ep-dawn-surf-a1cdmogp-pooler.ap-southeast-1.aws.neon.tech:5432`.[39m
+2025-01-29 13:57:54 [35mhttp[39m: [35mPOST /api/v1/artisan/create 500 701 - 30.470 ms[39m
+2025-01-29 13:58:05 [31merror[39m: [31m[39m
+[31mInvalid `prisma.artisan.create()` invocation in[39m
+[31mD:\DKC\ArtStay\art-stay-backend\src\controllers\artisan.controller.ts:10:47[39m
+
+[31m   7 try {[39m
+[31m   8     const artisan: ArtisanProps = req.body[39m
+[31m   9 [39m
+[31m→ 10     const response = await prisma.artisan.create({[39m
+[31m           data: {[39m
+[31m             firstName: "Abdul Rehman",[39m
+[31m             lastName: "Nadeem",[39m
+[31m             address: "ghakhar mandi",[39m
+[31m             description: "this i ath arsadfsd",[39m
+[31m             dp: "https://utfs.io/a/lf74llf0l5/I7dytOvmOq0gatxoDK65fMUEsqPHCNQpYdTXahenWvzVZi7D",[39m
+[31m             experience: "APPRENTICE",[39m
+[31m             education: "NON_FORMAL",[39m
+[31m             certificate: "PROFESSIONAL",[39m
+[31m             training: "NON_FORMAL",[39m
+[31m             recongnition: "STATE",[39m
+[31m             subCraftId: "cm6g6pz630001jpm0ymnmjcb3",[39m
+[31m             craftId: "cm6g6pz630001jpm0ymnmjcb3",[39m
+[31m             accountId: undefined,[39m
+[31m         +   account: {[39m
+[31m         +     create: AccountCreateWithoutArtisanInput | AccountUncheckedCreateWithoutArtisanInput,[39m
+[31m         +     connectOrCreate: AccountCreateOrConnectWithoutArtisanInput,[39m
+[31m         +     connect: AccountWhereUniqueInput[39m
+[31m         +   }[39m
+[31m           }[39m
+[31m         })[39m
+
+[31mArgument `account` is missing.[39m
+2025-01-29 13:58:05 [35mhttp[39m: [35mPOST /api/v1/artisan/create 500 1861 - 1597.216 ms[39m
+2025-01-29 13:59:51 [35mhttp[39m: [35mGET /api/v1/craft/ 201 752 - 471.471 ms[39m
+2025-01-29 14:01:18 [31merror[39m: [31m[39m
+[31mInvalid `prisma.artisan.create()` invocation in[39m
+[31mD:\DKC\ArtStay\art-stay-backend\src\controllers\artisan.controller.ts:10:47[39m
+
+[31m   7 try {[39m
+[31m   8     const artisan: ArtisanProps = req.body[39m
+[31m   9 [39m
+[31m→ 10     const response = await prisma.artisan.create([39m
+[31mForeign key constraint violated: `Artisan_craftId_fkey (index)`[39m
+2025-01-29 14:01:18 [35mhttp[39m: [35mPOST /api/v1/artisan/create 500 528 - 466.853 ms[39m
+2025-01-29 14:03:46 [35mhttp[39m: [35mGET /api/v1/craft/ 201 752 - 1172.225 ms[39m
+2025-01-29 14:04:04 [31merror[39m: [31m[39m
+[31mInvalid `prisma.artisan.create()` invocation in[39m
+[31mD:\DKC\ArtStay\art-stay-backend\src\controllers\artisan.controller.ts:10:47[39m
+
+[31m   7 try {[39m
+[31m   8     const artisan: ArtisanProps = req.body[39m
+[31m   9 [39m
+[31m→ 10     const response = await prisma.artisan.create({[39m
+[31m           data: {[39m
+[31m             firstName: "Abdul Rehman",[39m
+[31m             lastName: "Nadeem",[39m
+[31m             address: "ghakhar mandi",[39m
+[31m             description: "sdgfdsagasd",[39m
+[31m             dp: "https://utfs.io/a/lf74llf0l5/I7dytOvmOq0geA11jHPa1E2ATDLl7GpMdoixyYm6brfWCRvn",[39m
+[31m             experience: "APPRENTICE",[39m
+[31m             education: "NON_FORMAL",[39m
+[31m             certificate: "NONE",[39m
+[31m             training: "NON_FORMAL",[39m
+[31m             recongnition: "STATE",[39m
+[31m             subCraftId: "cm6g6pz630001jpm0ymnmjcb3",[39m
+[31m             craftId: "cm6g633al0000jpsgijp38zjl",[39m
+[31m             accountId: undefined,[39m
+[31m         +   account: {[39m
+[31m         +     create: AccountCreateWithoutArtisanInput | AccountUncheckedCreateWithoutArtisanInput,[39m
+[31m         +     connectOrCreate: AccountCreateOrConnectWithoutArtisanInput,[39m
+[31m         +     connect: AccountWhereUniqueInput[39m
+[31m         +   }[39m
+[31m           }[39m
+[31m         })[39m
+
+[31mArgument `account` is missing.[39m
+2025-01-29 14:04:04 [35mhttp[39m: [35mPOST /api/v1/artisan/create 500 1845 - 138.346 ms[39m
+2025-01-29 14:04:32 [31merror[39m: [31m[39m
+[31mInvalid `prisma.artisan.create()` invocation in[39m
+[31mD:\DKC\ArtStay\art-stay-backend\src\controllers\artisan.controller.ts:10:47[39m
+
+[31m   7 try {[39m
+[31m   8     const artisan: ArtisanProps = req.body[39m
+[31m   9 [39m
+[31m→ 10     const response = await prisma.artisan.create({[39m
+[31m           data: {[39m
+[31m             firstName: "Abdul Rehman",[39m
+[31m             lastName: "Nadeem",[39m
+[31m             address: "ghakhar mandi",[39m
+[31m             description: "sdgfdsagasd",[39m
+[31m             dp: "https://utfs.io/a/lf74llf0l5/I7dytOvmOq0geA11jHPa1E2ATDLl7GpMdoixyYm6brfWCRvn",[39m
+[31m             experience: "APPRENTICE",[39m
+[31m             education: "NON_FORMAL",[39m
+[31m             certificate: "NONE",[39m
+[31m             training: "NON_FORMAL",[39m
+[31m             recongnition: "STATE",[39m
+[31m             subCraftId: "cm6g6pz630001jpm0ymnmjcb3",[39m
+[31m             craftId: "cm6g633al0000jpsgijp38zjl",[39m
+[31m             accountId: undefined,[39m
+[31m         +   account: {[39m
+[31m         +     create: AccountCreateWithoutArtisanInput | AccountUncheckedCreateWithoutArtisanInput,[39m
+[31m         +     connectOrCreate: AccountCreateOrConnectWithoutArtisanInput,[39m
+[31m         +     connect: AccountWhereUniqueInput[39m
+[31m         +   }[39m
+[31m           }[39m
+[31m         })[39m
+
+[31mArgument `account` is missing.[39m
+2025-01-29 14:04:32 [35mhttp[39m: [35mPOST /api/v1/artisan/create 500 1845 - 957.915 ms[39m
+2025-01-29 14:04:57 [31merror[39m: [31m[39m
+[31mInvalid `prisma.artisan.create()` invocation in[39m
+[31mD:\DKC\ArtStay\art-stay-backend\src\controllers\artisan.controller.ts:10:47[39m
+
+[31m   7 try {[39m
+[31m   8     const artisan: ArtisanProps = req.body[39m
+[31m   9 [39m
+[31m→ 10     const response = await prisma.artisan.create({[39m
+[31m           data: {[39m
+[31m             firstName: "Abdul Rehman",[39m
+[31m             lastName: "Nadeem",[39m
+[31m             address: "ghakhar mandi",[39m
+[31m             description: "sdgfdsagasd",[39m
+[31m             dp: "https://utfs.io/a/lf74llf0l5/I7dytOvmOq0geA11jHPa1E2ATDLl7GpMdoixyYm6brfWCRvn",[39m
+[31m             experience: "APPRENTICE",[39m
+[31m             education: "NON_FORMAL",[39m
+[31m             certificate: "NONE",[39m
+[31m             training: "NON_FORMAL",[39m
+[31m             recongnition: "STATE",[39m
+[31m             subCraftId: "cm6g6pz630001jpm0ymnmjcb3",[39m
+[31m             craftId: "cm6g633al0000jpsgijp38zjl",[39m
+[31m             accountId: undefined,[39m
+[31m         +   account: {[39m
+[31m         +     create: AccountCreateWithoutArtisanInput | AccountUncheckedCreateWithoutArtisanInput,[39m
+[31m         +     connectOrCreate: AccountCreateOrConnectWithoutArtisanInput,[39m
+[31m         +     connect: AccountWhereUniqueInput[39m
+[31m         +   }[39m
+[31m           }[39m
+[31m         })[39m
+
+[31mArgument `account` is missing.[39m
+2025-01-29 14:04:57 [35mhttp[39m: [35mPOST /api/v1/artisan/create 500 1845 - 765.633 ms[39m
+2025-01-29 14:05:35 [31merror[39m: [31m[39m
+[31mInvalid `prisma.artisan.create()` invocation in[39m
+[31mD:\DKC\ArtStay\art-stay-backend\src\controllers\artisan.controller.ts:10:47[39m
+
+[31m   7 try {[39m
+[31m   8     const artisan: ArtisanProps = req.body[39m
+[31m   9 [39m
+[31m→ 10     const response = await prisma.artisan.create({[39m
+[31m           data: {[39m
+[31m             firstName: "Abdul Rehman",[39m
+[31m             lastName: "Nadeem",[39m
+[31m             address: "ghakhar mandi",[39m
+[31m             description: "sdgfdsagasd",[39m
+[31m             dp: "https://utfs.io/a/lf74llf0l5/I7dytOvmOq0geA11jHPa1E2ATDLl7GpMdoixyYm6brfWCRvn",[39m
+[31m             experience: "APPRENTICE",[39m
+[31m             education: "NON_FORMAL",[39m
+[31m             certificate: "NONE",[39m
+[31m             training: "NON_FORMAL",[39m
+[31m             recongnition: "STATE",[39m
+[31m             subCraftId: "cm6g6pz630001jpm0ymnmjcb3",[39m
+[31m             craftId: "cm6g633al0000jpsgijp38zjl",[39m
+[31m             accountId: undefined,[39m
+[31m         +   account: {[39m
+[31m         +     create: AccountCreateWithoutArtisanInput | AccountUncheckedCreateWithoutArtisanInput,[39m
+[31m         +     connectOrCreate: AccountCreateOrConnectWithoutArtisanInput,[39m
+[31m         +     connect: AccountWhereUniqueInput[39m
+[31m         +   }[39m
+[31m           }[39m
+[31m         })[39m
+
+[31mArgument `account` is missing.[39m
+2025-01-29 14:05:35 [35mhttp[39m: [35mPOST /api/v1/artisan/create 500 1845 - 795.178 ms[39m
+2025-01-29 14:05:56 [31merror[39m: [31m[39m
+[31mInvalid `prisma.artisan.create()` invocation in[39m
+[31mD:\DKC\ArtStay\art-stay-backend\src\controllers\artisan.controller.ts:10:47[39m
+
+[31m   7 try {[39m
+[31m   8     const artisan: ArtisanProps = req.body[39m
+[31m   9 [39m
+[31m→ 10     const response = await prisma.artisan.create({[39m
+[31m           data: {[39m
+[31m             firstName: "Abdul Rehman",[39m
+[31m             lastName: "Nadeem",[39m
+[31m             address: "ghakhar mandi",[39m
+[31m             description: "sdgfdsagasd",[39m
+[31m             dp: "https://utfs.io/a/lf74llf0l5/I7dytOvmOq0geA11jHPa1E2ATDLl7GpMdoixyYm6brfWCRvn",[39m
+[31m             experience: "APPRENTICE",[39m
+[31m             education: "NON_FORMAL",[39m
+[31m             certificate: "NONE",[39m
+[31m             training: "NON_FORMAL",[39m
+[31m             recongnition: "STATE",[39m
+[31m             subCraftId: "cm6g6pz630001jpm0ymnmjcb3",[39m
+[31m             craftId: "cm6g633al0000jpsgijp38zjl",[39m
+[31m             accountId: undefined,[39m
+[31m         +   account: {[39m
+[31m         +     create: AccountCreateWithoutArtisanInput | AccountUncheckedCreateWithoutArtisanInput,[39m
+[31m         +     connectOrCreate: AccountCreateOrConnectWithoutArtisanInput,[39m
+[31m         +     connect: AccountWhereUniqueInput[39m
+[31m         +   }[39m
+[31m           }[39m
+[31m         })[39m
+
+[31mArgument `account` is missing.[39m
+2025-01-29 14:05:56 [35mhttp[39m: [35mPOST /api/v1/artisan/create 500 1845 - 773.412 ms[39m
+2025-01-29 14:06:12 [31merror[39m: [31m[39m
+[31mInvalid `prisma.artisan.create()` invocation in[39m
+[31mD:\DKC\ArtStay\art-stay-backend\src\controllers\artisan.controller.ts:10:47[39m
+
+[31m   7 try {[39m
+[31m   8     const artisan: ArtisanProps = req.body[39m
+[31m   9 [39m
+[31m→ 10     const response = await prisma.artisan.create({[39m
+[31m           data: {[39m
+[31m             firstName: "Abdul Rehman",[39m
+[31m             lastName: "Nadeem",[39m
+[31m             address: "ghakhar mandi",[39m
+[31m             description: "sdgfdsagasd",[39m
+[31m             dp: "https://utfs.io/a/lf74llf0l5/I7dytOvmOq0geA11jHPa1E2ATDLl7GpMdoixyYm6brfWCRvn",[39m
+[31m             experience: "APPRENTICE",[39m
+[31m             education: "NON_FORMAL",[39m
+[31m             certificate: "NONE",[39m
+[31m             training: "NON_FORMAL",[39m
+[31m             recongnition: "STATE",[39m
+[31m             subCraftId: "cm6g6pz630001jpm0ymnmjcb3",[39m
+[31m             craftId: "cm6g633al0000jpsgijp38zjl",[39m
+[31m             accountId: undefined,[39m
+[31m         +   account: {[39m
+[31m         +     create: AccountCreateWithoutArtisanInput | AccountUncheckedCreateWithoutArtisanInput,[39m
+[31m         +     connectOrCreate: AccountCreateOrConnectWithoutArtisanInput,[39m
+[31m         +     connect: AccountWhereUniqueInput[39m
+[31m         +   }[39m
+[31m           }[39m
+[31m         })[39m
+
+[31mArgument `account` is missing.[39m
+2025-01-29 14:06:12 [35mhttp[39m: [35mPOST /api/v1/artisan/create 500 1845 - 809.753 ms[39m
+2025-01-29 14:06:42 [35mhttp[39m: [35mPOST /api/v1/artisan/create 400 72 - 22.882 ms[39m
+2025-01-29 14:08:17 [35mhttp[39m: [35mGET /api/v1/craft/ 201 752 - 996.153 ms[39m
+2025-01-29 14:08:19 [35mhttp[39m: [35mPOST /api/v1/artisan/create 400 72 - 17.363 ms[39m
+2025-01-29 14:08:39 [35mhttp[39m: [35mGET /api/v1/craft/ 201 752 - 204.102 ms[39m
+2025-01-29 14:08:43 [35mhttp[39m: [35mPOST /api/v1/artisan/create 400 72 - 4.598 ms[39m
+2025-01-29 14:09:12 [35mhttp[39m: [35mGET /api/v1/craft/ 201 752 - 213.571 ms[39m
+2025-01-29 14:09:16 [35mhttp[39m: [35mPOST /api/v1/artisan/create 400 72 - 4.596 ms[39m
+2025-01-29 14:09:26 [35mhttp[39m: [35mGET /api/v1/craft/ 201 752 - 110.018 ms[39m
+2025-01-29 14:09:28 [35mhttp[39m: [35mPOST /api/v1/artisan/create 400 72 - 4.873 ms[39m
+2025-01-29 14:09:37 [35mhttp[39m: [35mGET /api/v1/craft/ 201 752 - 209.980 ms[39m
+2025-01-29 14:09:42 [35mhttp[39m: [35mPOST /api/v1/artisan/create 400 72 - 3.429 ms[39m
+2025-01-29 14:10:00 [35mhttp[39m: [35mGET /api/v1/craft/ 201 752 - 208.355 ms[39m
+2025-01-29 14:10:45 [35mhttp[39m: [35mGET /api/v1/craft/ 201 752 - 205.559 ms[39m
+2025-01-29 14:11:11 [35mhttp[39m: [35mGET /api/v1/craft/ 201 752 - 202.013 ms[39m
+2025-01-29 14:11:16 [35mhttp[39m: [35mPOST /api/v1/artisan/create 201 60 - 449.453 ms[39m
+2025-01-29 14:21:59 [35mhttp[39m: [35mPOST /api/v1/account/login 200 397 - 1742.823 ms[39m
+2025-01-29 14:24:41 [35mhttp[39m: [35mPOST /api/v1/account/login 200 397 - 277.652 ms[39m
+2025-01-29 14:24:45 [35mhttp[39m: [35mGET /api/v1/craft/ 201 752 - 210.139 ms[39m
+2025-01-29 14:24:45 [35mhttp[39m: [35mGET /api/v1/craft/ 201 752 - 105.345 ms[39m
+2025-01-29 14:25:15 [35mhttp[39m: [35mGET /api/v1/craft/ 201 752 - 214.326 ms[39m
+2025-01-29 14:25:15 [35mhttp[39m: [35mGET /api/v1/craft/ 201 752 - 110.119 ms[39m
+2025-01-29 14:25:16 [35mhttp[39m: [35mGET /api/v1/craft/ 201 752 - 975.573 ms[39m
+2025-01-29 14:25:16 [35mhttp[39m: [35mGET /api/v1/craft/ 201 752 - 965.059 ms[39m
