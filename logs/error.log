@@ -305,3 +305,14 @@
 [31m         })[39m
 
 [31mArgument `account` is missing.[39m
+2025-01-31 10:30:21 [31merror[39m: [31m[39m
+[31mInvalid `prisma_1.default.craft.findMany()` invocation in[39m
+[31mD:\DKC\ArtStay\art-stay-backend\dist\controllers\craft.controller.js:56:53[39m
+
+[31m  53 exports.createSubCraft = createSubCraft;[39m
+[31m  54 const getAllCrafts = async (req, res) => {[39m
+[31m  55     try {[39m
+[31m→ 56         const crafts = await prisma_1.default.craft.findMany([39m
+[31mCan't reach database server at `ep-dawn-surf-a1cdmogp-pooler.ap-southeast-1.aws.neon.tech:5432`[39m
+
+[31mPlease make sure your database server is running at `ep-dawn-surf-a1cdmogp-pooler.ap-southeast-1.aws.neon.tech:5432`.[39m

@@ -13,5 +13,6 @@ export const artisanCreationSchema = z.object({
     craftId: z.string(),
     subCraftId: z.string(),
     dp: z.string(),
-    accountId:z.string()
+    email:z.string(),
+    password:z.string()
 })

@@ -505,3 +505,59 @@
 2025-01-29 14:25:15 [35mhttp[39m: [35mGET /api/v1/craft/ 201 752 - 110.119 ms[39m
 2025-01-29 14:25:16 [35mhttp[39m: [35mGET /api/v1/craft/ 201 752 - 975.573 ms[39m
 2025-01-29 14:25:16 [35mhttp[39m: [35mGET /api/v1/craft/ 201 752 - 965.059 ms[39m
+2025-01-31 10:30:21 [31merror[39m: [31m[39m
+[31mInvalid `prisma_1.default.craft.findMany()` invocation in[39m
+[31mD:\DKC\ArtStay\art-stay-backend\dist\controllers\craft.controller.js:56:53[39m
+
+[31m  53 exports.createSubCraft = createSubCraft;[39m
+[31m  54 const getAllCrafts = async (req, res) => {[39m
+[31m  55     try {[39m
+[31m→ 56         const crafts = await prisma_1.default.craft.findMany([39m
+[31mCan't reach database server at `ep-dawn-surf-a1cdmogp-pooler.ap-southeast-1.aws.neon.tech:5432`[39m
+
+[31mPlease make sure your database server is running at `ep-dawn-surf-a1cdmogp-pooler.ap-southeast-1.aws.neon.tech:5432`.[39m
+2025-01-31 10:30:21 [35mhttp[39m: [35mGET /api/v1/craft/ 500 766 - 5066.109 ms[39m
+2025-01-31 10:30:24 [35mhttp[39m: [35mGET /api/v1/craft/ 201 752 - 1145.075 ms[39m
+2025-01-31 10:36:10 [35mhttp[39m: [35mGET /api/v1/craft/ 201 752 - 1831.771 ms[39m
+2025-01-31 10:36:47 [35mhttp[39m: [35mGET /api/v1/craft/ 201 752 - 305.883 ms[39m
+2025-01-31 10:55:53 [35mhttp[39m: [35mGET /api/v1/craft/ 201 752 - 1935.234 ms[39m
+2025-01-31 10:56:18 [35mhttp[39m: [35mGET /api/v1/craft/ 201 752 - 201.654 ms[39m
+2025-01-31 10:56:19 [35mhttp[39m: [35mGET /api/v1/craft/ 201 752 - 103.998 ms[39m
+2025-01-31 10:56:52 [35mhttp[39m: [35mGET /api/v1/craft/ 201 752 - 402.930 ms[39m
+2025-01-31 10:59:49 [35mhttp[39m: [35mGET /api/v1/craft/ 201 752 - 267.246 ms[39m
+2025-01-31 11:00:46 [35mhttp[39m: [35mGET /api/v1/craft/ 201 752 - 219.394 ms[39m
+2025-01-31 11:01:47 [35mhttp[39m: [35mGET /api/v1/craft/ 201 752 - 1025.922 ms[39m
+2025-01-31 11:01:47 [35mhttp[39m: [35mGET /api/v1/craft/ 201 752 - 1462.107 ms[39m
+2025-01-31 11:01:48 [35mhttp[39m: [35mGET /api/v1/craft/ 201 752 - 102.558 ms[39m
+2025-01-31 11:23:40 [35mhttp[39m: [35mGET /api/v1/craft/ 201 752 - 2609.157 ms[39m
+2025-01-31 11:24:54 [35mhttp[39m: [35mGET /api/v1/craft/ 201 752 - 220.145 ms[39m
+2025-01-31 11:30:16 [35mhttp[39m: [35mGET /api/v1/craft/ 201 752 - 1767.768 ms[39m
+2025-01-31 11:30:38 [35mhttp[39m: [35mGET /api/v1/craft/subcrafts/cm6g633al0000jpsgijp38zjl 201 1297 - 327.192 ms[39m
+2025-01-31 11:30:59 [35mhttp[39m: [35mPOST /api/v1/artisan/create 400 72 - 39.139 ms[39m
+2025-01-31 11:31:47 [35mhttp[39m: [35mGET /api/v1/craft/ 201 752 - 208.466 ms[39m
+2025-01-31 11:31:48 [35mhttp[39m: [35mGET /api/v1/craft/subcrafts/cm6g633al0000jpsgijp38zjl 201 1297 - 971.933 ms[39m
+2025-01-31 11:32:11 [35mhttp[39m: [35mGET /api/v1/craft/ 201 752 - 320.604 ms[39m
+2025-01-31 11:32:11 [35mhttp[39m: [35mGET /api/v1/craft/ 201 752 - 104.000 ms[39m
+2025-01-31 11:32:11 [35mhttp[39m: [35mGET /api/v1/craft/ 201 752 - 101.573 ms[39m
+2025-01-31 11:32:38 [35mhttp[39m: [35mGET /api/v1/craft/subcrafts/cm6g633al0000jpsgijp38zjl 201 1297 - 211.889 ms[39m
+2025-01-31 11:33:02 [35mhttp[39m: [35mPOST /api/v1/artisan/create 400 72 - 9.396 ms[39m
+2025-01-31 11:33:39 [35mhttp[39m: [35mPOST /api/v1/artisan/create 400 72 - 16.121 ms[39m
+2025-01-31 11:33:39 [35mhttp[39m: [35mGET /api/v1/craft/subcrafts/cm6g633al0000jpsgijp38zjl 201 1297 - 870.501 ms[39m
+2025-01-31 11:33:39 [35mhttp[39m: [35mGET /api/v1/craft/ 201 752 - 1761.330 ms[39m
+2025-01-31 11:33:41 [35mhttp[39m: [35mPOST /api/v1/artisan/create 400 72 - 7.575 ms[39m
+2025-01-31 11:35:01 [35mhttp[39m: [35mGET /api/v1/craft/subcrafts/cm6g633al0000jpsgijp38zjl 201 1297 - 325.089 ms[39m
+2025-01-31 11:35:01 [35mhttp[39m: [35mGET /api/v1/craft/ 201 752 - 309.743 ms[39m
+2025-01-31 11:35:02 [35mhttp[39m: [35mPOST /api/v1/artisan/create 400 72 - 7.221 ms[39m
+2025-01-31 11:35:18 [35mhttp[39m: [35mPOST /api/v1/artisan/create 400 72 - 5.895 ms[39m
+2025-01-31 11:35:55 [35mhttp[39m: [35mGET /api/v1/craft/subcrafts/cm6g633al0000jpsgijp38zjl 201 1297 - 1151.741 ms[39m
+2025-01-31 11:35:55 [35mhttp[39m: [35mPOST /api/v1/artisan/create 400 72 - 15.335 ms[39m
+2025-01-31 11:35:56 [35mhttp[39m: [35mGET /api/v1/craft/ 201 752 - 1821.842 ms[39m
+2025-01-31 11:36:50 [35mhttp[39m: [35mGET /api/v1/craft/subcrafts/cm6g633al0000jpsgijp38zjl 201 1297 - 307.961 ms[39m
+2025-01-31 11:36:51 [35mhttp[39m: [35mGET /api/v1/craft/ 201 752 - 303.615 ms[39m
+2025-01-31 11:36:51 [35mhttp[39m: [35mPOST /api/v1/artisan/create 400 72 - 5.596 ms[39m
+2025-01-31 11:38:54 [35mhttp[39m: [35mPOST /api/v1/artisan/create 400 72 - 30.566 ms[39m
+2025-01-31 11:38:55 [35mhttp[39m: [35mGET /api/v1/craft/subcrafts/cm6g633al0000jpsgijp38zjl 201 1297 - 1707.948 ms[39m
+2025-01-31 11:38:56 [35mhttp[39m: [35mGET /api/v1/craft/ 201 752 - 3180.307 ms[39m
+2025-01-31 11:45:32 [35mhttp[39m: [35mGET /api/v1/craft/subcrafts/cm6g633al0000jpsgijp38zjl 201 1297 - 1807.873 ms[39m
+2025-01-31 11:45:33 [35mhttp[39m: [35mGET /api/v1/craft/ 201 752 - 2862.835 ms[39m
+2025-01-31 11:45:41 [35mhttp[39m: [35mPOST /api/v1/artisan/create 201 60 - 1259.309 ms[39m

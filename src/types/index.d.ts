@@ -40,5 +40,6 @@ type ArtisanProps = {
   craftId: string,
   subCraftId: string,
   dp: string,
-  accountId:string
+  email:string
+  password:string
 }

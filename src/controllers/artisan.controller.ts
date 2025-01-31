@@ -2,10 +2,21 @@ import { Request, Response } from 'express';
 import prisma from '~/libs/prisma';
 import { logger } from '~/utils/logger';
 import { Certificate, Education, Experience, Recognition, Training } from '@prisma/client';
+import { hash } from 'bcrypt';
 
 export const createArtisan = async (req: Request, res: Response) => {
     try {
         const artisan: ArtisanProps = req.body
+
+        const hashedPassword = await hash(artisan.password, 10);
+
+        const account = await prisma.account.create({
+            data: {
+                email: artisan.email,
+                password: hashedPassword,
+                accountType: 'ARTISAN' as AccountTypeEnum
+            }
+        });
 
         const response = await prisma.artisan.create({
             data: {
@@ -21,7 +32,7 @@ export const createArtisan = async (req: Request, res: Response) => {
                 recongnition: artisan.recognition as Recognition,
                 subCraftId: artisan.subCraftId,
                 craftId: artisan.craftId,
-                accountId: artisan.accountId,
+                accountId: account.userId,
             }
         })
         await prisma.portfolio.create({
