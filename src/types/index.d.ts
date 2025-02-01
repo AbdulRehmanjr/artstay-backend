@@ -40,6 +40,41 @@ type ArtisanProps = {
   craftId: string,
   subCraftId: string,
   dp: string,
-  email:string
-  password:string
+  email: string
+  password: string
+}
+
+type CraftProps = {
+  craftId: string;
+  createdAt: Date;
+  craftName: string;
+  craftSlug: string;
+  updateAt: Date;
+}
+
+type SubCraftProps = {
+  craftId: string;
+  subCraftId: string;
+  createdAt: Date;
+  updatedAt: Date;
+  subCraftName: string;
+  subCraftSlug: string;
+}
+
+type ArtisanDetailProps = {
+  artisanId:string
+  firstName: string,
+  lastName: string,
+  address: string,
+  description: string,
+  experience: string,
+  education: string,
+  training: string,
+  certificate: string,
+  recongnition: string,
+  craftId: string,
+  subCraftId: string,
+  dp: string,
+  subCraft: SubCraftProps
+  craft: CraftProps
 }
