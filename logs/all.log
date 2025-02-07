@@ -729,3 +729,645 @@
 2025-02-01 15:39:38 [35mhttp[39m: [35mGET /api/v1/craft/subcrafts/cm6g633al0000jpsgijp38zjl 201 1297 - 239.685 ms[39m
 2025-02-01 15:41:30 [35mhttp[39m: [35mPATCH /api/v1/artisan/update 400 110 - 51.615 ms[39m
 2025-02-01 15:42:05 [35mhttp[39m: [35mPATCH /api/v1/artisan/update 201 60 - 1465.668 ms[39m
+2025-02-06 08:10:22 [31merror[39m: [31m[39m
+[31mInvalid `prisma.artisan.findMany()` invocation in[39m
+[31mD:\DKC\ArtStay\art-stay-backend\src\controllers\artisan.controller.ts:115:69[39m
+
+[31m  112 const queryParams = req.query[39m
+[31m  113 const limit = Number(queryParams.limit)[39m
+[31m  114 const skip = Number(queryParams.skip)[39m
+[31m→ 115 const artisans: ArtisanDetailProps[] = await prisma.artisan.findMany({[39m
+[31m        include: {[39m
+[31m          craft: true,[39m
+[31m          subCraft: true[39m
+[31m        },[39m
+[31m        take: 6,[39m
+[31m        orderBy: {[39m
+[31m          createdAt: "desc"[39m
+[31m        },[39m
+[31m      + skip: Int[39m
+[31m      })[39m
+
+[31mArgument `skip` is missing.[39m
+2025-02-06 08:10:22 [35mhttp[39m: [35mGET /api/v1/artisan/all?limit=6&cursor=undefined 500 972 - 2200.958 ms[39m
+2025-02-06 08:10:23 [31merror[39m: [31m[39m
+[31mInvalid `prisma.artisan.findMany()` invocation in[39m
+[31mD:\DKC\ArtStay\art-stay-backend\src\controllers\artisan.controller.ts:115:69[39m
+
+[31m  112 const queryParams = req.query[39m
+[31m  113 const limit = Number(queryParams.limit)[39m
+[31m  114 const skip = Number(queryParams.skip)[39m
+[31m→ 115 const artisans: ArtisanDetailProps[] = await prisma.artisan.findMany({[39m
+[31m        include: {[39m
+[31m          craft: true,[39m
+[31m          subCraft: true[39m
+[31m        },[39m
+[31m        take: 6,[39m
+[31m        orderBy: {[39m
+[31m          createdAt: "desc"[39m
+[31m        },[39m
+[31m      + skip: Int[39m
+[31m      })[39m
+
+[31mArgument `skip` is missing.[39m
+2025-02-06 08:10:23 [35mhttp[39m: [35mGET /api/v1/artisan/all?limit=6&cursor=undefined 500 972 - 948.665 ms[39m
+2025-02-06 08:10:24 [31merror[39m: [31m[39m
+[31mInvalid `prisma.artisan.findMany()` invocation in[39m
+[31mD:\DKC\ArtStay\art-stay-backend\src\controllers\artisan.controller.ts:115:69[39m
+
+[31m  112 const queryParams = req.query[39m
+[31m  113 const limit = Number(queryParams.limit)[39m
+[31m  114 const skip = Number(queryParams.skip)[39m
+[31m→ 115 const artisans: ArtisanDetailProps[] = await prisma.artisan.findMany({[39m
+[31m        include: {[39m
+[31m          craft: true,[39m
+[31m          subCraft: true[39m
+[31m        },[39m
+[31m        take: 6,[39m
+[31m        orderBy: {[39m
+[31m          createdAt: "desc"[39m
+[31m        },[39m
+[31m      + skip: Int[39m
+[31m      })[39m
+
+[31mArgument `skip` is missing.[39m
+2025-02-06 08:10:24 [35mhttp[39m: [35mGET /api/v1/artisan/all?limit=6&cursor=undefined 500 972 - 5.868 ms[39m
+2025-02-06 08:11:38 [31merror[39m: [31m[39m
+[31mInvalid `prisma.artisan.findMany()` invocation in[39m
+[31mD:\DKC\ArtStay\art-stay-backend\src\controllers\artisan.controller.ts:115:69[39m
+
+[31m  112 const queryParams = req.query[39m
+[31m  113 const limit = Number(queryParams.limit)[39m
+[31m  114 const skip = Number(queryParams.cursor)[39m
+[31m→ 115 const artisans: ArtisanDetailProps[] = await prisma.artisan.findMany({[39m
+[31m        include: {[39m
+[31m          craft: true,[39m
+[31m          subCraft: true[39m
+[31m        },[39m
+[31m        take: 6,[39m
+[31m        orderBy: {[39m
+[31m          createdAt: "desc"[39m
+[31m        },[39m
+[31m      + skip: Int[39m
+[31m      })[39m
+
+[31mArgument `skip` is missing.[39m
+2025-02-06 08:11:38 [35mhttp[39m: [35mGET /api/v1/artisan/all?limit=6&cursor=undefined 500 974 - 1126.252 ms[39m
+2025-02-06 08:11:39 [31merror[39m: [31m[39m
+[31mInvalid `prisma.artisan.findMany()` invocation in[39m
+[31mD:\DKC\ArtStay\art-stay-backend\src\controllers\artisan.controller.ts:115:69[39m
+
+[31m  112 const queryParams = req.query[39m
+[31m  113 const limit = Number(queryParams.limit)[39m
+[31m  114 const skip = Number(queryParams.cursor)[39m
+[31m→ 115 const artisans: ArtisanDetailProps[] = await prisma.artisan.findMany({[39m
+[31m        include: {[39m
+[31m          craft: true,[39m
+[31m          subCraft: true[39m
+[31m        },[39m
+[31m        take: 6,[39m
+[31m        orderBy: {[39m
+[31m          createdAt: "desc"[39m
+[31m        },[39m
+[31m      + skip: Int[39m
+[31m      })[39m
+
+[31mArgument `skip` is missing.[39m
+2025-02-06 08:11:39 [35mhttp[39m: [35mGET /api/v1/artisan/all?limit=6&cursor=undefined 500 974 - 8.954 ms[39m
+2025-02-06 08:12:03 [31merror[39m: [31m[39m
+[31mInvalid `prisma.artisan.findMany()` invocation in[39m
+[31mD:\DKC\ArtStay\art-stay-backend\src\controllers\artisan.controller.ts:116:69[39m
+
+[31m  113 const limit = Number(queryParams.limit)[39m
+[31m  114 const skip = Number(queryParams.cursor)[39m
+[31m  115 console.log(queryParams)[39m
+[31m→ 116 const artisans: ArtisanDetailProps[] = await prisma.artisan.findMany({[39m
+[31m        include: {[39m
+[31m          craft: true,[39m
+[31m          subCraft: true[39m
+[31m        },[39m
+[31m        take: 6,[39m
+[31m        orderBy: {[39m
+[31m          createdAt: "desc"[39m
+[31m        },[39m
+[31m      + skip: Int[39m
+[31m      })[39m
+
+[31mArgument `skip` is missing.[39m
+2025-02-06 08:12:03 [35mhttp[39m: [35mGET /api/v1/artisan/all?limit=6&cursor=undefined 500 969 - 1202.567 ms[39m
+2025-02-06 08:12:04 [31merror[39m: [31m[39m
+[31mInvalid `prisma.artisan.findMany()` invocation in[39m
+[31mD:\DKC\ArtStay\art-stay-backend\src\controllers\artisan.controller.ts:116:69[39m
+
+[31m  113 const limit = Number(queryParams.limit)[39m
+[31m  114 const skip = Number(queryParams.cursor)[39m
+[31m  115 console.log(queryParams)[39m
+[31m→ 116 const artisans: ArtisanDetailProps[] = await prisma.artisan.findMany({[39m
+[31m        include: {[39m
+[31m          craft: true,[39m
+[31m          subCraft: true[39m
+[31m        },[39m
+[31m        take: 6,[39m
+[31m        orderBy: {[39m
+[31m          createdAt: "desc"[39m
+[31m        },[39m
+[31m      + skip: Int[39m
+[31m      })[39m
+
+[31mArgument `skip` is missing.[39m
+2025-02-06 08:12:04 [35mhttp[39m: [35mGET /api/v1/artisan/all?limit=6&cursor=undefined 500 969 - 7.403 ms[39m
+2025-02-06 08:12:13 [31merror[39m: [31m[39m
+[31mInvalid `prisma.artisan.findMany()` invocation in[39m
+[31mD:\DKC\ArtStay\art-stay-backend\src\controllers\artisan.controller.ts:116:69[39m
+
+[31m  113 const limit = Number(queryParams.limit)[39m
+[31m  114 const skip = Number(queryParams.cursor ??0)[39m
+[31m  115 console.log(queryParams)[39m
+[31m→ 116 const artisans: ArtisanDetailProps[] = await prisma.artisan.findMany({[39m
+[31m        include: {[39m
+[31m          craft: true,[39m
+[31m          subCraft: true[39m
+[31m        },[39m
+[31m        take: 6,[39m
+[31m        orderBy: {[39m
+[31m          createdAt: "desc"[39m
+[31m        },[39m
+[31m      + skip: Int[39m
+[31m      })[39m
+
+[31mArgument `skip` is missing.[39m
+2025-02-06 08:12:13 [35mhttp[39m: [35mGET /api/v1/artisan/all?limit=6&cursor=undefined 500 973 - 1129.314 ms[39m
+2025-02-06 08:12:14 [31merror[39m: [31m[39m
+[31mInvalid `prisma.artisan.findMany()` invocation in[39m
+[31mD:\DKC\ArtStay\art-stay-backend\src\controllers\artisan.controller.ts:116:69[39m
+
+[31m  113 const limit = Number(queryParams.limit)[39m
+[31m  114 const skip = Number(queryParams.cursor ??0)[39m
+[31m  115 console.log(queryParams)[39m
+[31m→ 116 const artisans: ArtisanDetailProps[] = await prisma.artisan.findMany({[39m
+[31m        include: {[39m
+[31m          craft: true,[39m
+[31m          subCraft: true[39m
+[31m        },[39m
+[31m        take: 6,[39m
+[31m        orderBy: {[39m
+[31m          createdAt: "desc"[39m
+[31m        },[39m
+[31m      + skip: Int[39m
+[31m      })[39m
+
+[31mArgument `skip` is missing.[39m
+2025-02-06 08:12:14 [35mhttp[39m: [35mGET /api/v1/artisan/all?limit=6&cursor=undefined 500 973 - 9.355 ms[39m
+2025-02-06 08:15:34 [35mhttp[39m: [35mGET /api/v1/artisan/all?limit=6&cursor=0 201 5636 - 4874.017 ms[39m
+2025-02-06 08:15:36 [35mhttp[39m: [35mGET /api/v1/artisan/all?limit=6&cursor=0 201 5636 - 775.466 ms[39m
+2025-02-06 08:18:53 [35mhttp[39m: [35mGET /api/v1/artisan/all?limit=6&cursor=0 201 6020 - 629.844 ms[39m
+2025-02-06 08:18:54 [35mhttp[39m: [35mGET /api/v1/artisan/all?limit=6&cursor=0 201 6020 - 799.904 ms[39m
+2025-02-06 08:20:11 [35mhttp[39m: [35mGET /api/v1/artisan/all?limit=6&cursor=0 201 6020 - 763.829 ms[39m
+2025-02-06 08:20:13 [35mhttp[39m: [35mGET /api/v1/artisan/all?limit=6&cursor=0 201 6020 - 435.657 ms[39m
+2025-02-06 08:20:53 [35mhttp[39m: [35mGET /api/v1/artisan/all?limit=6&cursor=0 201 6020 - 1771.729 ms[39m
+2025-02-06 08:21:59 [35mhttp[39m: [35mGET /api/v1/artisan/all?limit=6&cursor=0 201 6020 - 405.824 ms[39m
+2025-02-06 08:22:18 [35mhttp[39m: [35mGET /api/v1/artisan/all?limit=6&cursor=0 201 6020 - 815.886 ms[39m
+2025-02-06 08:22:19 [35mhttp[39m: [35mGET /api/v1/artisan/all?limit=6&cursor=0 201 6020 - 464.631 ms[39m
+2025-02-06 08:24:39 [35mhttp[39m: [35mGET /api/v1/artisan/all?limit=6&cursor=0 201 6033 - 1370.641 ms[39m
+2025-02-06 08:24:40 [35mhttp[39m: [35mGET /api/v1/artisan/all?limit=6&cursor=0 201 6033 - 3402.818 ms[39m
+2025-02-06 08:24:40 [35mhttp[39m: [35mGET /api/v1/artisan/all?limit=6&cursor=0 201 6033 - 459.056 ms[39m
+2025-02-06 08:24:42 [35mhttp[39m: [35mGET /api/v1/artisan/all?limit=6&cursor=6 201 6058 - 1089.798 ms[39m
+2025-02-06 08:24:43 [35mhttp[39m: [35mGET /api/v1/artisan/all?limit=6&cursor=12 201 6026 - 795.504 ms[39m
+2025-02-06 08:24:44 [35mhttp[39m: [35mGET /api/v1/artisan/all?limit=6&cursor=18 201 6047 - 636.062 ms[39m
+2025-02-06 08:25:02 [35mhttp[39m: [35mGET /api/v1/artisan/all?limit=6&cursor=0 201 6027 - 2891.684 ms[39m
+2025-02-06 08:25:03 [35mhttp[39m: [35mGET /api/v1/artisan/all?limit=6&cursor=0 201 6027 - 448.079 ms[39m
+2025-02-06 08:25:05 [35mhttp[39m: [35mGET /api/v1/artisan/all?limit=6&cursor=6 201 5981 - 1143.949 ms[39m
+2025-02-06 08:25:06 [35mhttp[39m: [35mGET /api/v1/artisan/all?limit=6&cursor=12 201 6026 - 701.703 ms[39m
+2025-02-06 08:25:07 [35mhttp[39m: [35mGET /api/v1/artisan/all?limit=6&cursor=18 201 6047 - 577.435 ms[39m
+2025-02-06 08:37:47 [35mhttp[39m: [35mGET /api/v1/artisan/all?limit=6&cursor=24 201 4092 - 1545.251 ms[39m
+2025-02-06 08:37:48 [35mhttp[39m: [35mGET /api/v1/artisan/all?limit=6&cursor=0 201 6027 - 4168.109 ms[39m
+2025-02-06 08:37:49 [35mhttp[39m: [35mGET /api/v1/artisan/all?limit=6&cursor=6 201 5981 - 540.689 ms[39m
+2025-02-06 08:37:50 [35mhttp[39m: [35mGET /api/v1/artisan/all?limit=6&cursor=12 201 6026 - 1015.659 ms[39m
+2025-02-06 08:37:52 [35mhttp[39m: [35mGET /api/v1/artisan/all?limit=6&cursor=18 201 6047 - 1092.173 ms[39m
+2025-02-06 08:39:58 [35mhttp[39m: [35mGET /api/v1/artisan/all?limit=6&cursor=0 201 6027 - 674.425 ms[39m
+2025-02-06 08:39:59 [35mhttp[39m: [35mGET /api/v1/artisan/all?limit=6&cursor=6 201 5981 - 634.127 ms[39m
+2025-02-06 08:40:00 [35mhttp[39m: [35mGET /api/v1/artisan/all?limit=6&cursor=12 201 6026 - 432.459 ms[39m
+2025-02-06 08:40:00 [35mhttp[39m: [35mGET /api/v1/artisan/all?limit=6&cursor=18 201 6047 - 455.333 ms[39m
+2025-02-06 08:40:02 [35mhttp[39m: [35mGET /api/v1/artisan/all?limit=6&cursor=24 201 4092 - 699.920 ms[39m
+2025-02-06 08:40:31 [35mhttp[39m: [35mGET /api/v1/artisan/all?limit=6&cursor=0 201 6021 - 752.300 ms[39m
+2025-02-06 08:40:33 [35mhttp[39m: [35mGET /api/v1/artisan/all?limit=6&cursor=0 201 6021 - 714.106 ms[39m
+2025-02-06 08:41:59 [35mhttp[39m: [35mGET /api/v1/artisan/all?limit=6&cursor=0 201 6021 - 804.993 ms[39m
+2025-02-06 08:42:01 [35mhttp[39m: [35mGET /api/v1/artisan/all?limit=6&cursor=0 201 6021 - 696.846 ms[39m
+2025-02-06 08:42:03 [35mhttp[39m: [35mGET /api/v1/artisan/all?limit=6&cursor=6 201 5975 - 434.946 ms[39m
+2025-02-06 08:42:04 [35mhttp[39m: [35mGET /api/v1/artisan/all?limit=6&cursor=12 201 6020 - 590.992 ms[39m
+2025-02-06 08:42:05 [35mhttp[39m: [35mGET /api/v1/artisan/all?limit=6&cursor=18 201 6041 - 490.529 ms[39m
+2025-02-06 08:43:16 [35mhttp[39m: [35mGET /api/v1/artisan/all?limit=6&cursor=0 201 6021 - 2667.057 ms[39m
+2025-02-06 08:43:17 [35mhttp[39m: [35mGET /api/v1/artisan/all?limit=6&cursor=6 201 5975 - 1017.808 ms[39m
+2025-02-06 08:43:18 [35mhttp[39m: [35mGET /api/v1/artisan/all?limit=6&cursor=12 201 6020 - 557.810 ms[39m
+2025-02-06 08:43:19 [35mhttp[39m: [35mGET /api/v1/artisan/all?limit=6&cursor=18 201 6041 - 601.976 ms[39m
+2025-02-06 08:43:57 [35mhttp[39m: [35mGET /api/v1/artisan/all?limit=6&cursor=24 201 4088 - 2473.473 ms[39m
+2025-02-07 07:18:32 [35mhttp[39m: [35mGET /api/v1/artisan/all?limit=6&cursor=0 201 6021 - 2510.650 ms[39m
+2025-02-07 07:18:43 [35mhttp[39m: [35mGET /api/v1/artisan/all?limit=6&cursor=6 201 5975 - 531.564 ms[39m
+2025-02-07 07:19:23 [35mhttp[39m: [35mGET /api/v1/artisan/all?limit=6&cursor=0 201 6021 - 882.149 ms[39m
+2025-02-07 07:19:24 [35mhttp[39m: [35mGET /api/v1/artisan/all?limit=6&cursor=6 201 5975 - 800.943 ms[39m
+2025-02-07 07:19:29 [35mhttp[39m: [35mGET /api/v1/artisan/all?limit=6&cursor=12 201 6020 - 422.948 ms[39m
+2025-02-07 07:19:30 [35mhttp[39m: [35mGET /api/v1/artisan/all?limit=6&cursor=18 201 6041 - 426.379 ms[39m
+2025-02-07 07:19:33 [35mhttp[39m: [35mGET /api/v1/artisan/all?limit=6&cursor=24 201 4088 - 626.582 ms[39m
+2025-02-07 07:20:20 [35mhttp[39m: [35mGET /api/v1/artisan/all?limit=6&cursor=0 201 6021 - 531.248 ms[39m
+2025-02-07 07:20:20 [35mhttp[39m: [35mGET /api/v1/artisan/all?limit=6&cursor=6 201 5975 - 424.526 ms[39m
+2025-02-07 07:20:21 [35mhttp[39m: [35mGET /api/v1/artisan/all?limit=6&cursor=12 201 6020 - 408.244 ms[39m
+2025-02-07 07:20:22 [35mhttp[39m: [35mGET /api/v1/artisan/all?limit=6&cursor=18 201 6041 - 424.269 ms[39m
+2025-02-07 07:20:23 [35mhttp[39m: [35mGET /api/v1/artisan/all?limit=6&cursor=24 201 4088 - 411.123 ms[39m
+2025-02-07 07:20:58 [35mhttp[39m: [35mGET /api/v1/artisan/all?limit=6&cursor=0 201 6021 - 516.064 ms[39m
+2025-02-07 07:20:59 [35mhttp[39m: [35mGET /api/v1/artisan/all?limit=6&cursor=6 201 5975 - 404.063 ms[39m
+2025-02-07 07:21:00 [35mhttp[39m: [35mGET /api/v1/artisan/all?limit=6&cursor=12 201 6020 - 421.182 ms[39m
+2025-02-07 07:21:01 [35mhttp[39m: [35mGET /api/v1/artisan/all?limit=6&cursor=18 201 6041 - 418.983 ms[39m
+2025-02-07 07:21:01 [35mhttp[39m: [35mGET /api/v1/artisan/all?limit=6&cursor=24 201 4088 - 413.508 ms[39m
+2025-02-07 07:22:12 [35mhttp[39m: [35mGET /api/v1/artisan/all?limit=6&cursor=0 201 6021 - 527.894 ms[39m
+2025-02-07 07:22:13 [35mhttp[39m: [35mGET /api/v1/artisan/all?limit=6&cursor=6 201 5975 - 441.766 ms[39m
+2025-02-07 07:22:14 [35mhttp[39m: [35mGET /api/v1/artisan/all?limit=6&cursor=12 201 6020 - 439.811 ms[39m
+2025-02-07 07:22:14 [35mhttp[39m: [35mGET /api/v1/artisan/all?limit=6&cursor=18 201 6041 - 428.888 ms[39m
+2025-02-07 07:22:15 [35mhttp[39m: [35mGET /api/v1/artisan/all?limit=6&cursor=24 201 4088 - 427.618 ms[39m
+2025-02-07 07:22:47 [35mhttp[39m: [35mGET /api/v1/artisan/all?limit=6&cursor=0 201 6021 - 526.048 ms[39m
+2025-02-07 07:22:47 [35mhttp[39m: [35mGET /api/v1/artisan/all?limit=6&cursor=6 201 5975 - 414.549 ms[39m
+2025-02-07 07:22:48 [35mhttp[39m: [35mGET /api/v1/artisan/all?limit=6&cursor=12 201 6020 - 413.908 ms[39m
+2025-02-07 07:22:49 [35mhttp[39m: [35mGET /api/v1/artisan/all?limit=6&cursor=18 201 6041 - 411.977 ms[39m
+2025-02-07 07:22:50 [35mhttp[39m: [35mGET /api/v1/artisan/all?limit=6&cursor=24 201 4088 - 420.881 ms[39m
+2025-02-07 07:23:27 [35mhttp[39m: [35mGET /api/v1/artisan/all?limit=6&cursor=0 201 6021 - 515.572 ms[39m
+2025-02-07 07:23:28 [35mhttp[39m: [35mGET /api/v1/artisan/all?limit=6&cursor=6 201 5975 - 426.385 ms[39m
+2025-02-07 07:23:28 [35mhttp[39m: [35mGET /api/v1/artisan/all?limit=6&cursor=12 201 6020 - 411.271 ms[39m
+2025-02-07 07:23:29 [35mhttp[39m: [35mGET /api/v1/artisan/all?limit=6&cursor=18 201 6041 - 416.700 ms[39m
+2025-02-07 07:23:30 [35mhttp[39m: [35mGET /api/v1/artisan/all?limit=6&cursor=24 201 4088 - 408.791 ms[39m
+2025-02-07 07:24:02 [35mhttp[39m: [35mGET /api/v1/artisan/all?limit=6&cursor=0 201 6021 - 1806.938 ms[39m
+2025-02-07 07:24:03 [35mhttp[39m: [35mGET /api/v1/artisan/all?limit=6&cursor=6 201 5975 - 535.697 ms[39m
+2025-02-07 07:24:04 [35mhttp[39m: [35mGET /api/v1/artisan/all?limit=6&cursor=12 201 6020 - 420.718 ms[39m
+2025-02-07 07:24:05 [35mhttp[39m: [35mGET /api/v1/artisan/all?limit=6&cursor=18 201 6041 - 446.345 ms[39m
+2025-02-07 07:24:06 [35mhttp[39m: [35mGET /api/v1/artisan/all?limit=6&cursor=24 201 4088 - 616.545 ms[39m
+2025-02-07 07:24:37 [35mhttp[39m: [35mGET /api/v1/artisan/all?limit=6&cursor=0 201 6021 - 523.506 ms[39m
+2025-02-07 07:24:38 [35mhttp[39m: [35mGET /api/v1/artisan/all?limit=6&cursor=6 201 5975 - 443.276 ms[39m
+2025-02-07 07:24:39 [35mhttp[39m: [35mGET /api/v1/artisan/all?limit=6&cursor=12 201 6020 - 437.461 ms[39m
+2025-02-07 07:24:39 [35mhttp[39m: [35mGET /api/v1/artisan/all?limit=6&cursor=18 201 6041 - 420.162 ms[39m
+2025-02-07 07:24:40 [35mhttp[39m: [35mGET /api/v1/artisan/all?limit=6&cursor=24 201 4088 - 427.059 ms[39m
+2025-02-07 07:25:21 [35mhttp[39m: [35mGET /api/v1/artisan/all?limit=6&cursor=0 201 6021 - 524.462 ms[39m
+2025-02-07 07:25:21 [35mhttp[39m: [35mGET /api/v1/artisan/all?limit=6&cursor=6 201 5975 - 417.161 ms[39m
+2025-02-07 07:25:22 [35mhttp[39m: [35mGET /api/v1/artisan/all?limit=6&cursor=12 201 6020 - 418.948 ms[39m
+2025-02-07 07:25:23 [35mhttp[39m: [35mGET /api/v1/artisan/all?limit=6&cursor=18 201 6041 - 413.706 ms[39m
+2025-02-07 07:25:24 [35mhttp[39m: [35mGET /api/v1/artisan/all?limit=6&cursor=24 201 4088 - 417.843 ms[39m
+2025-02-07 07:28:21 [35mhttp[39m: [35mGET /api/v1/artisan/all?limit=6&cursor=0 201 6021 - 534.309 ms[39m
+2025-02-07 07:28:22 [35mhttp[39m: [35mGET /api/v1/artisan/all?limit=6&cursor=6 201 5975 - 466.321 ms[39m
+2025-02-07 07:28:23 [35mhttp[39m: [35mGET /api/v1/artisan/all?limit=6&cursor=12 201 6020 - 416.281 ms[39m
+2025-02-07 07:28:24 [35mhttp[39m: [35mGET /api/v1/artisan/all?limit=6&cursor=18 201 6041 - 440.637 ms[39m
+2025-02-07 07:28:25 [35mhttp[39m: [35mGET /api/v1/artisan/all?limit=6&cursor=24 201 4088 - 419.791 ms[39m
+2025-02-07 07:31:16 [35mhttp[39m: [35mGET /api/v1/artisan/all?limit=6&cursor=0 201 6021 - 1658.787 ms[39m
+2025-02-07 07:31:17 [35mhttp[39m: [35mGET /api/v1/artisan/all?limit=6&cursor=0 201 6021 - 412.993 ms[39m
+2025-02-07 07:31:18 [35mhttp[39m: [35mGET /api/v1/artisan/all?limit=6&cursor=6 201 5975 - 511.051 ms[39m
+2025-02-07 07:31:19 [35mhttp[39m: [35mGET /api/v1/artisan/all?limit=6&cursor=12 201 6020 - 419.916 ms[39m
+2025-02-07 07:31:20 [35mhttp[39m: [35mGET /api/v1/artisan/all?limit=6&cursor=18 201 6041 - 419.147 ms[39m
+2025-02-07 07:31:21 [35mhttp[39m: [35mGET /api/v1/artisan/all?limit=6&cursor=24 201 4088 - 608.127 ms[39m
+2025-02-07 07:43:34 [35mhttp[39m: [35mGET /api/v1/artisan/all?limit=6&cursor=0 201 6021 - 2345.778 ms[39m
+2025-02-07 07:43:35 [35mhttp[39m: [35mGET /api/v1/artisan/all?limit=6&cursor=0 201 6021 - 417.713 ms[39m
+2025-02-07 07:43:47 [35mhttp[39m: [35mGET /api/v1/artisan/all?limit=6&cursor=6 201 5975 - 744.747 ms[39m
+2025-02-07 07:44:19 [35mhttp[39m: [35mGET /api/v1/artisan/all?limit=6&cursor=0 201 6021 - 534.022 ms[39m
+2025-02-07 07:44:20 [35mhttp[39m: [35mGET /api/v1/artisan/all?limit=6&cursor=6 201 5975 - 414.058 ms[39m
+2025-02-07 07:45:24 [35mhttp[39m: [35mGET /api/v1/artisan/all?limit=6&cursor=0 201 6021 - 526.922 ms[39m
+2025-02-07 07:45:25 [35mhttp[39m: [35mGET /api/v1/artisan/all?limit=6&cursor=6 201 5975 - 436.471 ms[39m
+2025-02-07 07:46:22 [35mhttp[39m: [35mGET /api/v1/artisan/all?limit=6&cursor=0 201 6021 - 530.200 ms[39m
+2025-02-07 07:46:23 [35mhttp[39m: [35mGET /api/v1/artisan/all?limit=6&cursor=6 201 5975 - 413.931 ms[39m
+2025-02-07 07:46:26 [35mhttp[39m: [35mGET /api/v1/artisan/all?limit=6&cursor=12 201 6020 - 1900.479 ms[39m
+2025-02-07 07:46:27 [35mhttp[39m: [35mGET /api/v1/artisan/all?limit=6&cursor=18 201 6041 - 542.666 ms[39m
+2025-02-07 07:46:29 [35mhttp[39m: [35mGET /api/v1/artisan/all?limit=6&cursor=24 201 4088 - 723.445 ms[39m
+2025-02-07 08:42:35 [35mhttp[39m: [35mGET /api/v1/artisan/all?limit=6&cursor=0 201 5390 - 2641.093 ms[39m
+2025-02-07 08:44:41 [35mhttp[39m: [35mGET /api/v1/artisan/all?limit=6&cursor=0 201 5526 - 2139.541 ms[39m
+2025-02-07 08:44:46 [35mhttp[39m: [35mGET /api/v1/artisan/all?limit=6&cursor=6 201 5449 - 647.081 ms[39m
+2025-02-07 08:44:56 [35mhttp[39m: [35mGET /api/v1/artisan/all?limit=6&cursor=0 201 5526 - 566.433 ms[39m
+2025-02-07 08:44:57 [35mhttp[39m: [35mGET /api/v1/artisan/all?limit=6&cursor=0 201 5526 - 2112.197 ms[39m
+2025-02-07 08:44:59 [35mhttp[39m: [35mGET /api/v1/artisan/all?limit=6&cursor=0 201 5526 - 507.842 ms[39m
+2025-02-07 08:45:07 [35mhttp[39m: [35mGET /api/v1/artisan/all?limit=6&cursor=6 201 5449 - 545.175 ms[39m
+2025-02-07 08:45:09 [35mhttp[39m: [35mGET /api/v1/artisan/all?limit=6&cursor=12 201 1055 - 815.484 ms[39m
+2025-02-07 08:48:35 [35mhttp[39m: [35mGET /api/v1/artisan/artisan6 404 162 - 4.166 ms[39m
+2025-02-07 08:48:35 [35mhttp[39m: [35mGET /api/v1/artisan/artisan6 404 162 - 1.417 ms[39m
+2025-02-07 08:48:41 [35mhttp[39m: [35mGET /api/v1/artisan/artisan6 404 162 - 0.645 ms[39m
+2025-02-07 08:50:13 [35mhttp[39m: [35mGET /api/v1/artisan/artisan6 404 162 - 0.444 ms[39m
+2025-02-07 08:50:35 [35mhttp[39m: [35mGET /api/v1/artisan/artisan6 404 162 - 0.457 ms[39m
+2025-02-07 08:50:35 [35mhttp[39m: [35mGET /api/v1/artisan/artisan6 404 162 - 0.797 ms[39m
+2025-02-07 08:51:03 [35mhttp[39m: [35mGET /api/v1/artisan/artisan6 404 162 - 4.922 ms[39m
+2025-02-07 08:51:44 [35mhttp[39m: [35mGET /api/v1/artisan/artisan6 201 1143 - 3439.267 ms[39m
+2025-02-07 08:57:27 [35mhttp[39m: [35mGET /api/v1/artisan/artisan6 201 1143 - 2386.425 ms[39m
+2025-02-07 08:57:28 [35mhttp[39m: [35mGET /api/v1/artisan/artisan6 201 1143 - 3123.581 ms[39m
+2025-02-07 08:57:28 [35mhttp[39m: [35mGET /api/v1/artisan/artisan6 201 1143 - 3409.574 ms[39m
+2025-02-07 08:57:30 [35mhttp[39m: [35mGET /api/v1/artisan/artisan6 201 1143 - 444.869 ms[39m
+2025-02-07 08:57:30 [35mhttp[39m: [35mGET /api/v1/artisan/artisan6 201 1143 - 418.210 ms[39m
+2025-02-07 09:01:49 [35mhttp[39m: [35mGET /api/v1/artisan/artisan6 201 1143 - 615.432 ms[39m
+2025-02-07 09:01:49 [35mhttp[39m: [35mGET /api/v1/artisan/artisan6 201 1143 - 651.293 ms[39m
+2025-02-07 09:05:18 [35mhttp[39m: [35mGET /api/v1/artisan/artisan6 201 1143 - 1687.380 ms[39m
+2025-02-07 09:05:18 [35mhttp[39m: [35mGET /api/v1/artisan/artisan6 201 1143 - 1624.135 ms[39m
+2025-02-07 09:05:19 [35mhttp[39m: [35mGET /api/v1/artisan/artisan6 201 1143 - 1589.702 ms[39m
+2025-02-07 09:05:19 [35mhttp[39m: [35mGET /api/v1/artisan/artisan6 201 1143 - 1605.771 ms[39m
+2025-02-07 09:05:19 [35mhttp[39m: [35mGET /api/v1/artisan/artisan6 201 1143 - 1580.291 ms[39m
+2025-02-07 09:05:51 [35mhttp[39m: [35mGET /api/v1/artisan/artisan6 201 1143 - 911.379 ms[39m
+2025-02-07 09:05:51 [35mhttp[39m: [35mGET /api/v1/artisan/artisan6 201 1143 - 912.678 ms[39m
+2025-02-07 09:05:59 [35mhttp[39m: [35mGET /api/v1/artisan/artisan6 201 1143 - 510.888 ms[39m
+2025-02-07 09:05:59 [35mhttp[39m: [35mGET /api/v1/artisan/artisan6 201 1143 - 630.852 ms[39m
+2025-02-07 09:05:59 [35mhttp[39m: [35mGET /api/v1/artisan/artisan6 201 1143 - 540.884 ms[39m
+2025-02-07 09:06:00 [35mhttp[39m: [35mGET /api/v1/artisan/artisan6 201 1143 - 552.974 ms[39m
+2025-02-07 09:06:00 [35mhttp[39m: [35mGET /api/v1/artisan/artisan6 201 1143 - 430.841 ms[39m
+2025-02-07 09:06:21 [35mhttp[39m: [35mGET /api/v1/artisan/artisan6 201 1143 - 526.218 ms[39m
+2025-02-07 09:06:21 [35mhttp[39m: [35mGET /api/v1/artisan/artisan6 201 1143 - 534.329 ms[39m
+2025-02-07 09:06:38 [35mhttp[39m: [35mGET /api/v1/artisan/artisan6 201 1143 - 532.850 ms[39m
+2025-02-07 09:06:38 [35mhttp[39m: [35mGET /api/v1/artisan/artisan6 201 1143 - 542.091 ms[39m
+2025-02-07 09:06:38 [35mhttp[39m: [35mGET /api/v1/artisan/artisan6 201 1143 - 535.270 ms[39m
+2025-02-07 09:07:02 [35mhttp[39m: [35mGET /api/v1/artisan/artisan6 201 1143 - 591.467 ms[39m
+2025-02-07 09:07:02 [35mhttp[39m: [35mGET /api/v1/artisan/artisan6 201 1143 - 520.841 ms[39m
+2025-02-07 09:07:02 [35mhttp[39m: [35mGET /api/v1/artisan/artisan6 201 1143 - 422.722 ms[39m
+2025-02-07 09:07:14 [35mhttp[39m: [35mGET /api/v1/artisan/artisan6 201 1143 - 501.795 ms[39m
+2025-02-07 09:07:14 [35mhttp[39m: [35mGET /api/v1/artisan/artisan6 201 1143 - 433.197 ms[39m
+2025-02-07 09:07:15 [35mhttp[39m: [35mGET /api/v1/artisan/artisan6 201 1143 - 629.974 ms[39m
+2025-02-07 09:07:23 [35mhttp[39m: [35mGET /api/v1/artisan/artisan6 201 1143 - 557.563 ms[39m
+2025-02-07 09:07:23 [35mhttp[39m: [35mGET /api/v1/artisan/artisan6 201 1143 - 556.407 ms[39m
+2025-02-07 09:07:24 [35mhttp[39m: [35mGET /api/v1/artisan/artisan6 201 1143 - 616.645 ms[39m
+2025-02-07 09:07:24 [35mhttp[39m: [35mGET /api/v1/artisan/artisan6 201 1143 - 423.046 ms[39m
+2025-02-07 09:07:31 [35mhttp[39m: [35mGET /api/v1/artisan/artisan6 201 1143 - 427.464 ms[39m
+2025-02-07 09:07:31 [35mhttp[39m: [35mGET /api/v1/artisan/artisan6 201 1143 - 444.698 ms[39m
+2025-02-07 09:07:31 [35mhttp[39m: [35mGET /api/v1/artisan/artisan6 201 1143 - 422.137 ms[39m
+2025-02-07 09:07:33 [35mhttp[39m: [35mGET /api/v1/artisan/artisan6 201 1143 - 426.935 ms[39m
+2025-02-07 09:07:33 [35mhttp[39m: [35mGET /api/v1/artisan/artisan6 201 1143 - 426.601 ms[39m
+2025-02-07 09:07:33 [35mhttp[39m: [35mGET /api/v1/artisan/artisan6 201 1143 - 420.064 ms[39m
+2025-02-07 09:08:16 [35mhttp[39m: [35mGET /api/v1/artisan/artisan6 201 1143 - 535.518 ms[39m
+2025-02-07 09:08:16 [35mhttp[39m: [35mGET /api/v1/artisan/artisan6 201 1143 - 530.602 ms[39m
+2025-02-07 09:08:16 [35mhttp[39m: [35mGET /api/v1/artisan/artisan6 201 1143 - 528.839 ms[39m
+2025-02-07 09:13:49 [35mhttp[39m: [35mGET /api/v1/artisan/artisan6 201 1143 - 3388.396 ms[39m
+2025-02-07 09:13:49 [35mhttp[39m: [35mGET /api/v1/artisan/artisan6 201 1143 - 3261.840 ms[39m
+2025-02-07 09:13:50 [35mhttp[39m: [35mGET /api/v1/artisan/artisan6 201 1143 - 2057.407 ms[39m
+2025-02-07 09:14:38 [35mhttp[39m: [35mGET /api/v1/artisan/artisan6 201 1143 - 552.984 ms[39m
+2025-02-07 09:14:38 [35mhttp[39m: [35mGET /api/v1/artisan/artisan6 201 1143 - 533.022 ms[39m
+2025-02-07 09:14:38 [35mhttp[39m: [35mGET /api/v1/artisan/artisan6 201 1143 - 422.920 ms[39m
+2025-02-07 09:14:38 [35mhttp[39m: [35mGET /api/v1/artisan/artisan6 201 1143 - 540.805 ms[39m
+2025-02-07 09:14:39 [35mhttp[39m: [35mGET /api/v1/artisan/artisan6 201 1143 - 415.049 ms[39m
+2025-02-07 09:14:51 [35mhttp[39m: [35mGET /api/v1/artisan/artisan6 201 1143 - 427.092 ms[39m
+2025-02-07 09:14:51 [35mhttp[39m: [35mGET /api/v1/artisan/artisan6 201 1143 - 451.748 ms[39m
+2025-02-07 09:14:51 [35mhttp[39m: [35mGET /api/v1/artisan/artisan6 201 1143 - 416.755 ms[39m
+2025-02-07 09:14:51 [35mhttp[39m: [35mGET /api/v1/artisan/artisan6 201 1143 - 418.169 ms[39m
+2025-02-07 09:14:53 [35mhttp[39m: [35mGET /api/v1/artisan/artisan6 201 1143 - 1972.502 ms[39m
+2025-02-07 09:15:05 [35mhttp[39m: [35mGET /api/v1/artisan/artisan6 201 1143 - 533.769 ms[39m
+2025-02-07 09:15:05 [35mhttp[39m: [35mGET /api/v1/artisan/artisan6 201 1143 - 632.866 ms[39m
+2025-02-07 09:15:05 [35mhttp[39m: [35mGET /api/v1/artisan/artisan6 201 1143 - 520.403 ms[39m
+2025-02-07 09:15:06 [35mhttp[39m: [35mGET /api/v1/artisan/artisan6 201 1143 - 417.865 ms[39m
+2025-02-07 09:15:06 [35mhttp[39m: [35mGET /api/v1/artisan/artisan6 201 1143 - 475.910 ms[39m
+2025-02-07 09:15:09 [35mhttp[39m: [35mGET /api/v1/artisan/artisan6 201 1143 - 427.019 ms[39m
+2025-02-07 09:15:10 [35mhttp[39m: [35mGET /api/v1/artisan/artisan6 201 1143 - 417.472 ms[39m
+2025-02-07 09:15:10 [35mhttp[39m: [35mGET /api/v1/artisan/artisan6 201 1143 - 528.321 ms[39m
+2025-02-07 09:15:10 [35mhttp[39m: [35mGET /api/v1/artisan/artisan6 201 1143 - 435.286 ms[39m
+2025-02-07 09:15:10 [35mhttp[39m: [35mGET /api/v1/artisan/artisan6 201 1143 - 419.685 ms[39m
+2025-02-07 09:15:20 [35mhttp[39m: [35mGET /api/v1/artisan/artisan6 201 1143 - 553.982 ms[39m
+2025-02-07 09:15:20 [35mhttp[39m: [35mGET /api/v1/artisan/artisan6 201 1143 - 416.487 ms[39m
+2025-02-07 09:15:20 [35mhttp[39m: [35mGET /api/v1/artisan/artisan6 201 1143 - 422.526 ms[39m
+2025-02-07 09:15:20 [35mhttp[39m: [35mGET /api/v1/artisan/artisan6 201 1143 - 521.704 ms[39m
+2025-02-07 09:15:20 [35mhttp[39m: [35mGET /api/v1/artisan/artisan6 201 1143 - 486.761 ms[39m
+2025-02-07 09:15:22 [35mhttp[39m: [35mGET /api/v1/artisan/artisan6 201 1143 - 427.577 ms[39m
+2025-02-07 09:15:22 [35mhttp[39m: [35mGET /api/v1/artisan/artisan6 201 1143 - 422.868 ms[39m
+2025-02-07 09:15:22 [35mhttp[39m: [35mGET /api/v1/artisan/artisan6 201 1143 - 524.207 ms[39m
+2025-02-07 09:15:22 [35mhttp[39m: [35mGET /api/v1/artisan/artisan6 201 1143 - 512.382 ms[39m
+2025-02-07 09:15:24 [35mhttp[39m: [35mGET /api/v1/artisan/artisan6 201 1143 - 2411.223 ms[39m
+2025-02-07 09:15:26 [35mhttp[39m: [35mGET /api/v1/artisan/artisan6 201 1143 - 429.301 ms[39m
+2025-02-07 09:15:26 [35mhttp[39m: [35mGET /api/v1/artisan/artisan6 201 1143 - 508.269 ms[39m
+2025-02-07 09:15:28 [35mhttp[39m: [35mGET /api/v1/artisan/artisan6 201 1143 - 499.768 ms[39m
+2025-02-07 09:15:30 [35mhttp[39m: [35mGET /api/v1/artisan/artisan6 201 1143 - 414.126 ms[39m
+2025-02-07 09:15:30 [35mhttp[39m: [35mGET /api/v1/artisan/artisan6 201 1143 - 417.201 ms[39m
+2025-02-07 09:15:30 [35mhttp[39m: [35mGET /api/v1/artisan/artisan6 201 1143 - 424.119 ms[39m
+2025-02-07 09:15:31 [35mhttp[39m: [35mGET /api/v1/artisan/artisan6 201 1143 - 422.853 ms[39m
+2025-02-07 09:15:31 [35mhttp[39m: [35mGET /api/v1/artisan/artisan6 201 1143 - 419.724 ms[39m
+2025-02-07 09:16:15 [35mhttp[39m: [35mGET /api/v1/artisan/artisan6 201 1143 - 593.498 ms[39m
+2025-02-07 09:16:15 [35mhttp[39m: [35mGET /api/v1/artisan/artisan6 201 1143 - 543.247 ms[39m
+2025-02-07 09:16:15 [35mhttp[39m: [35mGET /api/v1/artisan/artisan6 201 1143 - 527.547 ms[39m
+2025-02-07 09:16:15 [35mhttp[39m: [35mGET /api/v1/artisan/artisan6 201 1143 - 560.503 ms[39m
+2025-02-07 09:16:15 [35mhttp[39m: [35mGET /api/v1/artisan/artisan6 201 1143 - 563.265 ms[39m
+2025-02-07 09:16:16 [35mhttp[39m: [35mGET /api/v1/artisan/artisan6 201 1143 - 444.623 ms[39m
+2025-02-07 09:16:52 [35mhttp[39m: [35mGET /api/v1/artisan/artisan6 201 1143 - 579.744 ms[39m
+2025-02-07 09:16:52 [35mhttp[39m: [35mGET /api/v1/artisan/artisan6 201 1143 - 595.387 ms[39m
+2025-02-07 09:16:52 [35mhttp[39m: [35mGET /api/v1/artisan/artisan6 201 1143 - 552.476 ms[39m
+2025-02-07 09:16:52 [35mhttp[39m: [35mGET /api/v1/artisan/artisan6 201 1143 - 518.300 ms[39m
+2025-02-07 09:17:00 [35mhttp[39m: [35mGET /api/v1/artisan/artisan6 201 1143 - 596.322 ms[39m
+2025-02-07 09:17:00 [35mhttp[39m: [35mGET /api/v1/artisan/artisan6 201 1143 - 428.391 ms[39m
+2025-02-07 09:17:00 [35mhttp[39m: [35mGET /api/v1/artisan/artisan6 201 1143 - 443.931 ms[39m
+2025-02-07 09:17:00 [35mhttp[39m: [35mGET /api/v1/artisan/artisan6 201 1143 - 476.962 ms[39m
+2025-02-07 09:17:00 [35mhttp[39m: [35mGET /api/v1/artisan/artisan6 201 1143 - 427.974 ms[39m
+2025-02-07 09:17:05 [35mhttp[39m: [35mGET /api/v1/artisan/artisan6 201 1143 - 413.724 ms[39m
+2025-02-07 09:17:05 [35mhttp[39m: [35mGET /api/v1/artisan/artisan6 201 1143 - 427.128 ms[39m
+2025-02-07 09:17:05 [35mhttp[39m: [35mGET /api/v1/artisan/artisan6 201 1143 - 422.992 ms[39m
+2025-02-07 09:17:05 [35mhttp[39m: [35mGET /api/v1/artisan/artisan6 201 1143 - 437.562 ms[39m
+2025-02-07 09:17:06 [35mhttp[39m: [35mGET /api/v1/artisan/artisan6 201 1143 - 418.753 ms[39m
+2025-02-07 09:17:10 [35mhttp[39m: [35mGET /api/v1/artisan/artisan6 201 1143 - 536.514 ms[39m
+2025-02-07 09:17:10 [35mhttp[39m: [35mGET /api/v1/artisan/artisan6 201 1143 - 545.127 ms[39m
+2025-02-07 09:17:10 [35mhttp[39m: [35mGET /api/v1/artisan/artisan6 201 1143 - 527.297 ms[39m
+2025-02-07 09:17:10 [35mhttp[39m: [35mGET /api/v1/artisan/artisan6 201 1143 - 520.463 ms[39m
+2025-02-07 09:17:10 [35mhttp[39m: [35mGET /api/v1/artisan/artisan6 201 1143 - 518.349 ms[39m
+2025-02-07 09:17:38 [35mhttp[39m: [35mGET /api/v1/artisan/artisan6 201 1143 - 576.082 ms[39m
+2025-02-07 09:17:38 [35mhttp[39m: [35mGET /api/v1/artisan/artisan6 201 1143 - 529.088 ms[39m
+2025-02-07 09:17:38 [35mhttp[39m: [35mGET /api/v1/artisan/artisan6 201 1143 - 574.069 ms[39m
+2025-02-07 09:17:38 [35mhttp[39m: [35mGET /api/v1/artisan/artisan6 201 1143 - 554.279 ms[39m
+2025-02-07 09:17:38 [35mhttp[39m: [35mGET /api/v1/artisan/artisan6 201 1143 - 491.345 ms[39m
+2025-02-07 09:17:56 [35mhttp[39m: [35mGET /api/v1/artisan/artisan6 201 1143 - 619.810 ms[39m
+2025-02-07 09:17:57 [35mhttp[39m: [35mGET /api/v1/artisan/artisan6 201 1143 - 753.299 ms[39m
+2025-02-07 09:17:57 [35mhttp[39m: [35mGET /api/v1/artisan/artisan6 201 1143 - 514.580 ms[39m
+2025-02-07 09:18:04 [35mhttp[39m: [35mGET /api/v1/artisan/artisan6 201 1143 - 420.010 ms[39m
+2025-02-07 09:18:04 [35mhttp[39m: [35mGET /api/v1/artisan/artisan6 201 1143 - 422.192 ms[39m
+2025-02-07 09:18:04 [35mhttp[39m: [35mGET /api/v1/artisan/artisan6 201 1143 - 601.507 ms[39m
+2025-02-07 09:18:09 [35mhttp[39m: [35mGET /api/v1/artisan/artisan6 201 1143 - 465.177 ms[39m
+2025-02-07 09:18:10 [35mhttp[39m: [35mGET /api/v1/artisan/artisan6 201 1143 - 512.540 ms[39m
+2025-02-07 09:18:10 [35mhttp[39m: [35mGET /api/v1/artisan/artisan6 201 1143 - 514.194 ms[39m
+2025-02-07 09:18:10 [35mhttp[39m: [35mGET /api/v1/artisan/artisan6 201 1143 - 424.804 ms[39m
+2025-02-07 09:18:10 [35mhttp[39m: [35mGET /api/v1/artisan/artisan6 201 1143 - 430.451 ms[39m
+2025-02-07 09:18:33 [35mhttp[39m: [35mGET /api/v1/artisan/artisan6 201 1143 - 964.504 ms[39m
+2025-02-07 09:18:33 [35mhttp[39m: [35mGET /api/v1/artisan/artisan6 201 1143 - 698.536 ms[39m
+2025-02-07 09:18:33 [35mhttp[39m: [35mGET /api/v1/artisan/artisan6 201 1143 - 525.987 ms[39m
+2025-02-07 09:18:33 [35mhttp[39m: [35mGET /api/v1/artisan/artisan6 201 1143 - 560.539 ms[39m
+2025-02-07 09:18:33 [35mhttp[39m: [35mGET /api/v1/artisan/artisan6 201 1143 - 540.298 ms[39m
+2025-02-07 09:18:38 [35mhttp[39m: [35mGET /api/v1/artisan/artisan6 201 1143 - 421.102 ms[39m
+2025-02-07 09:18:38 [35mhttp[39m: [35mGET /api/v1/artisan/artisan6 201 1143 - 423.452 ms[39m
+2025-02-07 09:18:38 [35mhttp[39m: [35mGET /api/v1/artisan/artisan6 201 1143 - 453.681 ms[39m
+2025-02-07 09:19:53 [35mhttp[39m: [35mGET /api/v1/artisan/artisan6 201 1143 - 561.606 ms[39m
+2025-02-07 09:19:54 [35mhttp[39m: [35mGET /api/v1/artisan/artisan6 201 1143 - 1774.344 ms[39m
+2025-02-07 09:19:54 [35mhttp[39m: [35mGET /api/v1/artisan/artisan6 201 1143 - 1573.225 ms[39m
+2025-02-07 09:19:54 [35mhttp[39m: [35mGET /api/v1/artisan/artisan6 201 1143 - 417.417 ms[39m
+2025-02-07 09:19:55 [35mhttp[39m: [35mGET /api/v1/artisan/artisan6 201 1143 - 414.195 ms[39m
+2025-02-07 09:19:55 [35mhttp[39m: [35mGET /api/v1/artisan/artisan6 201 1143 - 428.949 ms[39m
+2025-02-07 09:19:55 [35mhttp[39m: [35mGET /api/v1/artisan/artisan6 201 1143 - 651.541 ms[39m
+2025-02-07 09:19:56 [35mhttp[39m: [35mGET /api/v1/artisan/artisan6 201 1143 - 845.392 ms[39m
+2025-02-07 09:20:02 [35mhttp[39m: [35mGET /api/v1/artisan/artisan6 201 1143 - 416.247 ms[39m
+2025-02-07 09:20:02 [35mhttp[39m: [35mGET /api/v1/artisan/artisan6 201 1143 - 421.529 ms[39m
+2025-02-07 09:20:02 [35mhttp[39m: [35mGET /api/v1/artisan/artisan6 201 1143 - 411.476 ms[39m
+2025-02-07 09:20:02 [35mhttp[39m: [35mGET /api/v1/artisan/artisan6 201 1143 - 694.557 ms[39m
+2025-02-07 09:20:36 [35mhttp[39m: [35mGET /api/v1/artisan/artisan6 201 1143 - 520.301 ms[39m
+2025-02-07 09:20:36 [35mhttp[39m: [35mGET /api/v1/artisan/artisan6 201 1143 - 514.655 ms[39m
+2025-02-07 09:20:37 [35mhttp[39m: [35mGET /api/v1/artisan/artisan6 201 1143 - 1617.324 ms[39m
+2025-02-07 09:20:37 [35mhttp[39m: [35mGET /api/v1/artisan/artisan6 201 1143 - 1551.072 ms[39m
+2025-02-07 09:20:37 [35mhttp[39m: [35mGET /api/v1/artisan/artisan6 201 1143 - 1575.682 ms[39m
+2025-02-07 09:20:42 [35mhttp[39m: [35mGET /api/v1/artisan/artisan6 201 1143 - 400.910 ms[39m
+2025-02-07 09:20:42 [35mhttp[39m: [35mGET /api/v1/artisan/artisan6 201 1143 - 429.476 ms[39m
+2025-02-07 09:20:42 [35mhttp[39m: [35mGET /api/v1/artisan/artisan6 201 1143 - 432.253 ms[39m
+2025-02-07 09:20:42 [35mhttp[39m: [35mGET /api/v1/artisan/artisan6 201 1143 - 417.550 ms[39m
+2025-02-07 09:20:43 [35mhttp[39m: [35mGET /api/v1/artisan/artisan6 201 1143 - 543.974 ms[39m
+2025-02-07 09:20:46 [35mhttp[39m: [35mGET /api/v1/artisan/artisan6 201 1143 - 520.325 ms[39m
+2025-02-07 09:20:47 [35mhttp[39m: [35mGET /api/v1/artisan/artisan6 201 1143 - 420.425 ms[39m
+2025-02-07 09:20:47 [35mhttp[39m: [35mGET /api/v1/artisan/artisan6 201 1143 - 425.690 ms[39m
+2025-02-07 09:20:47 [35mhttp[39m: [35mGET /api/v1/artisan/artisan6 201 1143 - 433.612 ms[39m
+2025-02-07 09:20:47 [35mhttp[39m: [35mGET /api/v1/artisan/artisan6 201 1143 - 418.853 ms[39m
+2025-02-07 09:21:20 [35mhttp[39m: [35mGET /api/v1/artisan/artisan6 201 1143 - 518.707 ms[39m
+2025-02-07 09:21:20 [35mhttp[39m: [35mGET /api/v1/artisan/artisan6 201 1143 - 526.833 ms[39m
+2025-02-07 09:21:20 [35mhttp[39m: [35mGET /api/v1/artisan/artisan6 201 1143 - 527.862 ms[39m
+2025-02-07 09:21:20 [35mhttp[39m: [35mGET /api/v1/artisan/artisan6 201 1143 - 528.185 ms[39m
+2025-02-07 09:21:20 [35mhttp[39m: [35mGET /api/v1/artisan/artisan6 201 1143 - 487.190 ms[39m
+2025-02-07 09:23:32 [35mhttp[39m: [35mGET /api/v1/artisan/artisan6 201 1143 - 726.771 ms[39m
+2025-02-07 09:23:32 [35mhttp[39m: [35mGET /api/v1/artisan/artisan6 201 1143 - 846.183 ms[39m
+2025-02-07 09:23:32 [35mhttp[39m: [35mGET /api/v1/artisan/artisan6 201 1143 - 879.030 ms[39m
+2025-02-07 09:23:32 [35mhttp[39m: [35mGET /api/v1/artisan/artisan6 201 1143 - 626.652 ms[39m
+2025-02-07 09:24:24 [35mhttp[39m: [35mGET /api/v1/artisan/artisan6 201 1143 - 514.414 ms[39m
+2025-02-07 09:24:25 [35mhttp[39m: [35mGET /api/v1/artisan/artisan6 201 1143 - 528.518 ms[39m
+2025-02-07 09:24:25 [35mhttp[39m: [35mGET /api/v1/artisan/artisan6 201 1143 - 525.141 ms[39m
+2025-02-07 09:25:30 [35mhttp[39m: [35mGET /api/v1/artisan/artisan6 201 1143 - 3077.598 ms[39m
+2025-02-07 09:26:34 [35mhttp[39m: [35mGET /api/v1/artisan/artisan6 201 1143 - 559.282 ms[39m
+2025-02-07 09:26:35 [35mhttp[39m: [35mGET /api/v1/artisan/artisan6 201 1143 - 428.496 ms[39m
+2025-02-07 09:26:35 [35mhttp[39m: [35mGET /api/v1/artisan/artisan6 201 1143 - 430.925 ms[39m
+2025-02-07 09:26:35 [35mhttp[39m: [35mGET /api/v1/artisan/artisan6 201 1143 - 1612.035 ms[39m
+2025-02-07 09:26:36 [35mhttp[39m: [35mGET /api/v1/artisan/artisan6 201 1143 - 419.542 ms[39m
+2025-02-07 09:26:36 [35mhttp[39m: [35mGET /api/v1/artisan/artisan6 201 1143 - 1558.029 ms[39m
+2025-02-07 09:26:42 [35mhttp[39m: [35mGET /api/v1/artisan/artisan6 201 1143 - 576.466 ms[39m
+2025-02-07 09:26:42 [35mhttp[39m: [35mGET /api/v1/artisan/artisan6 201 1143 - 429.182 ms[39m
+2025-02-07 09:26:43 [35mhttp[39m: [35mGET /api/v1/artisan/artisan6 201 1143 - 416.417 ms[39m
+2025-02-07 09:27:01 [35mhttp[39m: [35mGET /api/v1/artisan/artisan6 201 1143 - 525.153 ms[39m
+2025-02-07 09:27:01 [35mhttp[39m: [35mGET /api/v1/artisan/artisan6 201 1143 - 533.477 ms[39m
+2025-02-07 09:27:01 [35mhttp[39m: [35mGET /api/v1/artisan/artisan6 201 1143 - 524.873 ms[39m
+2025-02-07 09:27:02 [35mhttp[39m: [35mGET /api/v1/artisan/artisan6 201 1143 - 549.832 ms[39m
+2025-02-07 09:27:08 [35mhttp[39m: [35mGET /api/v1/artisan/artisan6 201 1143 - 559.910 ms[39m
+2025-02-07 09:27:09 [35mhttp[39m: [35mGET /api/v1/artisan/artisan6 201 1143 - 418.769 ms[39m
+2025-02-07 09:27:09 [35mhttp[39m: [35mGET /api/v1/artisan/artisan6 201 1143 - 441.374 ms[39m
+2025-02-07 09:27:09 [35mhttp[39m: [35mGET /api/v1/artisan/artisan6 201 1143 - 507.139 ms[39m
+2025-02-07 09:27:09 [35mhttp[39m: [35mGET /api/v1/artisan/artisan6 201 1143 - 613.612 ms[39m
+2025-02-07 09:27:43 [35mhttp[39m: [35mGET /api/v1/artisan/artisan6 201 1143 - 523.771 ms[39m
+2025-02-07 09:27:43 [35mhttp[39m: [35mGET /api/v1/artisan/artisan6 201 1143 - 519.816 ms[39m
+2025-02-07 09:27:43 [35mhttp[39m: [35mGET /api/v1/artisan/artisan6 201 1143 - 545.910 ms[39m
+2025-02-07 09:27:44 [35mhttp[39m: [35mGET /api/v1/artisan/artisan6 201 1143 - 1648.652 ms[39m
+2025-02-07 09:27:44 [35mhttp[39m: [35mGET /api/v1/artisan/artisan6 201 1143 - 1556.923 ms[39m
+2025-02-07 09:28:09 [35mhttp[39m: [35mGET /api/v1/artisan/artisan6 201 1143 - 594.851 ms[39m
+2025-02-07 09:28:09 [35mhttp[39m: [35mGET /api/v1/artisan/artisan6 201 1143 - 529.475 ms[39m
+2025-02-07 09:28:09 [35mhttp[39m: [35mGET /api/v1/artisan/artisan6 201 1143 - 411.183 ms[39m
+2025-02-07 09:28:09 [35mhttp[39m: [35mGET /api/v1/artisan/artisan6 201 1143 - 541.786 ms[39m
+2025-02-07 09:28:09 [35mhttp[39m: [35mGET /api/v1/artisan/artisan6 201 1143 - 528.708 ms[39m
+2025-02-07 09:28:58 [35mhttp[39m: [35mGET /api/v1/artisan/artisan6 201 1143 - 525.439 ms[39m
+2025-02-07 09:28:58 [35mhttp[39m: [35mGET /api/v1/artisan/artisan6 201 1143 - 523.526 ms[39m
+2025-02-07 09:28:58 [35mhttp[39m: [35mGET /api/v1/artisan/artisan6 201 1143 - 427.514 ms[39m
+2025-02-07 09:28:58 [35mhttp[39m: [35mGET /api/v1/artisan/artisan6 201 1143 - 526.457 ms[39m
+2025-02-07 09:28:59 [35mhttp[39m: [35mGET /api/v1/artisan/artisan6 201 1143 - 633.470 ms[39m
+2025-02-07 09:29:12 [35mhttp[39m: [35mGET /api/v1/artisan/artisan6 201 1143 - 453.204 ms[39m
+2025-02-07 09:29:12 [35mhttp[39m: [35mGET /api/v1/artisan/artisan6 201 1143 - 413.215 ms[39m
+2025-02-07 09:29:13 [35mhttp[39m: [35mGET /api/v1/artisan/artisan6 201 1143 - 415.669 ms[39m
+2025-02-07 09:29:13 [35mhttp[39m: [35mGET /api/v1/artisan/artisan6 201 1143 - 428.259 ms[39m
+2025-02-07 09:29:13 [35mhttp[39m: [35mGET /api/v1/artisan/artisan6 201 1143 - 420.216 ms[39m
+2025-02-07 09:29:18 [35mhttp[39m: [35mGET /api/v1/artisan/artisan6 201 1143 - 658.126 ms[39m
+2025-02-07 09:29:18 [35mhttp[39m: [35mGET /api/v1/artisan/artisan6 201 1143 - 658.869 ms[39m
+2025-02-07 09:29:18 [35mhttp[39m: [35mGET /api/v1/artisan/artisan6 201 1143 - 511.754 ms[39m
+2025-02-07 09:29:19 [35mhttp[39m: [35mGET /api/v1/artisan/artisan6 201 1143 - 509.379 ms[39m
+2025-02-07 09:29:19 [35mhttp[39m: [35mGET /api/v1/artisan/artisan6 201 1143 - 524.717 ms[39m
+2025-02-07 09:29:25 [35mhttp[39m: [35mGET /api/v1/artisan/artisan6 201 1143 - 428.411 ms[39m
+2025-02-07 09:29:25 [35mhttp[39m: [35mGET /api/v1/artisan/artisan6 201 1143 - 412.244 ms[39m
+2025-02-07 09:29:25 [35mhttp[39m: [35mGET /api/v1/artisan/artisan6 201 1143 - 424.925 ms[39m
+2025-02-07 09:29:26 [35mhttp[39m: [35mGET /api/v1/artisan/artisan6 201 1143 - 420.831 ms[39m
+2025-02-07 09:29:26 [35mhttp[39m: [35mGET /api/v1/artisan/artisan6 201 1143 - 415.154 ms[39m
+2025-02-07 09:29:34 [35mhttp[39m: [35mGET /api/v1/artisan/artisan6 201 1143 - 520.577 ms[39m
+2025-02-07 09:29:34 [35mhttp[39m: [35mGET /api/v1/artisan/artisan6 201 1143 - 517.933 ms[39m
+2025-02-07 09:29:34 [35mhttp[39m: [35mGET /api/v1/artisan/artisan6 201 1143 - 515.902 ms[39m
+2025-02-07 09:29:35 [35mhttp[39m: [35mGET /api/v1/artisan/artisan6 201 1143 - 527.064 ms[39m
+2025-02-07 09:29:35 [35mhttp[39m: [35mGET /api/v1/artisan/artisan6 201 1143 - 408.524 ms[39m
+2025-02-07 09:29:42 [35mhttp[39m: [35mGET /api/v1/artisan/artisan6 201 1143 - 419.401 ms[39m
+2025-02-07 09:29:42 [35mhttp[39m: [35mGET /api/v1/artisan/artisan6 201 1143 - 419.025 ms[39m
+2025-02-07 09:29:43 [35mhttp[39m: [35mGET /api/v1/artisan/artisan6 201 1143 - 421.962 ms[39m
+2025-02-07 09:29:43 [35mhttp[39m: [35mGET /api/v1/artisan/artisan6 201 1143 - 429.037 ms[39m
+2025-02-07 09:29:43 [35mhttp[39m: [35mGET /api/v1/artisan/artisan6 201 1143 - 411.727 ms[39m
+2025-02-07 09:29:58 [35mhttp[39m: [35mGET /api/v1/artisan/artisan6 201 1143 - 538.411 ms[39m
+2025-02-07 09:29:59 [35mhttp[39m: [35mGET /api/v1/artisan/artisan6 201 1143 - 535.988 ms[39m
+2025-02-07 09:29:59 [35mhttp[39m: [35mGET /api/v1/artisan/artisan6 201 1143 - 516.631 ms[39m
+2025-02-07 09:29:59 [35mhttp[39m: [35mGET /api/v1/artisan/artisan6 201 1143 - 426.259 ms[39m
+2025-02-07 09:29:59 [35mhttp[39m: [35mGET /api/v1/artisan/artisan6 201 1143 - 473.454 ms[39m
+2025-02-07 09:30:16 [35mhttp[39m: [35mGET /api/v1/artisan/artisan6 201 1143 - 671.810 ms[39m
+2025-02-07 09:30:17 [35mhttp[39m: [35mGET /api/v1/artisan/artisan6 201 1143 - 516.730 ms[39m
+2025-02-07 09:30:17 [35mhttp[39m: [35mGET /api/v1/artisan/artisan6 201 1143 - 545.508 ms[39m
+2025-02-07 09:30:17 [35mhttp[39m: [35mGET /api/v1/artisan/artisan6 201 1143 - 432.617 ms[39m
+2025-02-07 09:30:18 [35mhttp[39m: [35mGET /api/v1/artisan/artisan6 201 1143 - 621.376 ms[39m
+2025-02-07 09:30:40 [35mhttp[39m: [35mGET /api/v1/artisan/artisan6 201 1143 - 681.098 ms[39m
+2025-02-07 09:30:40 [35mhttp[39m: [35mGET /api/v1/artisan/artisan6 201 1143 - 536.709 ms[39m
+2025-02-07 09:30:40 [35mhttp[39m: [35mGET /api/v1/artisan/artisan6 201 1143 - 539.147 ms[39m
+2025-02-07 09:30:40 [35mhttp[39m: [35mGET /api/v1/artisan/artisan6 201 1143 - 535.731 ms[39m
+2025-02-07 09:30:40 [35mhttp[39m: [35mGET /api/v1/artisan/artisan6 201 1143 - 413.116 ms[39m
+2025-02-07 09:30:47 [35mhttp[39m: [35mGET /api/v1/artisan/artisan6 201 1143 - 436.677 ms[39m
+2025-02-07 09:30:47 [35mhttp[39m: [35mGET /api/v1/artisan/artisan6 201 1143 - 417.916 ms[39m
+2025-02-07 09:30:48 [35mhttp[39m: [35mGET /api/v1/artisan/artisan6 201 1143 - 424.694 ms[39m
+2025-02-07 09:30:48 [35mhttp[39m: [35mGET /api/v1/artisan/artisan6 201 1143 - 435.730 ms[39m
+2025-02-07 09:30:48 [35mhttp[39m: [35mGET /api/v1/artisan/artisan6 201 1143 - 438.050 ms[39m
+2025-02-07 09:30:55 [35mhttp[39m: [35mGET /api/v1/artisan/artisan6 201 1143 - 516.754 ms[39m
+2025-02-07 09:30:55 [35mhttp[39m: [35mGET /api/v1/artisan/artisan6 201 1143 - 426.422 ms[39m
+2025-02-07 09:30:55 [35mhttp[39m: [35mGET /api/v1/artisan/artisan6 201 1143 - 521.906 ms[39m
+2025-02-07 09:30:55 [35mhttp[39m: [35mGET /api/v1/artisan/artisan6 201 1143 - 529.532 ms[39m
+2025-02-07 09:30:55 [35mhttp[39m: [35mGET /api/v1/artisan/artisan6 201 1143 - 527.983 ms[39m
+2025-02-07 09:30:59 [35mhttp[39m: [35mGET /api/v1/artisan/artisan6 201 1143 - 437.132 ms[39m
+2025-02-07 09:31:00 [35mhttp[39m: [35mGET /api/v1/artisan/artisan6 201 1143 - 416.927 ms[39m
+2025-02-07 09:31:00 [35mhttp[39m: [35mGET /api/v1/artisan/artisan6 201 1143 - 413.640 ms[39m
+2025-02-07 09:31:00 [35mhttp[39m: [35mGET /api/v1/artisan/artisan6 201 1143 - 517.817 ms[39m
+2025-02-07 09:31:00 [35mhttp[39m: [35mGET /api/v1/artisan/artisan6 201 1143 - 433.587 ms[39m
+2025-02-07 09:31:06 [35mhttp[39m: [35mGET /api/v1/artisan/artisan6 201 1143 - 428.163 ms[39m
+2025-02-07 09:31:06 [35mhttp[39m: [35mGET /api/v1/artisan/artisan6 201 1143 - 412.184 ms[39m
+2025-02-07 09:31:06 [35mhttp[39m: [35mGET /api/v1/artisan/artisan6 201 1143 - 416.034 ms[39m
+2025-02-07 09:31:06 [35mhttp[39m: [35mGET /api/v1/artisan/artisan6 201 1143 - 432.585 ms[39m
+2025-02-07 09:31:08 [35mhttp[39m: [35mGET /api/v1/artisan/artisan6 201 1143 - 1977.686 ms[39m
+2025-02-07 09:31:17 [35mhttp[39m: [35mGET /api/v1/artisan/artisan6 201 1143 - 422.390 ms[39m
+2025-02-07 09:31:17 [35mhttp[39m: [35mGET /api/v1/artisan/artisan6 201 1143 - 514.426 ms[39m
+2025-02-07 09:31:17 [35mhttp[39m: [35mGET /api/v1/artisan/artisan6 201 1143 - 424.224 ms[39m
+2025-02-07 09:31:17 [35mhttp[39m: [35mGET /api/v1/artisan/artisan6 201 1143 - 518.841 ms[39m
+2025-02-07 09:31:18 [35mhttp[39m: [35mGET /api/v1/artisan/artisan6 201 1143 - 500.726 ms[39m
+2025-02-07 09:31:25 [35mhttp[39m: [35mGET /api/v1/artisan/artisan6 201 1143 - 421.998 ms[39m
+2025-02-07 09:31:25 [35mhttp[39m: [35mGET /api/v1/artisan/artisan6 201 1143 - 556.013 ms[39m
+2025-02-07 09:31:25 [35mhttp[39m: [35mGET /api/v1/artisan/artisan6 201 1143 - 414.358 ms[39m
+2025-02-07 09:31:25 [35mhttp[39m: [35mGET /api/v1/artisan/artisan6 201 1143 - 412.731 ms[39m
+2025-02-07 09:31:26 [35mhttp[39m: [35mGET /api/v1/artisan/artisan6 201 1143 - 708.166 ms[39m
+2025-02-07 09:31:36 [35mhttp[39m: [35mGET /api/v1/artisan/artisan6 201 1143 - 415.117 ms[39m
+2025-02-07 09:31:37 [35mhttp[39m: [35mGET /api/v1/artisan/artisan6 201 1143 - 1583.126 ms[39m
+2025-02-07 09:31:38 [35mhttp[39m: [35mGET /api/v1/artisan/artisan6 201 1143 - 1544.880 ms[39m
+2025-02-07 09:31:42 [35mhttp[39m: [35mGET /api/v1/artisan/artisan6 201 1143 - 545.865 ms[39m
+2025-02-07 09:31:42 [35mhttp[39m: [35mGET /api/v1/artisan/artisan6 201 1143 - 420.169 ms[39m
+2025-02-07 09:31:42 [35mhttp[39m: [35mGET /api/v1/artisan/artisan6 201 1143 - 408.523 ms[39m
+2025-02-07 09:31:43 [35mhttp[39m: [35mGET /api/v1/artisan/artisan6 201 1143 - 515.983 ms[39m
+2025-02-07 09:31:43 [35mhttp[39m: [35mGET /api/v1/artisan/artisan6 201 1143 - 511.289 ms[39m
+2025-02-07 09:31:47 [35mhttp[39m: [35mGET /api/v1/artisan/artisan6 201 1143 - 419.016 ms[39m
+2025-02-07 09:31:47 [35mhttp[39m: [35mGET /api/v1/artisan/artisan6 201 1143 - 409.860 ms[39m
+2025-02-07 09:31:47 [35mhttp[39m: [35mGET /api/v1/artisan/artisan6 201 1143 - 426.098 ms[39m
+2025-02-07 09:31:48 [35mhttp[39m: [35mGET /api/v1/artisan/artisan6 201 1143 - 445.232 ms[39m
+2025-02-07 09:31:48 [35mhttp[39m: [35mGET /api/v1/artisan/artisan6 201 1143 - 414.491 ms[39m
+2025-02-07 09:32:05 [35mhttp[39m: [35mGET /api/v1/artisan/artisan6 201 1143 - 620.432 ms[39m
+2025-02-07 09:32:05 [35mhttp[39m: [35mGET /api/v1/artisan/artisan6 201 1143 - 529.879 ms[39m
+2025-02-07 09:32:05 [35mhttp[39m: [35mGET /api/v1/artisan/artisan6 201 1143 - 426.128 ms[39m
+2025-02-07 09:32:29 [35mhttp[39m: [35mGET /api/v1/artisan/artisan6 201 1143 - 696.205 ms[39m
+2025-02-07 09:32:29 [35mhttp[39m: [35mGET /api/v1/artisan/artisan6 201 1143 - 525.408 ms[39m
+2025-02-07 09:32:29 [35mhttp[39m: [35mGET /api/v1/artisan/artisan6 201 1143 - 508.490 ms[39m
+2025-02-07 09:32:30 [35mhttp[39m: [35mGET /api/v1/artisan/artisan6 201 1143 - 518.067 ms[39m
+2025-02-07 09:32:30 [35mhttp[39m: [35mGET /api/v1/artisan/artisan6 201 1143 - 413.962 ms[39m
+2025-02-07 09:32:37 [35mhttp[39m: [35mGET /api/v1/artisan/artisan6 201 1143 - 418.935 ms[39m
+2025-02-07 09:32:38 [35mhttp[39m: [35mGET /api/v1/artisan/artisan6 201 1143 - 421.924 ms[39m
+2025-02-07 09:32:38 [35mhttp[39m: [35mGET /api/v1/artisan/artisan6 201 1143 - 417.493 ms[39m
+2025-02-07 09:32:38 [35mhttp[39m: [35mGET /api/v1/artisan/artisan6 201 1143 - 514.871 ms[39m
+2025-02-07 09:32:38 [35mhttp[39m: [35mGET /api/v1/artisan/artisan6 201 1143 - 568.179 ms[39m
+2025-02-07 09:33:04 [35mhttp[39m: [35mGET /api/v1/artisan/artisan6 201 1143 - 613.089 ms[39m
+2025-02-07 09:33:04 [35mhttp[39m: [35mGET /api/v1/artisan/artisan6 201 1143 - 524.234 ms[39m
+2025-02-07 09:33:04 [35mhttp[39m: [35mGET /api/v1/artisan/artisan6 201 1143 - 542.353 ms[39m
+2025-02-07 09:33:04 [35mhttp[39m: [35mGET /api/v1/artisan/artisan6 201 1143 - 430.398 ms[39m
+2025-02-07 09:33:05 [35mhttp[39m: [35mGET /api/v1/artisan/artisan6 201 1143 - 1976.363 ms[39m
+2025-02-07 09:34:31 [35mhttp[39m: [35mGET /api/v1/artisan/artisan6 201 1143 - 560.974 ms[39m
+2025-02-07 09:34:32 [35mhttp[39m: [35mGET /api/v1/artisan/artisan6 201 1143 - 532.824 ms[39m
+2025-02-07 09:34:32 [35mhttp[39m: [35mGET /api/v1/artisan/artisan6 201 1143 - 518.054 ms[39m
+2025-02-07 09:34:32 [35mhttp[39m: [35mGET /api/v1/artisan/artisan6 201 1143 - 514.609 ms[39m
+2025-02-07 09:34:41 [35mhttp[39m: [35mGET /api/v1/artisan/artisan6 201 1143 - 422.311 ms[39m
+2025-02-07 09:34:41 [35mhttp[39m: [35mGET /api/v1/artisan/artisan6 201 1143 - 416.131 ms[39m
+2025-02-07 09:34:42 [35mhttp[39m: [35mGET /api/v1/artisan/artisan6 201 1143 - 662.200 ms[39m
+2025-02-07 09:34:42 [35mhttp[39m: [35mGET /api/v1/artisan/artisan6 201 1143 - 437.429 ms[39m
+2025-02-07 09:34:42 [35mhttp[39m: [35mGET /api/v1/artisan/artisan6 201 1143 - 421.726 ms[39m
+2025-02-07 09:35:09 [35mhttp[39m: [35mGET /api/v1/artisan/artisan6 201 1143 - 643.623 ms[39m
+2025-02-07 09:35:09 [35mhttp[39m: [35mGET /api/v1/artisan/artisan6 201 1143 - 534.645 ms[39m
+2025-02-07 09:35:09 [35mhttp[39m: [35mGET /api/v1/artisan/artisan6 201 1143 - 562.826 ms[39m
+2025-02-07 09:35:09 [35mhttp[39m: [35mGET /api/v1/artisan/artisan6 201 1143 - 542.696 ms[39m
+2025-02-07 09:35:09 [35mhttp[39m: [35mGET /api/v1/artisan/artisan6 201 1143 - 435.822 ms[39m
+2025-02-07 09:35:23 [35mhttp[39m: [35mGET /api/v1/artisan/artisan6 201 1143 - 701.694 ms[39m
+2025-02-07 09:35:23 [35mhttp[39m: [35mGET /api/v1/artisan/artisan6 201 1143 - 425.489 ms[39m
+2025-02-07 09:35:23 [35mhttp[39m: [35mGET /api/v1/artisan/artisan6 201 1143 - 429.655 ms[39m

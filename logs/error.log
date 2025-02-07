@@ -330,3 +330,183 @@
 [31m  12 [39m
 [31m→ 13 const account = await prisma.account.create([39m
 [31mUnique constraint failed on the fields: (`email`)[39m
+2025-02-06 08:10:22 [31merror[39m: [31m[39m
+[31mInvalid `prisma.artisan.findMany()` invocation in[39m
+[31mD:\DKC\ArtStay\art-stay-backend\src\controllers\artisan.controller.ts:115:69[39m
+
+[31m  112 const queryParams = req.query[39m
+[31m  113 const limit = Number(queryParams.limit)[39m
+[31m  114 const skip = Number(queryParams.skip)[39m
+[31m→ 115 const artisans: ArtisanDetailProps[] = await prisma.artisan.findMany({[39m
+[31m        include: {[39m
+[31m          craft: true,[39m
+[31m          subCraft: true[39m
+[31m        },[39m
+[31m        take: 6,[39m
+[31m        orderBy: {[39m
+[31m          createdAt: "desc"[39m
+[31m        },[39m
+[31m      + skip: Int[39m
+[31m      })[39m
+
+[31mArgument `skip` is missing.[39m
+2025-02-06 08:10:23 [31merror[39m: [31m[39m
+[31mInvalid `prisma.artisan.findMany()` invocation in[39m
+[31mD:\DKC\ArtStay\art-stay-backend\src\controllers\artisan.controller.ts:115:69[39m
+
+[31m  112 const queryParams = req.query[39m
+[31m  113 const limit = Number(queryParams.limit)[39m
+[31m  114 const skip = Number(queryParams.skip)[39m
+[31m→ 115 const artisans: ArtisanDetailProps[] = await prisma.artisan.findMany({[39m
+[31m        include: {[39m
+[31m          craft: true,[39m
+[31m          subCraft: true[39m
+[31m        },[39m
+[31m        take: 6,[39m
+[31m        orderBy: {[39m
+[31m          createdAt: "desc"[39m
+[31m        },[39m
+[31m      + skip: Int[39m
+[31m      })[39m
+
+[31mArgument `skip` is missing.[39m
+2025-02-06 08:10:24 [31merror[39m: [31m[39m
+[31mInvalid `prisma.artisan.findMany()` invocation in[39m
+[31mD:\DKC\ArtStay\art-stay-backend\src\controllers\artisan.controller.ts:115:69[39m
+
+[31m  112 const queryParams = req.query[39m
+[31m  113 const limit = Number(queryParams.limit)[39m
+[31m  114 const skip = Number(queryParams.skip)[39m
+[31m→ 115 const artisans: ArtisanDetailProps[] = await prisma.artisan.findMany({[39m
+[31m        include: {[39m
+[31m          craft: true,[39m
+[31m          subCraft: true[39m
+[31m        },[39m
+[31m        take: 6,[39m
+[31m        orderBy: {[39m
+[31m          createdAt: "desc"[39m
+[31m        },[39m
+[31m      + skip: Int[39m
+[31m      })[39m
+
+[31mArgument `skip` is missing.[39m
+2025-02-06 08:11:38 [31merror[39m: [31m[39m
+[31mInvalid `prisma.artisan.findMany()` invocation in[39m
+[31mD:\DKC\ArtStay\art-stay-backend\src\controllers\artisan.controller.ts:115:69[39m
+
+[31m  112 const queryParams = req.query[39m
+[31m  113 const limit = Number(queryParams.limit)[39m
+[31m  114 const skip = Number(queryParams.cursor)[39m
+[31m→ 115 const artisans: ArtisanDetailProps[] = await prisma.artisan.findMany({[39m
+[31m        include: {[39m
+[31m          craft: true,[39m
+[31m          subCraft: true[39m
+[31m        },[39m
+[31m        take: 6,[39m
+[31m        orderBy: {[39m
+[31m          createdAt: "desc"[39m
+[31m        },[39m
+[31m      + skip: Int[39m
+[31m      })[39m
+
+[31mArgument `skip` is missing.[39m
+2025-02-06 08:11:39 [31merror[39m: [31m[39m
+[31mInvalid `prisma.artisan.findMany()` invocation in[39m
+[31mD:\DKC\ArtStay\art-stay-backend\src\controllers\artisan.controller.ts:115:69[39m
+
+[31m  112 const queryParams = req.query[39m
+[31m  113 const limit = Number(queryParams.limit)[39m
+[31m  114 const skip = Number(queryParams.cursor)[39m
+[31m→ 115 const artisans: ArtisanDetailProps[] = await prisma.artisan.findMany({[39m
+[31m        include: {[39m
+[31m          craft: true,[39m
+[31m          subCraft: true[39m
+[31m        },[39m
+[31m        take: 6,[39m
+[31m        orderBy: {[39m
+[31m          createdAt: "desc"[39m
+[31m        },[39m
+[31m      + skip: Int[39m
+[31m      })[39m
+
+[31mArgument `skip` is missing.[39m
+2025-02-06 08:12:03 [31merror[39m: [31m[39m
+[31mInvalid `prisma.artisan.findMany()` invocation in[39m
+[31mD:\DKC\ArtStay\art-stay-backend\src\controllers\artisan.controller.ts:116:69[39m
+
+[31m  113 const limit = Number(queryParams.limit)[39m
+[31m  114 const skip = Number(queryParams.cursor)[39m
+[31m  115 console.log(queryParams)[39m
+[31m→ 116 const artisans: ArtisanDetailProps[] = await prisma.artisan.findMany({[39m
+[31m        include: {[39m
+[31m          craft: true,[39m
+[31m          subCraft: true[39m
+[31m        },[39m
+[31m        take: 6,[39m
+[31m        orderBy: {[39m
+[31m          createdAt: "desc"[39m
+[31m        },[39m
+[31m      + skip: Int[39m
+[31m      })[39m
+
+[31mArgument `skip` is missing.[39m
+2025-02-06 08:12:04 [31merror[39m: [31m[39m
+[31mInvalid `prisma.artisan.findMany()` invocation in[39m
+[31mD:\DKC\ArtStay\art-stay-backend\src\controllers\artisan.controller.ts:116:69[39m
+
+[31m  113 const limit = Number(queryParams.limit)[39m
+[31m  114 const skip = Number(queryParams.cursor)[39m
+[31m  115 console.log(queryParams)[39m
+[31m→ 116 const artisans: ArtisanDetailProps[] = await prisma.artisan.findMany({[39m
+[31m        include: {[39m
+[31m          craft: true,[39m
+[31m          subCraft: true[39m
+[31m        },[39m
+[31m        take: 6,[39m
+[31m        orderBy: {[39m
+[31m          createdAt: "desc"[39m
+[31m        },[39m
+[31m      + skip: Int[39m
+[31m      })[39m
+
+[31mArgument `skip` is missing.[39m
+2025-02-06 08:12:13 [31merror[39m: [31m[39m
+[31mInvalid `prisma.artisan.findMany()` invocation in[39m
+[31mD:\DKC\ArtStay\art-stay-backend\src\controllers\artisan.controller.ts:116:69[39m
+
+[31m  113 const limit = Number(queryParams.limit)[39m
+[31m  114 const skip = Number(queryParams.cursor ??0)[39m
+[31m  115 console.log(queryParams)[39m
+[31m→ 116 const artisans: ArtisanDetailProps[] = await prisma.artisan.findMany({[39m
+[31m        include: {[39m
+[31m          craft: true,[39m
+[31m          subCraft: true[39m
+[31m        },[39m
+[31m        take: 6,[39m
+[31m        orderBy: {[39m
+[31m          createdAt: "desc"[39m
+[31m        },[39m
+[31m      + skip: Int[39m
+[31m      })[39m
+
+[31mArgument `skip` is missing.[39m
+2025-02-06 08:12:14 [31merror[39m: [31m[39m
+[31mInvalid `prisma.artisan.findMany()` invocation in[39m
+[31mD:\DKC\ArtStay\art-stay-backend\src\controllers\artisan.controller.ts:116:69[39m
+
+[31m  113 const limit = Number(queryParams.limit)[39m
+[31m  114 const skip = Number(queryParams.cursor ??0)[39m
+[31m  115 console.log(queryParams)[39m
+[31m→ 116 const artisans: ArtisanDetailProps[] = await prisma.artisan.findMany({[39m
+[31m        include: {[39m
+[31m          craft: true,[39m
+[31m          subCraft: true[39m
+[31m        },[39m
+[31m        take: 6,[39m
+[31m        orderBy: {[39m
+[31m          createdAt: "desc"[39m
+[31m        },[39m
+[31m      + skip: Int[39m
+[31m      })[39m
+
+[31mArgument `skip` is missing.[39m

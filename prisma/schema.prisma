@@ -51,20 +51,21 @@ model Artisan {
   craftId      String
   subCraftId   String
   accountId    String
-  account      Account     @relation(fields: [accountId], references: [userId], onDelete: Cascade, onUpdate: Cascade)
-  createdAt    DateTime    @default(now())
-  updatedAt    DateTime    @updatedAt
+  portfolioId  String
 
-  subCraft  SubCraft    @relation(fields: [subCraftId], references: [subCraftId], onDelete: Cascade, onUpdate: Cascade)
-  craft     Craft       @relation(fields: [craftId], references: [craftId], onDelete: Cascade, onUpdate: Cascade)
-  Portfolio Portfolio[]
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  account   Account   @relation(fields: [accountId], references: [userId], onDelete: Cascade, onUpdate: Cascade)
+  subCraft  SubCraft  @relation(fields: [subCraftId], references: [subCraftId], onDelete: Cascade, onUpdate: Cascade)
+  craft     Craft     @relation(fields: [craftId], references: [craftId], onDelete: Cascade, onUpdate: Cascade)
+  Portfolio Portfolio @relation(fields: [portfolioId], references: [portfolioId], onDelete: Cascade, onUpdate: Cascade)
 }
 
 model Portfolio {
-  portfolioId String   @id @default(cuid())
-  images      String[] @default([""])
-  artisanId   String
-  artisan     Artisan  @relation(fields: [artisanId], references: [artisanId], onDelete: Cascade, onUpdate: Cascade)
+  portfolioId String    @id @default(cuid())
+  images      String[]  @default([""])
+  Artisan     Artisan[]
 }
 
 enum Education {

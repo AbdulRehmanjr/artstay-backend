@@ -27,7 +27,7 @@ type LoginProps = {
 }
 
 
-type ArtisanProps = {
+type ArtisanCreationProps = {
   firstName: string,
   lastName: string,
   address: string,
@@ -61,8 +61,13 @@ type SubCraftProps = {
   subCraftSlug: string;
 }
 
+type PortfolioProps = {
+  portfolioId: string
+  images: string[]
+}
+
 type ArtisanDetailProps = {
-  artisanId:string
+  artisanId: string
   firstName: string,
   lastName: string,
   address: string,
@@ -77,4 +82,23 @@ type ArtisanDetailProps = {
   dp: string,
   subCraft: SubCraftProps
   craft: CraftProps
+}
+
+type ArtisanPortolioProps = {
+  artisanId: string
+  firstName: string,
+  lastName: string,
+  address: string,
+  description: string,
+  experience: string,
+  education: string,
+  training: string,
+  certificate: string,
+  recongnition: string,
+  craftId: string,
+  subCraftId: string,
+  dp: string,
+  subCraft: SubCraftProps
+  craft: CraftProps
+  Portfolio:PortfolioProps
 }
