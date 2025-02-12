@@ -32,11 +32,11 @@ export const createArtisan = async (req: Request, res: Response) => {
                 subCraftId: artisan.subCraftId,
                 craftId: artisan.craftId,
                 accountId: account.userId,
-                portfolioId:portfolio.portfolioId
-                
+                portfolioId: portfolio.portfolioId
+
             }
         })
-       
+
         res.status(201).json({ status: 'success', message: 'account created', data: null });
     } catch (error) {
         logger.error(error)
@@ -110,7 +110,7 @@ export const artisanDetailByArtisanId = async (req: Request, res: Response) => {
     try {
 
         const { artisanId } = req.params
-        const artisan : ArtisanPortolioProps | null = await prisma.artisan.findUnique({
+        const artisan: ArtisanPortolioProps | null = await prisma.artisan.findUnique({
             where: {
                 artisanId: artisanId
             },
@@ -165,6 +165,33 @@ export const allArtisans = async (req: Request, res: Response) => {
                     totalPages: Math.ceil(totalCount / limit), // Use total count here
                 }
             },
+        });
+    } catch (error) {
+        logger.error(error)
+        res.status(500).json({
+            status: 'error',
+            message: error instanceof Error ? error.message : 'Failed to fetch all artisans',
+            data: null
+        });
+    }
+}
+
+export const getPortfolioByArtisandId = async (req: Request, res: Response) => {
+    try {
+        const { artisanId } = req.params
+        const portfolio = await prisma.portfolio.findFirst({
+            where: {
+                Artisan: {
+                    some: {
+                       accountId :  artisanId
+                    }
+                }
+            }
+        })
+        res.status(201).json({
+            status: 'success',
+            message: 'all portfolio',
+            data: portfolio,
         });
     } catch (error) {
         logger.error(error)

@@ -10,6 +10,8 @@ type AccountTypeEnum = "NONE" |
   "SUPERADMIN"
 
 
+
+
 type AccountProps = {
   userId: string
   email: string
@@ -100,5 +102,12 @@ type ArtisanPortolioProps = {
   dp: string,
   subCraft: SubCraftProps
   craft: CraftProps
-  Portfolio:PortfolioProps
+  Portfolio: PortfolioProps
+}
+
+type ArtisanPackageRequestProps = {
+  artisanId: string,
+  duration: number,
+  features: string[],
+  experience: string
 }

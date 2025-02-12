@@ -56,10 +56,22 @@ model Artisan {
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 
-  account   Account   @relation(fields: [accountId], references: [userId], onDelete: Cascade, onUpdate: Cascade)
-  subCraft  SubCraft  @relation(fields: [subCraftId], references: [subCraftId], onDelete: Cascade, onUpdate: Cascade)
-  craft     Craft     @relation(fields: [craftId], references: [craftId], onDelete: Cascade, onUpdate: Cascade)
-  Portfolio Portfolio @relation(fields: [portfolioId], references: [portfolioId], onDelete: Cascade, onUpdate: Cascade)
+  account        Account          @relation(fields: [accountId], references: [userId], onDelete: Cascade, onUpdate: Cascade)
+  subCraft       SubCraft         @relation(fields: [subCraftId], references: [subCraftId], onDelete: Cascade, onUpdate: Cascade)
+  craft          Craft            @relation(fields: [craftId], references: [craftId], onDelete: Cascade, onUpdate: Cascade)
+  Portfolio      Portfolio        @relation(fields: [portfolioId], references: [portfolioId], onDelete: Cascade, onUpdate: Cascade)
+  ArtisanPackage ArtisanPackage[]
+}
+
+model ArtisanPackage {
+  packageId  String   @id @default(cuid())
+  duration   Int      @default(0)
+  features   String[] @default([])
+  experience String   @default("none")
+  artisanId  String
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+  artisan    Artisan  @relation(fields: [artisanId], references: [artisanId], onDelete: Cascade, onUpdate: Cascade)
 }
 
 model Portfolio {
