@@ -13,6 +13,7 @@ model Account {
   password    String      @default("none")
   accountType AccountType @default(NONE)
   Artisan     Artisan[]
+  Safari      Safari[]
 }
 
 model Craft {
@@ -35,6 +36,11 @@ model SubCraft {
   craft        Craft     @relation(fields: [craftId], references: [craftId], onDelete: Cascade, onUpdate: Cascade)
   Artisan      Artisan[]
 }
+
+/**
+ * *
+ * ARTISAN
+ */
 
 model Artisan {
   artisanId    String      @id @default(cuid())
@@ -68,6 +74,8 @@ model ArtisanPackage {
   duration   Int      @default(0)
   features   String[] @default([])
   experience String   @default("none")
+  price      Int      @default(0)
+  title      String   @default("none")
   artisanId  String
   createdAt  DateTime @default(now())
   updatedAt  DateTime @updatedAt
@@ -78,6 +86,41 @@ model Portfolio {
   portfolioId String    @id @default(cuid())
   images      String[]  @default([""])
   Artisan     Artisan[]
+}
+
+/**
+ * *
+ * SAFARI
+ */
+
+model Safari {
+  safariId    String   @id @default(cuid())
+  firstName   String   @default("none")
+  lastName    String   @default("none")
+  dp          String   @default("none")
+  address     String   @default("none")
+  description String   @default("none")
+  accountId   String
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  account    Account      @relation(fields: [accountId], references: [userId], onDelete: Cascade, onUpdate: Cascade)
+  SafariTour SafariTour[]
+}
+
+model SafariTour {
+  tourId      String   @id @default(cuid())
+  title       String   @default("none")
+  operator    String   @default("none")
+  description String   @default("nones") @db.Text
+  duration    String   @default("none")
+  features    String[] @default([])
+  fee         Int      @default(0)
+  safariId    String
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  safari Safari @relation(fields: [safariId], references: [safariId], onDelete: Cascade, onUpdate: Cascade)
 }
 
 enum Education {

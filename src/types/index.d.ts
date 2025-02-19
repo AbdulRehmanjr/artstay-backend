@@ -20,28 +20,27 @@ type AccountProps = {
 }
 
 type LoginProps = {
-  token: string,
+  token: string
   user: {
-    id: string,
-    email: string,
+    id: string
+    email: string
     accountType: string
   }
 }
 
-
 type ArtisanCreationProps = {
-  firstName: string,
-  lastName: string,
-  address: string,
-  description: string,
-  experience: string,
-  education: string,
-  training: string,
-  certificate: string,
-  recognition: string,
-  craftId: string,
-  subCraftId: string,
-  dp: string,
+  firstName: string
+  lastName: string
+  address: string
+  description: string
+  experience: string
+  education: string
+  training: string
+  certificate: string
+  recognition: string
+  craftId: string
+  subCraftId: string
+  dp: string
   email: string
   password: string
 }
@@ -70,44 +69,112 @@ type PortfolioProps = {
 
 type ArtisanDetailProps = {
   artisanId: string
-  firstName: string,
-  lastName: string,
-  address: string,
-  description: string,
-  experience: string,
-  education: string,
-  training: string,
-  certificate: string,
-  recongnition: string,
-  craftId: string,
-  subCraftId: string,
-  dp: string,
+  firstName: string
+  lastName: string
+  address: string
+  description: string
+  experience: string
+  education: string
+  training: string
+  certificate: string
+  recongnition: string
+  craftId: string
+  subCraftId: string
+  dp: string
   subCraft: SubCraftProps
   craft: CraftProps
 }
 
 type ArtisanPortolioProps = {
   artisanId: string
-  firstName: string,
-  lastName: string,
-  address: string,
-  description: string,
-  experience: string,
-  education: string,
-  training: string,
-  certificate: string,
-  recongnition: string,
-  craftId: string,
-  subCraftId: string,
-  dp: string,
+  firstName: string
+  lastName: string
+  address: string
+  description: string
+  experience: string
+  education: string
+  training: string
+  certificate: string
+  recongnition: string
+  craftId: string
+  subCraftId: string
+  dp: string
   subCraft: SubCraftProps
   craft: CraftProps
   Portfolio: PortfolioProps
+  ArtisanPackage: ArtisanPackageProps[]
 }
 
 type ArtisanPackageRequestProps = {
-  artisanId: string,
-  duration: number,
-  features: string[],
+  accountId: string
+  price: number
+  title: string
+  duration: number
+  features: string[]
   experience: string
+}
+
+type ArtisanPackageUpdateProps = {
+  packageId: string
+  price: number
+  title: string
+  duration: number
+  features: string[]
+  experience: string
+}
+
+type ArtisanPackageProps = {
+  packageId: string;
+  duration: number;
+  features: string[];
+  experience: string;
+  price: number;
+  title: string;
+  artisanId: string;
+  createdAt: Date;
+  updatedAt: Date;
+}
+
+
+type SafariCreationProps = {
+  firstName: string
+  lastName: string
+  address: string
+  description: string
+  dp: string
+  email: string
+  password: string
+}
+
+type SafariDetailProps = {
+  safariId: string
+  firstName: string
+  lastName: string
+  dp: string
+  address: string
+  description: string
+  accountId: string
+}
+
+type SafariTourCreationProps = {
+  title: string
+  duration: string
+  fee: number
+  operator: string
+  description: string
+  features: string[]
+  accountId: string
+}
+
+type SafariTourProps = {
+  tourId: string
+  title: string
+  operator: string
+  description: string
+  duration: string
+  features: string[]
+  fee: number
+  safariId: string
+  createdAt: Date
+  updatedAt: Date
 }

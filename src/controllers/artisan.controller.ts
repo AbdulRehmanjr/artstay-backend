@@ -1,85 +1,8 @@
 import { Request, Response } from 'express';
 import prisma from '~/libs/prisma';
 import { logger } from '~/utils/logger';
-import { Certificate, Education, Experience, Recognition, Training } from '@prisma/client';
-import { hash } from 'bcrypt';
 
-export const createArtisan = async (req: Request, res: Response) => {
-    try {
-        const artisan: ArtisanCreationProps = req.body
-        const hashedPassword = await hash(artisan.password, 10);
-        const account = await prisma.account.create({
-            data: {
-                email: artisan.email,
-                password: hashedPassword,
-                accountType: 'ARTISAN' as AccountTypeEnum
-            }
-        });
-        const portfolio = await prisma.portfolio.create({})
 
-        await prisma.artisan.create({
-            data: {
-                firstName: artisan.firstName,
-                lastName: artisan.lastName,
-                address: artisan.address,
-                description: artisan.description,
-                dp: artisan.dp,
-                experience: artisan.experience as Experience,
-                education: artisan.education as Education,
-                certificate: artisan.certificate as Certificate,
-                training: artisan.training as Training,
-                recongnition: artisan.recognition as Recognition,
-                subCraftId: artisan.subCraftId,
-                craftId: artisan.craftId,
-                accountId: account.userId,
-                portfolioId: portfolio.portfolioId
-
-            }
-        })
-
-        res.status(201).json({ status: 'success', message: 'account created', data: null });
-    } catch (error) {
-        logger.error(error)
-        res.status(500).json({
-            status: 'error',
-            message: error instanceof Error ? error.message : 'Failed to create account',
-            data: null
-        });
-    }
-};
-
-export const updateArtisan = async (req: Request, res: Response) => {
-    try {
-        const artisan = req.body
-
-        await prisma.artisan.updateMany({
-            where: { accountId: artisan.accountId },
-            data: {
-                firstName: artisan.firstName,
-                lastName: artisan.lastName,
-                address: artisan.address,
-                description: artisan.description,
-                dp: artisan.dp,
-                experience: artisan.experience as Experience,
-                education: artisan.education as Education,
-                certificate: artisan.certificate as Certificate,
-                training: artisan.training as Training,
-                recongnition: artisan.recognition as Recognition,
-                subCraftId: artisan.subCraftId,
-                craftId: artisan.craftId
-            }
-        })
-
-        res.status(201).json({ status: 'success', message: 'account updated', data: null });
-    } catch (error) {
-        logger.error(error)
-        res.status(500).json({
-            status: 'error',
-            message: error instanceof Error ? error.message : 'Failed to update account',
-            data: null
-        });
-    }
-};
 
 export const artisanDetailByAccountId = async (req: Request, res: Response) => {
     try {
@@ -117,7 +40,8 @@ export const artisanDetailByArtisanId = async (req: Request, res: Response) => {
             include: {
                 craft: true,
                 subCraft: true,
-                Portfolio: true
+                Portfolio: true,
+                ArtisanPackage:true
             }
         })
         res.status(201).json({ status: 'success', message: 'artisan details', data: artisan });
@@ -176,14 +100,14 @@ export const allArtisans = async (req: Request, res: Response) => {
     }
 }
 
-export const getPortfolioByArtisandId = async (req: Request, res: Response) => {
+export const getPortfolioByArtisanId = async (req: Request, res: Response) => {
     try {
         const { artisanId } = req.params
         const portfolio = await prisma.portfolio.findFirst({
             where: {
                 Artisan: {
                     some: {
-                       accountId :  artisanId
+                        accountId: artisanId
                     }
                 }
             }
@@ -192,6 +116,36 @@ export const getPortfolioByArtisandId = async (req: Request, res: Response) => {
             status: 'success',
             message: 'all portfolio',
             data: portfolio,
+        });
+    } catch (error) {
+        logger.error(error)
+        res.status(500).json({
+            status: 'error',
+            message: error instanceof Error ? error.message : 'Failed to fetch all artisans',
+            data: null
+        });
+    }
+}
+
+export const updatePortfolioArtisanId = async (req: Request, res: Response) => {
+    try {
+        const { accountId, images } = req.body
+        await prisma.portfolio.updateMany({
+            where: {
+                Artisan: {
+                    some: {
+                        accountId: accountId
+                    }
+                }
+            },
+            data: {
+                images: images
+            }
+        })
+        res.status(201).json({
+            status: 'success',
+            message: 'updated portfolio',
+            data: null,
         });
     } catch (error) {
         logger.error(error)
