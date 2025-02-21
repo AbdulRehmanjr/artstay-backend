@@ -146,7 +146,7 @@ type SafariCreationProps = {
   password: string
 }
 
-type SafariDetailProps = {
+type SafariProps = {
   safariId: string
   firstName: string
   lastName: string
@@ -177,4 +177,16 @@ type SafariTourProps = {
   safariId: string
   createdAt: Date
   updatedAt: Date
+}
+
+
+type SafariDetailProps = {
+  safariId: string
+  firstName: string
+  lastName: string
+  dp: string
+  address: string
+  description: string
+  accountId: string
+  SafariTour : SafariTourProps[]
 }

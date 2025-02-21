@@ -5,7 +5,7 @@ import { logger } from '~/utils/logger';
 export const safariDetailByAccountId = async (req: Request, res: Response) => {
     try {
         const { accountId } = req.params
-        const safari: SafariDetailProps | null = await prisma.safari.findFirst({
+        const safari: SafariProps | null = await prisma.safari.findFirst({
             where: {
                 accountId: accountId
             },
@@ -100,3 +100,67 @@ export const getTourById = async (req: Request, res: Response) => {
         });
     }
 };
+
+export const allSafaris = async (req: Request, res: Response) => {
+    try {
+        const queryParams = req.query
+        const limit = Number(queryParams.limit)
+        const skip = Number(queryParams.cursor ?? 0)
+        const totalCount = await prisma.artisan.count();
+
+        const safaris: SafariProps[] = await prisma.safari.findMany({
+            take: limit,
+            skip: skip,
+            orderBy: {
+                createdAt: "desc",
+            },
+            distinct: ['safariId']
+        })
+
+        const nextCursor = skip + limit;
+        const hasNextPage = nextCursor < totalCount;
+
+        res.status(201).json({
+            status: 'success', message: 'all safaris', data: {
+                safaris: safaris,
+                metadata: {
+                    cursor: hasNextPage ? nextCursor.toString() : undefined,
+                    hasNextPage,
+                    totalItems: totalCount, // Use total count here
+                    currentPage: Math.floor(skip / limit) + 1,
+                    totalPages: Math.ceil(totalCount / limit), // Use total count here
+                }
+            },
+        });
+    } catch (error) {
+        logger.error(error)
+        res.status(500).json({
+            status: 'error',
+            message: error instanceof Error ? error.message : 'Failed to fetch all safaris',
+            data: null
+        });
+    }
+}
+
+export const safariDetailById = async (req: Request, res: Response) => {
+    try {
+
+        const { safariId } = req.params
+        const artisan: SafariDetailProps | null = await prisma.safari.findUnique({
+            where: {
+                safariId: safariId
+            },
+            include: {
+                SafariTour: true,
+            }
+        })
+        res.status(201).json({ status: 'success', message: 'artisan details', data: artisan });
+    } catch (error) {
+        logger.error(error)
+        res.status(500).json({
+            status: 'error',
+            message: error instanceof Error ? error.message : 'Failed to fetch artisan details',
+            data: null
+        });
+    }
+}
