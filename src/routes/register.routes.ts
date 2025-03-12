@@ -1,5 +1,5 @@
 import { Router } from 'express';
-import { createArtisan, createFair, createSafari, updateArtisan, updateFair, updateSafari } from '~/controllers/register.controller';
+import { createArtisan, createFair, createSafari, createShop, updateArtisan, updateFair, updateSafari, updateShop } from '~/controllers/register.controller';
 import { validate } from '~/middlewares/zod.middleware';
 import { artisanCreationSchema, artisanUpdationSchema, fairCreationSchema, fairUpdationSchema, safariCreationSchema, safariUpdationSchema, shopCreationSchema, shopUpdationSchema } from '~/schemas/register';
 
@@ -16,7 +16,7 @@ router.patch('/safari', validate(safariUpdationSchema), updateSafari);
 router.post('/fair', validate(fairCreationSchema), createFair);
 router.patch('/fair', validate(fairUpdationSchema), updateFair);
 //* shop
-// router.post('/shop', validate(shopCreationSchema), createShop);
-// router.patch('/shop', validate(shopUpdationSchema), updateShop);
+router.post('/shop', validate(shopCreationSchema), createShop);
+router.patch('/shop', validate(shopUpdationSchema), updateShop);
 
 export const registerRouter = router;

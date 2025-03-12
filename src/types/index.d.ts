@@ -268,3 +268,43 @@ type FairDetailProps = {
   accountId: string
   FairEvent : FairEventProps[]
 }
+
+//* Shop 
+type ShopCreationProps = {
+  shopName: string
+  address: string
+  shopTiming: string
+  workingDays: string[]
+  description: string
+  dp: string
+  email: string
+  password: string
+  accountId: string
+}
+
+type ShopProps = {
+  shopId: string
+  shopName: string
+  address: string
+  shopTiming: string
+  workingDays: string[]
+  description: string
+  dp: string
+  accountId: string
+}
+
+type ProductCreationProps = {
+  name: string
+  description: string
+  price: number
+  images: string[]
+  category: string
+  material: string
+  dimensions: string
+  weight: number
+  stock: number
+  isAvailable: boolean
+  craftType: string
+  artisanMade: boolean
+  shopId: string
+}

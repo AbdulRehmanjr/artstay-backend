@@ -72,9 +72,10 @@ export const fairUpdationSchema = z.object({
 })
 
 export const shopCreationSchema = z.object({
-    firstName: z.string(),
-    lastName: z.string(),
+    shopName: z.string(),
     address: z.string(),
+    shopTiming: z.string(),
+    workingDays: z.array(z.string()),
     description: z.string(),
     dp: z.string(),
     email: z.string(),
@@ -82,9 +83,10 @@ export const shopCreationSchema = z.object({
 })
 
 export const shopUpdationSchema = z.object({
-    firstName: z.string(),
-    lastName: z.string(),
+    shopName: z.string(),
     address: z.string(),
+    shopTiming: z.string(),
+    workingDays: z.array(z.string()),
     description: z.string(),
     dp: z.string(),
     accountId: z.string()

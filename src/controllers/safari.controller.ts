@@ -5,7 +5,7 @@ import { logger } from '~/utils/logger';
 export const safariDetailByAccountId = async (req: Request, res: Response) => {
     try {
         const { accountId } = req.params
-        const safari: SafariProps | null = await prisma.safari.findFirst({
+        const safari: SafariProps | null = await prisma.safari.findUnique({
             where: {
                 accountId: accountId
             },
@@ -25,7 +25,7 @@ export const createSafariTour = async (req: Request, res: Response) => {
     try {
         const tour: SafariTourCreationProps = req.body
 
-        const safari = await prisma.safari.findFirst({
+        const safari = await prisma.safari.findUnique({
             where: {
                 accountId: tour.accountId
             },
@@ -55,7 +55,6 @@ export const createSafariTour = async (req: Request, res: Response) => {
         });
     }
 }
-
 
 export const getSafariTours = async (req: Request, res: Response) => {
     try {

@@ -56,7 +56,7 @@ export const updateArtisan = async (req: Request, res: Response) => {
     try {
         const artisan = req.body
 
-        await prisma.artisan.updateMany({
+        await prisma.artisan.update({
             where: { accountId: artisan.accountId },
             data: {
                 firstName: artisan.firstName,
@@ -123,7 +123,7 @@ export const updateSafari = async (req: Request, res: Response) => {
     try {
         const safari = req.body
 
-        await prisma.safari.updateMany({
+        await prisma.safari.update({
             where: { accountId: safari.accountId },
             data: {
                 firstName: safari.firstName,
@@ -183,7 +183,7 @@ export const updateFair = async (req: Request, res: Response) => {
     try {
         const fair = req.body
 
-        await prisma.fair.updateMany({
+        await prisma.fair.update({
             where: { accountId: fair.accountId },
             data: {
                 firstName: fair.firstName,
@@ -200,6 +200,68 @@ export const updateFair = async (req: Request, res: Response) => {
         res.status(500).json({
             status: 'error',
             message: error instanceof Error ? error.message : 'Failed to update fair',
+            data: null
+        });
+    }
+};
+
+export const createShop = async (req: Request, res: Response) => {
+    try {
+        const shop: ShopCreationProps = req.body
+        const hashedPassword = await hash(shop.password, 10);
+        const account = await prisma.account.create({
+            data: {
+                email: shop.email,
+                password: hashedPassword,
+                accountType: 'SHOP' as AccountTypeEnum
+            }
+        });
+
+        await prisma.shop.create({
+            data: {
+                shopName: shop.shopName,
+                address: shop.address,
+                shopTiming: shop.shopTiming,
+                workingDays: shop.workingDays,
+                description: shop.description,
+                dp: shop.dp,
+                accountId: account.userId
+            }
+        })
+
+        res.status(201).json({ status: 'success', message: 'shop created', data: null });
+    } catch (error) {
+        logger.error(error)
+        res.status(500).json({
+            status: 'error',
+            message: error instanceof Error ? error.message : 'Failed to create shop',
+            data: null
+        });
+    }
+};
+
+export const updateShop = async (req: Request, res: Response) => {
+    try {
+        const shop = req.body
+
+        await prisma.shop.update({
+            where: { accountId: shop.accountId },
+            data: {
+                shopName: shop.shopName,
+                address: shop.address,
+                shopTiming: shop.shopTiming,
+                workingDays: shop.workingDays,
+                description: shop.description,
+                dp: shop.dp
+            }
+        })
+
+        res.status(201).json({ status: 'success', message: 'shop updated', data: null });
+    } catch (error) {
+        logger.error(error)
+        res.status(500).json({
+            status: 'error',
+            message: error instanceof Error ? error.message : 'Failed to update shop',
             data: null
         });
     }

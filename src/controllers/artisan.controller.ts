@@ -8,7 +8,7 @@ export const artisanDetailByAccountId = async (req: Request, res: Response) => {
     try {
 
         const { accountId } = req.params
-        const artisan: ArtisanDetailProps | null = await prisma.artisan.findFirst({
+        const artisan: ArtisanDetailProps | null = await prisma.artisan.findUnique({
             where: {
                 accountId: accountId
             },
