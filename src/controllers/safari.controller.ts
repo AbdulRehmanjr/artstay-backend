@@ -21,7 +21,6 @@ export const safariDetailByAccountId = async (req: Request, res: Response) => {
     }
 }
 
-
 export const createSafariTour = async (req: Request, res: Response) => {
     try {
         const tour: SafariTourCreationProps = req.body
@@ -146,7 +145,7 @@ export const safariDetailById = async (req: Request, res: Response) => {
     try {
 
         const { safariId } = req.params
-        const artisan: SafariDetailProps | null = await prisma.safari.findUnique({
+        const safari: SafariDetailProps | null = await prisma.safari.findUnique({
             where: {
                 safariId: safariId
             },
@@ -154,12 +153,12 @@ export const safariDetailById = async (req: Request, res: Response) => {
                 SafariTour: true,
             }
         })
-        res.status(201).json({ status: 'success', message: 'artisan details', data: artisan });
+        res.status(201).json({ status: 'success', message: 'safari details', data: safari });
     } catch (error) {
         logger.error(error)
         res.status(500).json({
             status: 'error',
-            message: error instanceof Error ? error.message : 'Failed to fetch artisan details',
+            message: error instanceof Error ? error.message : 'Failed to fetch safari details',
             data: null
         });
     }

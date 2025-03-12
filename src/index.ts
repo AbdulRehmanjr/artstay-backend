@@ -3,7 +3,7 @@ import express from 'express';
 import { env } from '~/env';
 import cookieParser from 'cookie-parser';
 import { morganMiddleware } from '~/middlewares/morgan.middleware';
-import { mainRouter } from '~/routers/index.routes';
+import { mainRouter } from '~/routes/index.routes';
 import cors from 'cors';
 
 //* declaration of variables 

@@ -7,7 +7,7 @@ const router = Router();
 
 router.get('/',getAllCrafts)
 router.get('/subcrafts/:craftId',getAllSubCraftsByCraftId)
-router.post('/create-craft',validate(CraftCreationSchema),createCraft)
-router.post('/create-subcraft',validate(SubCraftCreationSchema),createSubCraft)
+router.post('/craft',validate(CraftCreationSchema),createCraft)
+router.post('/subcraft',validate(SubCraftCreationSchema),createSubCraft)
 
 export const craftRouter = router;

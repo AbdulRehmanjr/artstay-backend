@@ -10,8 +10,6 @@ type AccountTypeEnum = "NONE" |
   "SUPERADMIN"
 
 
-
-
 type AccountProps = {
   userId: string
   email: string
@@ -26,23 +24,6 @@ type LoginProps = {
     email: string
     accountType: string
   }
-}
-
-type ArtisanCreationProps = {
-  firstName: string
-  lastName: string
-  address: string
-  description: string
-  experience: string
-  education: string
-  training: string
-  certificate: string
-  recognition: string
-  craftId: string
-  subCraftId: string
-  dp: string
-  email: string
-  password: string
 }
 
 type CraftProps = {
@@ -60,6 +41,25 @@ type SubCraftProps = {
   updatedAt: Date;
   subCraftName: string;
   subCraftSlug: string;
+}
+
+// * ARTISAN
+
+type ArtisanCreationProps = {
+  firstName: string
+  lastName: string
+  address: string
+  description: string
+  experience: string
+  education: string
+  training: string
+  certificate: string
+  recognition: string
+  craftId: string
+  subCraftId: string
+  dp: string
+  email: string
+  password: string
 }
 
 type PortfolioProps = {
@@ -135,7 +135,7 @@ type ArtisanPackageProps = {
   updatedAt: Date;
 }
 
-
+//* SAFARI
 type SafariCreationProps = {
   firstName: string
   lastName: string
@@ -179,7 +179,6 @@ type SafariTourProps = {
   updatedAt: Date
 }
 
-
 type SafariDetailProps = {
   safariId: string
   firstName: string
@@ -188,5 +187,84 @@ type SafariDetailProps = {
   address: string
   description: string
   accountId: string
-  SafariTour : SafariTourProps[]
+  SafariTour: SafariTourProps[]
+}
+
+// * FAIR
+type FairCreationProps = {
+  firstName: string
+  lastName: string
+  address: string
+  description: string
+  dp: string
+  email: string
+  password: string
+}
+
+type FairProps = {
+  fairId: string
+  firstName: string
+  lastName: string
+  dp: string
+  address: string
+  description: string
+  accountId: string
+}
+
+type FairLocationEnum = "INTERNATIONAL" | "NATIONAL" | "LOCAL"
+type FairTypeEnum = "FAIR" | "EXHIBITION" | "MUSEUM"
+type FairEventCreationProps = {
+  title: string
+  location: string
+  vanue: string
+  fairType: string
+  startDate: string
+  endDate: string
+  organizer: string
+  latitude: number
+  longitude: number
+  description: string
+  accountId: string
+}
+
+type FairEventUpdationProps = {
+  title: string
+  location: string
+  vanue: string
+  fairType: string
+  startDate: string
+  endDate: string
+  organizer: string
+  latitude: number
+  longitude: number
+  description: string
+  eventId: string
+}
+
+type FairEventProps = {
+  eventId: string
+  title: string
+  location: FairLocationEnum
+  vanue: string
+  startDate: string
+  endDate: string
+  organizer: string
+  fairType: FairTypeEnum
+  latitude: number
+  longitude: number
+  description: string
+  fairId: string
+  createdAt: Date
+  updatedAt: Date
+}
+
+type FairDetailProps = {
+  fairId: string
+  firstName: string
+  lastName: string
+  dp: string
+  address: string
+  description: string
+  accountId: string
+  FairEvent : FairEventProps[]
 }

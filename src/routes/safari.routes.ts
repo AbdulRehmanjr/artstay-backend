@@ -11,6 +11,6 @@ router.get('/tour/:tourId',getTourById)
 router.get('/all', allSafaris)
 router.get('/:safariId', safariDetailById)
 
-router.post('/create-tour',validate(SafariTourSchema), createSafariTour)
+router.post('/tour',validate(SafariTourSchema), createSafariTour)
 
 export const safariRouter = router;

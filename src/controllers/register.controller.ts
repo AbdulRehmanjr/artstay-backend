@@ -144,3 +144,63 @@ export const updateSafari = async (req: Request, res: Response) => {
         });
     }
 };
+
+export const createFair = async (req: Request, res: Response) => {
+    try {
+        const fair: FairCreationProps = req.body
+        const hashedPassword = await hash(fair.password, 10);
+        const account = await prisma.account.create({
+            data: {
+                email: fair.email,
+                password: hashedPassword,
+                accountType: 'FAIRS' as AccountTypeEnum
+            }
+        });
+
+        await prisma.fair.create({
+            data: {
+                firstName: fair.firstName,
+                lastName: fair.lastName,
+                address: fair.address,
+                description: fair.description,
+                dp: fair.dp,
+                accountId: account.userId,
+            }
+        })
+
+        res.status(201).json({ status: 'success', message: 'fair created', data: null });
+    } catch (error) {
+        logger.error(error)
+        res.status(500).json({
+            status: 'error',
+            message: error instanceof Error ? error.message : 'Failed to create fair',
+            data: null
+        });
+    }
+};
+
+export const updateFair = async (req: Request, res: Response) => {
+    try {
+        const fair = req.body
+
+        await prisma.fair.updateMany({
+            where: { accountId: fair.accountId },
+            data: {
+                firstName: fair.firstName,
+                lastName: fair.lastName,
+                address: fair.address,
+                description: fair.description,
+                dp: fair.dp
+            }
+        })
+
+        res.status(201).json({ status: 'success', message: 'fair updated', data: null });
+    } catch (error) {
+        logger.error(error)
+        res.status(500).json({
+            status: 'error',
+            message: error instanceof Error ? error.message : 'Failed to update fair',
+            data: null
+        });
+    }
+};

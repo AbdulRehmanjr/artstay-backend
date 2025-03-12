@@ -51,3 +51,41 @@ export const safariUpdationSchema = z.object({
     dp: z.string(),
     accountId: z.string()
 })
+
+export const fairCreationSchema = z.object({
+    firstName: z.string(),
+    lastName: z.string(),
+    address: z.string(),
+    description: z.string(),
+    dp: z.string(),
+    email: z.string(),
+    password: z.string()
+})
+
+export const fairUpdationSchema = z.object({
+    firstName: z.string(),
+    lastName: z.string(),
+    address: z.string(),
+    description: z.string(),
+    dp: z.string(),
+    accountId: z.string()
+})
+
+export const shopCreationSchema = z.object({
+    firstName: z.string(),
+    lastName: z.string(),
+    address: z.string(),
+    description: z.string(),
+    dp: z.string(),
+    email: z.string(),
+    password: z.string()
+})
+
+export const shopUpdationSchema = z.object({
+    firstName: z.string(),
+    lastName: z.string(),
+    address: z.string(),
+    description: z.string(),
+    dp: z.string(),
+    accountId: z.string()
+})

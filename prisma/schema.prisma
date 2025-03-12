@@ -12,8 +12,11 @@ model Account {
   email       String      @unique
   password    String      @default("none")
   accountType AccountType @default(NONE)
-  Artisan     Artisan[]
-  Safari      Safari[]
+
+  Artisan Artisan?
+  Safari  Safari?
+  Fair    Fair?
+  Shop    Shop?
 }
 
 model Craft {
@@ -56,7 +59,7 @@ model Artisan {
   recongnition Recognition @default(STATE)
   craftId      String
   subCraftId   String
-  accountId    String
+  accountId    String      @unique
   portfolioId  String
 
   createdAt DateTime @default(now())
@@ -100,7 +103,7 @@ model Safari {
   dp          String   @default("none")
   address     String   @default("none")
   description String   @default("none")
-  accountId   String
+  accountId   String   @unique
   createdAt   DateTime @default(now())
   updatedAt   DateTime @updatedAt
 
@@ -121,6 +124,97 @@ model SafariTour {
   updatedAt   DateTime @updatedAt
 
   safari Safari @relation(fields: [safariId], references: [safariId], onDelete: Cascade, onUpdate: Cascade)
+}
+
+/**
+ * *
+ * FAIR
+ */
+
+model Fair {
+  fairId      String   @id @default(cuid())
+  firstName   String   @default("none")
+  lastName    String   @default("none")
+  dp          String   @default("none")
+  address     String   @default("none")
+  description String   @default("none")
+  accountId   String   @unique
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  account   Account     @relation(fields: [accountId], references: [userId], onDelete: Cascade, onUpdate: Cascade)
+  FairEvent FairEvent[]
+}
+
+model FairEvent {
+  eventId     String        @id @default(cuid())
+  title       String        @default("none")
+  location    EventLocation @default(LOCAL)
+  vanue       String        @default("none")
+  startDate   String        @default("none")
+  endDate     String        @default("none")
+  organizer   String        @default("none")
+  fairType    FairType      @default(FAIR)
+  latitude    Float         @default(0.0)
+  longitude   Float         @default(0.0)
+  description String        @default("none") @db.Text
+  fairId      String
+  createdAt   DateTime      @default(now())
+  updatedAt   DateTime      @updatedAt
+  fair        Fair          @relation(fields: [fairId], references: [fairId], onDelete: Cascade, onUpdate: Cascade)
+}
+
+/**
+ * SHOP
+ */
+
+model Shop {
+  shopId      String   @id @default(cuid())
+  shopName    String   @default("none")
+  address     String   @default("none")
+  description String   @default("none") @db.Text
+  shopTiming  String   @default("none-none")
+  workingDays String[] @default([])
+  dp          String   @default("none")
+  accountId   String   @unique
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  account  Account   @relation(fields: [accountId], references: [userId], onDelete: Cascade, onUpdate: Cascade)
+  products Product[]
+}
+
+model Product {
+  productId   String   @id @default(cuid())
+  name        String
+  description String   @db.Text
+  price       Float
+  images      String[]
+  category    String
+  material    String
+  dimensions  String?
+  weight      Float?
+  stock       Int      @default(0)
+  isAvailable Boolean  @default(true)
+  craftType   String // Specific type of Kashmir craft
+  artisanMade Boolean  @default(true)
+  shopId      String
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  shop Shop @relation(fields: [shopId], references: [shopId], onDelete: Cascade, onUpdate: Cascade)
+}
+
+enum FairType {
+  FAIR
+  EXHIBITION
+  MUSEUM
+}
+
+enum EventLocation {
+  INTERNATIONAL
+  NATIONAL
+  LOCAL
 }
 
 enum Education {
