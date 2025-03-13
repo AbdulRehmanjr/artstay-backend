@@ -70,6 +70,9 @@ export const shopDetailByShopId = async (req: Request, res: Response) => {
             where: {
                 shopId: shopId
             },
+            include: {
+                products: true
+            }
         })
         res.status(201).json({ status: 'success', message: 'shop details', data: shop });
     } catch (error) {
@@ -85,8 +88,35 @@ export const shopDetailByShopId = async (req: Request, res: Response) => {
 export const createProduct = async (req: Request, res: Response) => {
     try {
         const product: ProductCreationProps = req.body
+
+        const shop = await prisma.shop.findUnique({
+            where: {
+                accountId: product.accountId
+            }
+        })
+
+        if (!shop) {
+            res.status(404).json({ status: 'error', message: 'Shop not found', data: null })
+            return
+        }
+
         await prisma.product.create({
-            data: product
+            data: {
+                name: product.name,
+                description: product.description,
+                price: product.price,
+                images: product.images,
+                category: product.category,
+                material: product.material,
+                dimensions: product.dimensions,
+                weight: product.weight,
+                stock: product.stock,
+                craftType: product.craftType,
+                artisanMade: product.artisanMade,
+                isAvailable: product.isAvailable,
+
+                shopId: shop.shopId,
+            }
         })
         res.status(201).json({ status: 'success', message: 'product created', data: product })
     } catch (error) {
@@ -101,11 +131,10 @@ export const createProduct = async (req: Request, res: Response) => {
 
 export const updateProduct = async (req: Request, res: Response) => {
     try {
-        const { productId } = req.params
-        const product: ProductCreationProps = req.body
+        const product: ProductUpdateProps = req.body
         await prisma.product.update({
             where: {
-                productId: productId
+                productId: product.productId
             },
             data: product
         })
@@ -119,3 +148,48 @@ export const updateProduct = async (req: Request, res: Response) => {
         });
     }
 }
+
+export const getProductsByAccountId = async (req: Request, res: Response) => {
+    try {
+        const { accountId } = req.params
+        const products: ProductProps[] = await prisma.product.findMany({
+            where: {
+                shop: {
+                    accountId: accountId
+                }
+            },
+            orderBy: {
+                createdAt: "desc",
+            },
+            distinct: ['productId']
+        })
+        res.status(201).json({ status: 'success', message: 'products', data: products })
+    } catch (error) {
+        logger.error(error)
+        res.status(500).json({
+            status: 'error',
+            message: error instanceof Error ? error.message : 'Failed to get products',
+            data: null
+        });
+    }
+}
+
+export const getProductById = async (req: Request, res: Response) => {
+    try {
+        const { productId } = req.params
+        const product: ProductProps | null = await prisma.product.findUnique({
+            where: {
+                productId: productId
+            },
+        })
+        res.status(201).json({ status: 'success', message: 'product', data: product })
+    } catch (error) {
+        logger.error(error)
+        res.status(500).json({
+            status: 'error',
+            message: error instanceof Error ? error.message : 'Failed to get product',
+            data: null
+        });
+    }
+}   
+

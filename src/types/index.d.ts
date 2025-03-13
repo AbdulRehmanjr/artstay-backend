@@ -306,5 +306,53 @@ type ProductCreationProps = {
   isAvailable: boolean
   craftType: string
   artisanMade: boolean
+  accountId: string
+}
+
+type ProductUpdateProps = {
+  productId: string
+  name: string
+  description: string
+  price: number
+  images: string[]
+  category: string
+  material: string
+  dimensions: string
+  weight: number
+  stock: number
+  isAvailable: boolean
+  craftType: string
+  artisanMade: boolean  
+}
+
+type ProductProps = {
+  productId: string
+  name: string
+  description: string
+  price: number
+  images: string[]
+  category: string
+  material: string
+  dimensions: string | null
+  weight: number | null
+  stock: number
+  isAvailable: boolean
+  craftType: string
+  artisanMade: boolean
   shopId: string
+  createdAt: Date
+  updatedAt: Date
+  
+}
+
+type ShopDetailProps = {
+  shopId: string
+  shopName: string
+  description: string
+  accountId: string
+  dp: string
+  address: string
+  createdAt: Date
+  updatedAt: Date
+  products: ProductProps[]
 }

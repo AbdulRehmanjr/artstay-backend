@@ -213,7 +213,7 @@ export const createShop = async (req: Request, res: Response) => {
             data: {
                 email: shop.email,
                 password: hashedPassword,
-                accountType: 'SHOP' as AccountTypeEnum
+                accountType: 'BUSINESS' as AccountTypeEnum
             }
         });
 
