@@ -207,11 +207,12 @@ export const updateFair = async (req: Request, res: Response) => {
 
 export const createShop = async (req: Request, res: Response) => {
     try {
-        const shop: ShopCreationProps = req.body
-        const hashedPassword = await hash(shop.password, 10);
+        const vendorData: ShopCreationProps = req.body;
+
+        const hashedPassword = await hash(vendorData.password, 10);
         const account = await prisma.account.create({
             data: {
-                email: shop.email,
+                email: vendorData.email,
                 password: hashedPassword,
                 accountType: 'BUSINESS' as AccountTypeEnum
             }
@@ -219,22 +220,50 @@ export const createShop = async (req: Request, res: Response) => {
 
         await prisma.shop.create({
             data: {
-                shopName: shop.shopName,
-                address: shop.address,
-                shopTiming: shop.shopTiming,
-                workingDays: shop.workingDays,
-                description: shop.description,
-                dp: shop.dp,
+                businessName: vendorData.businessName,
+                shopName: vendorData.shopName,
+                vendorType: vendorData.vendorType,
+                address: vendorData.address,
+                city: vendorData.city,
+                state: vendorData.state,
+                country: vendorData.country,
+                zipCode: vendorData.zipCode,
+                ownerName: vendorData.ownerName,
+                phoneNumber: vendorData.phoneNumber,
+                website: vendorData.website,
+                description: vendorData.description,
+                productCategories: vendorData.productCategories,
+                isGICertified: vendorData.isGICertified,
+                isHandmade: vendorData.isHandmade,
+                pickupOptions: vendorData.pickupOptions,
+                deliveryTime: vendorData.deliveryTime,
+                deliveryFee: vendorData.deliveryFee,
+                pricingStructure: vendorData.pricingStructure,
+                orderProcessing: vendorData.orderProcessing,
+                paymentMethods: vendorData.paymentMethods,
+                returnPolicy: vendorData.returnPolicy,
+                stockAvailability: vendorData.stockAvailability,
+                offersCustomization: vendorData.offersCustomization,
+                packagingType: vendorData.packagingType,
+                shopTiming: vendorData.shopTiming,
+                workingDays: vendorData.workingDays,
+                agreedToTerms: vendorData.agreedToTerms,
+                agreedToBlacklist: vendorData.agreedToBlacklist,
+                dp: vendorData.dp,
                 accountId: account.userId
             }
-        })
+        });
 
-        res.status(201).json({ status: 'success', message: 'shop created', data: null });
+        res.status(201).json({
+            status: 'success',
+            message: 'Vendor registration successful',
+            data: null
+        });
     } catch (error) {
-        logger.error(error)
+        logger.error(error);
         res.status(500).json({
             status: 'error',
-            message: error instanceof Error ? error.message : 'Failed to create shop',
+            message: error instanceof Error ? error.message : 'Failed to register vendor',
             data: null
         });
     }
@@ -266,3 +295,64 @@ export const updateShop = async (req: Request, res: Response) => {
         });
     }
 };
+
+export const createRestaurant = async (req: Request, res: Response) => {
+    try {
+        const restaurant: RestaurantCreationProps = req.body
+        const hashedPassword = await hash(restaurant.password, 10);
+        const account = await prisma.account.create({
+            data: {
+                email: restaurant.email,
+                password: hashedPassword,
+                accountType: 'RESTAURANT' as AccountTypeEnum
+            }
+        });
+
+        await prisma.restaurant.create({
+            data: {
+                name: restaurant.name,
+                description: restaurant.description,
+                location: restaurant.location,
+                cuisine: restaurant.cuisine,
+                priceRange: restaurant.priceRange,
+                image: restaurant.image,
+                accountId: account.userId
+            }
+        })
+
+        res.status(201).json({ status: 'success', message: 'restaurant created', data: null });
+    } catch (error) {
+        logger.error(error)
+        res.status(500).json({
+            status: 'error',
+            message: error instanceof Error ? error.message : 'Failed to create restaurant',
+            data: null
+        });
+    }
+}
+
+export const updateRestaurant = async (req: Request, res: Response) => {
+    try {
+        const restaurant = req.body
+
+        await prisma.restaurant.update({
+            where: { restaurantId: restaurant.restaurantId },
+            data: {
+                name: restaurant.name,
+                description: restaurant.description,
+                location: restaurant.location,
+                priceRange: restaurant.priceRange,
+                image: restaurant.image
+            }
+        })
+
+        res.status(201).json({ status: 'success', message: 'restaurant updated', data: null });
+    } catch (error) {
+        logger.error(error)
+        res.status(500).json({
+            status: 'error',
+            message: error instanceof Error ? error.message : 'Failed to update restaurant',
+            data: null
+        });
+    }
+}

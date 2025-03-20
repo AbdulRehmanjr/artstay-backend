@@ -271,26 +271,73 @@ type FairDetailProps = {
 
 //* Shop 
 type ShopCreationProps = {
-  shopName: string
-  address: string
-  shopTiming: string
-  workingDays: string[]
-  description: string
-  dp: string
   email: string
   password: string
   accountId: string
+  businessName: string
+  shopName: string
+  vendorType: string
+  address: string
+  city: string
+  state: string
+  country: string
+  zipCode: string
+  ownerName: string
+  phoneNumber: string
+  website: string
+  description: string
+  productCategories: string[]
+  isGICertified: boolean
+  isHandmade: string 
+  pickupOptions: string[]
+  deliveryTime: string
+  deliveryFee: string
+  pricingStructure: string
+  orderProcessing: string
+  paymentMethods: string[]
+  returnPolicy: string
+  stockAvailability: string
+  offersCustomization: boolean
+  packagingType: string
+  shopTiming: string
+  workingDays: string[]
+  agreedToTerms: boolean
+  agreedToBlacklist: boolean
+  dp: string
 }
 
 type ShopProps = {
-  shopId: string
+  accountId: string
+  businessName: string
   shopName: string
+  vendorType: string
   address: string
+  city: string
+  state: string
+  country: string
+  zipCode: string
+  ownerName: string
+  phoneNumber: string
+  website: string
+  description: string
+  productCategories: string[]
+  isGICertified: boolean
+  isHandmade: string 
+  pickupOptions: string[]
+  deliveryTime: string
+  deliveryFee: string
+  pricingStructure: string
+  orderProcessing: string
+  paymentMethods: string[]
+  returnPolicy: string
+  stockAvailability: string
+  offersCustomization: boolean
+  packagingType: string
   shopTiming: string
   workingDays: string[]
-  description: string
+  agreedToTerms: boolean
+  agreedToBlacklist: boolean
   dp: string
-  accountId: string
 }
 
 type ProductCreationProps = {
@@ -346,13 +393,153 @@ type ProductProps = {
 }
 
 type ShopDetailProps = {
-  shopId: string
-  shopName: string
-  description: string
   accountId: string
-  dp: string
+  businessName: string
+  shopName: string
+  vendorType: string
   address: string
+  city: string
+  state: string
+  country: string
+  zipCode: string
+  ownerName: string
+  phoneNumber: string
+  website: string
+  description: string
+  productCategories: string[]
+  isGICertified: boolean
+  isHandmade: string 
+  pickupOptions: string[]
+  deliveryTime: string
+  deliveryFee: string
+  pricingStructure: string
+  orderProcessing: string
+  paymentMethods: string[]
+  returnPolicy: string
+  stockAvailability: string
+  offersCustomization: boolean
+  packagingType: string
+  shopTiming: string
+  workingDays: string[]
+  agreedToTerms: boolean
+  agreedToBlacklist: boolean
+  dp: string
   createdAt: Date
   updatedAt: Date
   products: ProductProps[]
+}
+
+//* Restaurant
+type RestaurantCreationProps = {
+  name: string
+  description: string
+  location: string
+  cuisine: string[]
+  priceRange: string
+  image: string
+  email: string
+  password: string
+}
+
+type RestaurantUpdateProps = {
+  restaurantId: string
+  name: string
+  description: string
+  location: string
+  cuisine: string[]
+  priceRange: string
+  image: string
+}
+
+type RestaurantProps = {
+  restaurantId: string
+  accountId: string
+  name: string
+  description: string
+  location: string
+  cuisine: string[]
+  priceRange: string
+  image: string
+  createdAt: Date
+  updatedAt: Date
+}
+
+type RestaurantMenuProps = {
+  menuItemId: string
+  name: string
+  description: string
+  price: number
+  image: string
+  restaurantId: string
+  createdAt: Date
+  updatedAt: Date
+} 
+
+type RestaurantDetailProps = {
+  restaurantId: string
+  name: string
+  description: string
+  location: string
+  cuisine: string[] 
+  priceRange: string
+  image: string
+  createdAt: Date
+  updatedAt: Date
+  menu: RestaurantMenuProps[]
+}
+
+type RestaurantDetailByAccountIdProps = {
+  restaurantId: string
+  name: string
+  description: string
+  location: string
+  cuisine: string[]
+  priceRange: string
+  image: string
+  createdAt: Date
+  updatedAt: Date
+}     
+
+type MenuCategory = "STARTER" | "MAIN_COURSE" | "DESSERT" | "BEVERAGE"
+
+type MenuItemProps = {
+  menuItemId: string
+  name: string
+  description: string
+  price: number
+  category: MenuCategory
+  isVegetarian: boolean
+  isVegan: boolean
+  isGlutenFree: boolean
+  spicyLevel: number
+  image: string
+  restaurantId: string
+  createdAt: Date
+  updatedAt: Date
+}
+
+type MenuItemCreationProps = {
+  name: string
+  description: string
+  price: number
+  category: MenuCategory
+  isVegetarian: boolean
+  isVegan: boolean
+  isGlutenFree: boolean
+  spicyLevel: number
+  image: string
+  accountId: string
+}
+
+type MenuItemUpdateProps = {
+  menuItemId: string
+  name: string
+  description: string
+  price: number
+  category: MenuCategory
+  isVegetarian: boolean
+  isVegan: boolean
+  isGlutenFree: boolean
+  spicyLevel: number
+  image: string
 }

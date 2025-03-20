@@ -66,7 +66,7 @@ export const shopDetailByAccountId = async (req: Request, res: Response) => {
 export const shopDetailByShopId = async (req: Request, res: Response) => {
     try {
         const { shopId } = req.params
-        const shop: ShopProps | null = await prisma.shop.findUnique({
+        const shop: ShopDetailProps | null = await prisma.shop.findUnique({
             where: {
                 shopId: shopId
             },

@@ -6,7 +6,8 @@ import { packageRouter } from '~/routes/package.routes';
 import { registerRouter } from '~/routes/register.routes';
 import { safariRouter } from '~/routes/safari.routes';
 import { fairRouter } from '~/routes/fair.routes';
-import { shopRouter } from './shop.routes';
+import { shopRouter } from '~/routes/shop.routes';
+import { diningRouter } from '~/routes/dining.routes';
 
 const router = Router();
 
@@ -18,5 +19,7 @@ router.use('/package',packageRouter)
 router.use('/safari',safariRouter)
 router.use('/fair',fairRouter)
 router.use('/shop',shopRouter)
+router.use('/dining',diningRouter)
+
 
 export const mainRouter = router;

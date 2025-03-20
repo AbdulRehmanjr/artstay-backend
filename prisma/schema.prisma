@@ -13,10 +13,11 @@ model Account {
   password    String      @default("none")
   accountType AccountType @default(NONE)
 
-  Artisan Artisan?
-  Safari  Safari?
-  Fair    Fair?
-  Shop    Shop?
+  Artisan    Artisan?
+  Safari     Safari?
+  Fair       Fair?
+  Shop       Shop?
+  Restaurant Restaurant?
 }
 
 model Craft {
@@ -169,16 +170,42 @@ model FairEvent {
  */
 
 model Shop {
-  shopId      String   @id @default(cuid())
-  shopName    String   @default("none")
-  address     String   @default("none")
-  description String   @default("none") @db.Text
-  shopTiming  String   @default("none-none")
-  workingDays String[] @default([])
-  dp          String   @default("none")
-  accountId   String   @unique
-  createdAt   DateTime @default(now())
-  updatedAt   DateTime @updatedAt
+  shopId              String   @id @default(cuid())
+  shopName            String   @default("none")
+  businessName        String   @default("none")
+  vendorType          String   @default("none")
+  address             String   @default("none")
+  city                String   @default("none")
+  state               String   @default("none")
+  country             String   @default("none")
+  zipCode             String   @default("none")
+  ownerName           String   @default("none")
+  phoneNumber         String   @default("none")
+  email               String   @default("none")
+  website             String   @default("none")
+  description         String   @db.Text
+  productCategories   String[] @default([])
+  isGICertified       Boolean  @default(false)
+  isHandmade          String   @default("Mixed")
+  pickupOptions       String[] @default([])
+  deliveryTime        String   @default("none")
+  deliveryFee         String   @default("none")
+  pricingStructure    String   @default("none")
+  orderProcessing     String   @default("none")
+  paymentMethods      String[] @default([])
+  returnPolicy        String   @default("none")
+  stockAvailability   String   @default("none")
+  offersCustomization Boolean  @default(false)
+  packagingType       String   @default("none")
+  shopTiming          String
+  workingDays         String[]
+  dp                  String   @default("none")
+  accountId           String   @unique
+  agreedToTerms       Boolean  @default(false)
+  agreedToBlacklist   Boolean  @default(false)
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 
   account  Account   @relation(fields: [accountId], references: [userId], onDelete: Cascade, onUpdate: Cascade)
   products Product[]
@@ -203,6 +230,48 @@ model Product {
   updatedAt   DateTime @updatedAt
 
   shop Shop @relation(fields: [shopId], references: [shopId], onDelete: Cascade, onUpdate: Cascade)
+}
+
+model Restaurant {
+  restaurantId String     @id @default(cuid())
+  name         String
+  description  String
+  location     String
+  cuisine      String[]
+  priceRange   String
+  image        String
+  rating       Float      @default(0)
+  accountId    String     @unique
+  account      Account    @relation(fields: [accountId], references: [userId], onDelete: Cascade, onUpdate: Cascade)
+  createdAt    DateTime   @default(now())
+  updatedAt    DateTime   @updatedAt
+  menu         MenuItem[]
+}
+
+model MenuItem {
+  menuItemId   String       @id @default(cuid())
+  name         String
+  description  String
+  price        Float
+  category     MenuCategory
+  isVegetarian Boolean      @default(false)
+  isVegan      Boolean      @default(false)
+  isGlutenFree Boolean      @default(false)
+  spicyLevel   Int          @default(0)
+  image        String
+  restaurantId String
+  restaurant   Restaurant   @relation(fields: [restaurantId], references: [restaurantId], onDelete: Cascade, onUpdate: Cascade)
+  createdAt    DateTime     @default(now())
+  updatedAt    DateTime     @updatedAt
+
+  @@index([restaurantId])
+}
+
+enum MenuCategory {
+  STARTER
+  MAIN_COURSE
+  DESSERT
+  BEVERAGE
 }
 
 enum FairType {
@@ -254,6 +323,7 @@ enum AccountType {
   FAIRS
   BUSINESS
   HOTEL
+  RESTAURANT
   ALL
   ADMIN
   SUPERADMIN

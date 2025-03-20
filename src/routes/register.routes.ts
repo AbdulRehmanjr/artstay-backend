@@ -1,7 +1,7 @@
 import { Router } from 'express';
-import { createArtisan, createFair, createSafari, createShop, updateArtisan, updateFair, updateSafari, updateShop } from '~/controllers/register.controller';
+import { createArtisan, createFair, createSafari, createShop, createRestaurant,updateArtisan, updateFair, updateRestaurant, updateSafari, updateShop } from '~/controllers/register.controller';
 import { validate } from '~/middlewares/zod.middleware';
-import { artisanCreationSchema, artisanUpdationSchema, fairCreationSchema, fairUpdationSchema, safariCreationSchema, safariUpdationSchema, shopCreationSchema, shopUpdationSchema } from '~/schemas/register';
+import { artisanCreationSchema, artisanUpdationSchema, fairCreationSchema, fairUpdationSchema, restaurantCreationSchema, restaurantUpdationSchema, safariCreationSchema, safariUpdationSchema, shopCreationSchema, shopUpdationSchema } from '~/schemas/register';
 
 
 const router = Router();
@@ -18,5 +18,8 @@ router.patch('/fair', validate(fairUpdationSchema), updateFair);
 //* shop
 router.post('/shop', validate(shopCreationSchema), createShop);
 router.patch('/shop', validate(shopUpdationSchema), updateShop);
+//* dining
+router.post('/dining', validate(restaurantCreationSchema), createRestaurant);
+router.patch('/dining', validate(restaurantUpdationSchema), updateRestaurant);
 
 export const registerRouter = router;
