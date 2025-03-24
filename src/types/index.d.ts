@@ -7,7 +7,8 @@ type AccountTypeEnum = "NONE" |
   "HOTEL" |
   "ALL" |
   "ADMIN" |
-  "SUPERADMIN"
+  "SUPERADMIN" |
+  "TRAVEL_PLANER"
 
 
 type AccountProps = {
@@ -266,7 +267,7 @@ type FairDetailProps = {
   address: string
   description: string
   accountId: string
-  FairEvent : FairEventProps[]
+  FairEvent: FairEventProps[]
 }
 
 //* Shop 
@@ -288,7 +289,7 @@ type ShopCreationProps = {
   description: string
   productCategories: string[]
   isGICertified: boolean
-  isHandmade: string 
+  isHandmade: string
   pickupOptions: string[]
   deliveryTime: string
   deliveryFee: string
@@ -322,7 +323,7 @@ type ShopProps = {
   description: string
   productCategories: string[]
   isGICertified: boolean
-  isHandmade: string 
+  isHandmade: string
   pickupOptions: string[]
   deliveryTime: string
   deliveryFee: string
@@ -369,7 +370,7 @@ type ProductUpdateProps = {
   stock: number
   isAvailable: boolean
   craftType: string
-  artisanMade: boolean  
+  artisanMade: boolean
 }
 
 type ProductProps = {
@@ -389,7 +390,7 @@ type ProductProps = {
   shopId: string
   createdAt: Date
   updatedAt: Date
-  
+
 }
 
 type ShopDetailProps = {
@@ -408,7 +409,7 @@ type ShopDetailProps = {
   description: string
   productCategories: string[]
   isGICertified: boolean
-  isHandmade: string 
+  isHandmade: string
   pickupOptions: string[]
   deliveryTime: string
   deliveryFee: string
@@ -473,14 +474,14 @@ type RestaurantMenuProps = {
   restaurantId: string
   createdAt: Date
   updatedAt: Date
-} 
+}
 
 type RestaurantDetailProps = {
   restaurantId: string
   name: string
   description: string
   location: string
-  cuisine: string[] 
+  cuisine: string[]
   priceRange: string
   image: string
   createdAt: Date
@@ -498,7 +499,7 @@ type RestaurantDetailByAccountIdProps = {
   image: string
   createdAt: Date
   updatedAt: Date
-}     
+}
 
 type MenuCategory = "STARTER" | "MAIN_COURSE" | "DESSERT" | "BEVERAGE"
 
@@ -542,4 +543,87 @@ type MenuItemUpdateProps = {
   isGlutenFree: boolean
   spicyLevel: number
   image: string
+}
+
+type TravelPlanerCreationProps = {
+  name: string
+  description: string
+  location: string
+  priceRange: string
+  language: string[]
+  speciality: string[]
+  email: string
+  password: string
+  accountId: string
+  dp: string
+}
+
+type TravelPlanerUpdateProps = {
+  travelPlanerId: string
+  name: string
+  description: string
+  location: string
+  priceRange: string
+  language: string[]
+  speciality: string[]
+  dp: string
+  accountId: string
+}
+
+type TravelPlanerProps = {
+  travelPlanerId: string
+  name: string
+  description: string
+  location: string
+  priceRange: string
+  language: string[]
+  speciality: string[]
+  dp: string
+  accountId: string
+}
+
+type TravelTourCreationProps = {
+  title: string
+  description: string
+  image: string
+  duration: number
+  isPricePerPerson: boolean
+  maxGroupSize: number
+  price: number
+  languages: string[]
+  features: string[]
+  isActive: boolean
+  accountId: string
+}
+
+
+type TravelTourProps = {
+  tourId: string
+  title: string
+  description: string
+  image: string
+  duration: number
+  isPricePerPerson: boolean
+  maxGroupSize: number
+  price: number
+  languages: string[]
+  features: string[]
+  isActive: boolean
+  createdAt: Date
+  updatedAt: Date
+}
+
+
+type TravelTourUpdateProps = {
+  tourId: string
+  title: string
+  description: string
+  image: string
+  duration: number
+  isPricePerPerson: boolean
+  maxGroupSize: number
+  price: number
+  languages: string[]
+  features: string[]
+  isActive: boolean
 }

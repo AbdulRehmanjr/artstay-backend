@@ -334,7 +334,6 @@ export const createRestaurant = async (req: Request, res: Response) => {
 export const updateRestaurant = async (req: Request, res: Response) => {
     try {
         const restaurant = req.body
-
         await prisma.restaurant.update({
             where: { restaurantId: restaurant.restaurantId },
             data: {
@@ -352,6 +351,69 @@ export const updateRestaurant = async (req: Request, res: Response) => {
         res.status(500).json({
             status: 'error',
             message: error instanceof Error ? error.message : 'Failed to update restaurant',
+            data: null
+        });
+    }
+}
+
+export const createTravelPlaner = async (req: Request, res: Response) => {
+    try {
+        const travelPlaner: TravelPlanerCreationProps = req.body
+        const hashedPassword = await hash(travelPlaner.password, 10);
+        const account = await prisma.account.create({
+            data: {
+                email: travelPlaner.email,
+                password: hashedPassword,
+                accountType: 'TRAVEL_PLANER' as AccountTypeEnum
+            }
+        })
+        await prisma.travelPlaner.create({
+            data: {
+                name: travelPlaner.name,
+                description: travelPlaner.description,
+                location: travelPlaner.location,
+                priceRange: travelPlaner.priceRange,
+                language: travelPlaner.language,
+                speciality: travelPlaner.speciality,
+                dp: travelPlaner.dp,
+                accountId: account.userId
+            }
+        })
+
+        res.status(201).json({ status: 'success', message: 'travel planer created', data: null });
+    } catch (error) {
+        logger.error(error)
+        res.status(500).json({
+            status: 'error',
+            message: error instanceof Error ? error.message : 'Failed to create travel planer',
+            data: null
+        });
+    }
+}
+
+export const updateTravelPlaner = async (req: Request, res: Response) => {
+    try {
+        const travelPlaner = req.body
+
+        await prisma.travelPlaner.update({
+            where: { accountId: travelPlaner.accountId },
+            data: {
+                name: travelPlaner.name,
+                description: travelPlaner.description,
+                location: travelPlaner.location,
+                priceRange: travelPlaner.priceRange,
+                language: travelPlaner.language,
+                speciality: travelPlaner.speciality,
+                dp: travelPlaner.dp
+            }
+        })
+
+        res.status(201).json({ status: 'success', message: 'travel planer updated', data: null });
+    } catch (error) {
+        logger.error(error)
+        res.status(500).json({
+            status: 'error',
+            message: error instanceof Error ? error.message : 'Failed to update travel planer',
             data: null
         });
     }

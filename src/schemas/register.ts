@@ -160,3 +160,27 @@ export const restaurantUpdationSchema = z.object({
     image: z.string(),
     accountId: z.string()
 })
+
+
+export const travelPlanerCreationSchema = z.object({
+    name: z.string(),
+    description: z.string(),
+    location: z.string(),
+    priceRange: z.string(),
+    language: z.array(z.string()),
+    speciality: z.array(z.string()),
+    email: z.string().email(),
+    dp: z.string(),
+    password: z.string(),
+})
+
+export const travelPlanerUpdationSchema = z.object({
+    name: z.string(),
+    description: z.string(),
+    location: z.string(),
+    priceRange: z.string(),
+    language: z.array(z.string()),
+    speciality: z.array(z.string()),
+    dp: z.string(),
+    accountId: z.string()
+})
