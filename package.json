@@ -5,7 +5,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "ts-node-dev --env-file=.env -r tsconfig-paths/register --respawn --transpile-only src/index.ts",
-    "build": "tsc && node -e \"const fs=require('fs');const pkg=require('./package.json');pkg._moduleAliases['~']='dist';fs.writeFileSync('dist/package.json',JSON.stringify(pkg,null,2));\"",
+    "build": "tsc && node -e \"const fs=require('fs');const pkg=require('./package.json');pkg._moduleAliases['~']='dist';fs.writeFileSync('dist/package.json',JSON.stringify(pkg,null,2));\" && node scripts/build-complete.js",
     "start": "node --env-file=.env -r tsconfig-paths/register dist/index.js",
     "migrate:dev": "prisma migrate dev",
     "migrate:create": "prisma migrate dev --create-only",
@@ -45,6 +45,8 @@
     "@types/node": "^22.10.10",
     "@typescript-eslint/eslint-plugin": "^8.21.0",
     "@typescript-eslint/parser": "^8.21.0",
+    "boxen": "^8.0.1",
+    "chalk": "^5.4.1",
     "eslint": "^9.18.0",
     "globals": "^15.14.0",
     "ts-node": "^10.9.2",

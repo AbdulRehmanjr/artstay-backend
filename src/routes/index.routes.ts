@@ -9,6 +9,7 @@ import { fairRouter } from '~/routes/fair.routes';
 import { shopRouter } from '~/routes/shop.routes';
 import { diningRouter } from '~/routes/dining.routes';
 import { travelRouter } from '~/routes/travel.routes';
+import { propertyRouter } from '~/routes/property.routes';
 
 const router = Router();
 
@@ -22,5 +23,6 @@ router.use('/fair',fairRouter)
 router.use('/shop',shopRouter)
 router.use('/dining',diningRouter)
 router.use('/travel',travelRouter)
+router.use('/property',propertyRouter)
 
 export const mainRouter = router;

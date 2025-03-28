@@ -627,3 +627,72 @@ type TravelTourUpdateProps = {
   features: string[]
   isActive: boolean
 }
+
+type HotelProps = {
+  hotelId: string
+  code: string
+  name: string
+  address: string
+  longitude: number
+  latitude: number
+  description: string
+  firstName: string
+  lastName: string
+  email: string
+  phone: string
+  checkIn: string
+  checkOut: string
+  createdAt: Date
+  updatedAt: Date
+  accountId: string
+}
+
+type HotelCreationProps = {
+  name: string
+  address: string
+  longitude: number
+  latitude: number
+  description: string
+  firstName: string
+  lastName: string
+  email: string
+  phone: string
+  checkIn: string
+  checkOut: string
+  images: string[]
+  accountId: string
+}
+
+type HotelUpdateProps = {
+  hotelId: string
+  name: string
+  address: string
+  longitude: number
+  latitude: number
+  description: string
+  firstName: string
+  lastName: string
+  email: string
+  phone: string
+  checkIn: string
+  checkOut: string
+  images: string[]
+}
+
+type RoomProps = {
+  roomId: string
+  code: string
+  name: string
+  capacity: number
+  area: number
+  features: string[]
+  description: string
+  dp: string
+  beds: number
+  quantity: number
+  price: number
+  isActive: boolean
+  minimumstay: number
+  images: string[]
+  hotelId: string
+}
