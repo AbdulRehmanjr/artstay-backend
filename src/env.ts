@@ -8,7 +8,6 @@ export const env = cleanEnv(process.env, {
     COOKIE_SECRET: str(),
     ALLOWED_ORIGINS: json({
         desc: 'Array of allowed origins for CORS',
-        example: '["http://localhost:3000", "https://yourdomain.com"]',
-        default: '["http://localhost:3000"]'
+        default: '["http://localhost:5010"]'
     })
 });

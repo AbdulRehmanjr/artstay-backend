@@ -14,7 +14,7 @@ const port = env.PORT || 3001;
 app.use(morganMiddleware);
 app.use(cookieParser(env.COOKIE_SECRET));
 app.use(cors({
-  origin :["http://localhost:3000"],
+  origin:env.ALLOWED_ORIGINS,
   credentials:true,
 }));
 app.use(express.json());
