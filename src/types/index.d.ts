@@ -5,7 +5,6 @@ type AccountTypeEnum = "NONE" |
   "FAIRS" |
   "BUSINESS" |
   "HOTEL" |
-  "ALL" |
   "ADMIN" |
   "SUPERADMIN" |
   "TRAVEL_PLANER"
