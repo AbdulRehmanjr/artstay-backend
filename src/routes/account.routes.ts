@@ -1,5 +1,5 @@
 import { Router } from 'express';
-import { createAccount, loginAccount } from '~/controllers/account.controller';
+import { createAccount, loginAccount } from '~/controllers/auth.controller';
 import { validate } from '~/middlewares/zod.middleware';
 import { AccountCreationSchema, LoginSchema } from '~/schemas/account';
 
