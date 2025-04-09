@@ -1,8 +1,24 @@
 import { Request, Response } from 'express';
 import prisma from '~/libs/prisma';
+import { artisanService } from '~/services/artisan.service';
 import { logger } from '~/utils/logger';
 
 
+
+export const artisanApplicationStatus = async (req: Request, res: Response) => {
+    try {
+        const { accountId } = req.params
+        const result = await artisanService.getApplicationStatus(accountId)
+        res.status(201).json(result);
+    } catch (error) {
+        logger.error(error)
+        res.status(500).json({
+            status: 'error',
+            message: error instanceof Error ? error.message : 'Failed to fetch application status',
+            data: null
+        });
+    }
+}
 
 export const artisanDetailByAccountId = async (req: Request, res: Response) => {
     try {

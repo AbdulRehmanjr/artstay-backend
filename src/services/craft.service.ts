@@ -7,7 +7,11 @@ export const craftService = {
     getAllCrafts: async () => {
         try {
             const crafts = await prisma.craft.findMany()
-            return crafts
+            return {
+                status: 'success',
+                message: 'crafts fetched',
+                data: crafts
+            }
         } catch (error) {
             logger.error(error)
             throw new Error('Failed to fetch crafts')

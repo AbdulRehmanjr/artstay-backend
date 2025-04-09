@@ -1,5 +1,4 @@
 import { Request, Response } from 'express';
-import prisma from '~/libs/prisma';
 import { logger } from '~/utils/logger';
 import { craftService } from '~/services/craft.service';
 
@@ -48,8 +47,8 @@ export const createSubCraft = async (req: Request, res: Response) => {
 
 export const getAllCrafts = async (req: Request, res: Response) => {
     try {
-        const crafts = await prisma.craft.findMany()
-        res.status(201).json({ status: 'success', message: 'fetched all crafts', data: crafts });
+        const result = await craftService.getAllCrafts()
+        res.status(201).json(result);
     } catch (error) {
         logger.error(error)
         res.status(500).json({
