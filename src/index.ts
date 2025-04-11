@@ -4,7 +4,9 @@ import cookieParser from 'cookie-parser';
 import { morganMiddleware } from '~/middlewares/morgan.middleware';
 import { mainRouter } from '~/routes/index.routes';
 import cors from 'cors';
-
+if (env.NODE_ENV === 'production') {
+  require('module-alias/register');
+}
 //* declaration of variables 
 const app = express();
 const port = env.PORT || 3001;
