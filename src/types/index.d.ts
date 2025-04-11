@@ -5,9 +5,17 @@ type AccountTypeEnum = "NONE" |
   "FAIRS" |
   "BUSINESS" |
   "HOTEL" |
-  "ADMIN" |
+  "RESTAURANT" |
+  "TRAVEL_PLANER" |
   "SUPERADMIN" |
-  "TRAVEL_PLANER"
+  "ARTISAN_ADMIN" |
+  "SAFARI_ADMIN" |
+  "FAIRS_ADMIN" |
+  "BUSINESS_ADMIN" |
+  "HOTEL_ADMIN" |
+  "RESTAURANT_ADMIN" |
+  "TRAVEL_PLANER_ADMIN"
+
 
 
 type AccountProps = {
@@ -62,6 +70,22 @@ type ArtisanCreationProps = {
   password: string
 }
 
+type ArtisanUpdationProps = {
+  accountId: string
+  firstName: string
+  lastName: string
+  address: string
+  description: string
+  experience: string
+  education: string
+  training: string
+  certificate: string
+  recognition: string
+  craftId: string
+  subCraftId: string
+  dp: string
+}
+
 type PortfolioProps = {
   portfolioId: string
   images: string[]
@@ -101,7 +125,7 @@ type ArtisanPortolioProps = {
   dp: string
   subCraft: SubCraftProps
   craft: CraftProps
-  Portfolio: PortfolioProps
+  Portfolio: PortfolioProps | null
   ArtisanPackage: ArtisanPackageProps[]
 }
 
@@ -146,6 +170,13 @@ type SafariCreationProps = {
   password: string
 }
 
+type SafariUpdationProps = {
+  accountId: string
+  firstName: string
+  lastName: string
+  address: string
+  description: string
+}
 type SafariProps = {
   safariId: string
   firstName: string
@@ -199,6 +230,14 @@ type FairCreationProps = {
   dp: string
   email: string
   password: string
+}
+
+type FairUpdationProps = {
+  accountId: string
+  firstName: string
+  lastName: string
+  address: string
+  description: string
 }
 
 type FairProps = {
@@ -304,6 +343,31 @@ type ShopCreationProps = {
   agreedToTerms: boolean
   agreedToBlacklist: boolean
   dp: string
+}
+
+type ShopUpdationProps = {
+  accountId: string
+  shopName: string
+  address: string
+  shopTiming: string
+  workingDays: string[]
+  description: string
+  dp: string
+  isGICertified: boolean
+  isHandmade: string
+  pickupOptions: string[]
+  deliveryTime: string
+  deliveryFee: string
+  pricingStructure: string
+  orderProcessing: string
+  paymentMethods: string[]
+  returnPolicy: string
+  stockAvailability: string
+  offersCustomization: boolean
+  packagingType: string
+  shopTiming: string
+  workingDays: string[]
+  agreedToTerms: boolean
 }
 
 type ShopProps = {
@@ -441,7 +505,8 @@ type RestaurantCreationProps = {
   password: string
 }
 
-type RestaurantUpdateProps = {
+
+type RestaurantUpdationProps = {
   restaurantId: string
   name: string
   description: string
@@ -544,6 +609,7 @@ type MenuItemUpdateProps = {
   image: string
 }
 
+// * Travel Planer
 type TravelPlanerCreationProps = {
   name: string
   description: string
@@ -557,7 +623,7 @@ type TravelPlanerCreationProps = {
   dp: string
 }
 
-type TravelPlanerUpdateProps = {
+type TravelPlanerUpdationProps = {
   travelPlanerId: string
   name: string
   description: string

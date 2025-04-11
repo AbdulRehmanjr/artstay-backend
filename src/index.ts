@@ -1,4 +1,3 @@
-import 'module-alias/register';
 import express from 'express';
 import { env } from '~/env';
 import cookieParser from 'cookie-parser';
@@ -18,6 +17,8 @@ app.use(cors({
   credentials:true,
 }));
 app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+
 app.use('/api/v1',mainRouter)
 
 app.listen(port, () => {
