@@ -125,7 +125,7 @@ type ArtisanPortolioProps = {
   dp: string
   subCraft: SubCraftProps
   craft: CraftProps
-  Portfolio: PortfolioProps
+  Portfolio: PortfolioProps | null
   ArtisanPackage: ArtisanPackageProps[]
 }
 
