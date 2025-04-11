@@ -13,16 +13,15 @@ import { propertyRouter } from '~/routes/property.routes';
 
 const router = Router();
 
-router.use('/register',registerRouter)
-router.use('/artisan',artisanRouter);
-router.use('/account',accountRouter);
-router.use('/craft',craftRouter)
-router.use('/package',packageRouter)
-router.use('/safari',safariRouter)
-router.use('/fair',fairRouter)
-router.use('/shop',shopRouter)
-router.use('/dining',diningRouter)
-router.use('/travel',travelRouter)
-router.use('/property',propertyRouter)
-
+router.use('/register', registerRouter)
+router.use('/artisan', artisanRouter);
+router.use('/account', accountRouter);
+router.use('/craft', craftRouter)
+router.use('/package', packageRouter)
+router.use('/safari', safariRouter)
+router.use('/fair', fairRouter)
+router.use('/shop', shopRouter)
+router.use('/dining', diningRouter)
+router.use('/travel', travelRouter)
+router.use('/property', propertyRouter)
 export const mainRouter = router;
