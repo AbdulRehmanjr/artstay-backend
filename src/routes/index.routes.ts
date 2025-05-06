@@ -13,7 +13,7 @@ import { propertyRouter } from '~/routes/property.routes';
 
 const router = Router();
 
-router.use('/health',(req , res)=>{
+router.get('/health',(req , res)=>{
     res.status(200).json({status:'success',message:'API is running'})
 })
 router.use('/account', accountRouter);
