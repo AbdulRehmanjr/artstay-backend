@@ -57,7 +57,7 @@ export const artisanDetailByArtisanId = async (req: Request, res: Response) => {
                 craft: true,
                 subCraft: true,
                 Portfolio: true,
-                ArtisanPackage:true
+                ArtisanPackage: true
             }
         })
         res.status(201).json({ status: 'success', message: 'artisan details', data: artisan });
@@ -71,7 +71,7 @@ export const artisanDetailByArtisanId = async (req: Request, res: Response) => {
     }
 }
 
-export const allArtisans = async (req: Request, res: Response) => {
+export const getAllArtisansPagination = async (req: Request, res: Response) => {
     try {
         const queryParams = req.query
         const limit = Number(queryParams.limit)
@@ -116,16 +116,55 @@ export const allArtisans = async (req: Request, res: Response) => {
     }
 }
 
+export const getAllArtisans = async (req: Request, res: Response) => {
+    try {
+
+        const artisans: ArtisanDetailProps[] = await prisma.artisan.findMany({
+            include: {
+                craft: true,
+                subCraft: true
+            },
+            orderBy: {
+                createdAt: "desc",
+            },
+        })
+
+        res.status(201).json({
+            status: 'success',
+            message: 'all artisan',
+            data: artisans
+        });
+
+    } catch (error) {
+        logger.error(error)
+        res.status(500).json({
+            status: 'error',
+            message: error instanceof Error ? error.message : 'Failed to fetch all artisans',
+            data: null
+        });
+    }
+}
+
+export const updateArtisanStatus = async (req: Request, res: Response) => {
+    try {
+        const result = await artisanService.toggleStatus(req)
+        res.status(201).json(result);
+    } catch (error) {
+        logger.error(error)
+        res.status(500).json({
+            status: 'error',
+            message: error instanceof Error ? error.message : 'Failed to fetch application status',
+            data: null
+        });
+    }
+}
+
 export const getPortfolioByArtisanId = async (req: Request, res: Response) => {
     try {
         const { artisanId } = req.params
         const portfolio = await prisma.portfolio.findFirst({
             where: {
-                Artisan: {
-                    some: {
-                        accountId: artisanId
-                    }
-                }
+                artisanId: artisanId
             }
         })
         res.status(201).json({
@@ -148,11 +187,7 @@ export const updatePortfolioArtisanId = async (req: Request, res: Response) => {
         const { accountId, images } = req.body
         await prisma.portfolio.updateMany({
             where: {
-                Artisan: {
-                    some: {
-                        accountId: accountId
-                    }
-                }
+               artisanId: accountId
             },
             data: {
                 images: images
