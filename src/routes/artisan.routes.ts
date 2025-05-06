@@ -1,16 +1,20 @@
 import { Router } from 'express';
-import { allArtisans, artisanApplicationStatus, artisanDetailByAccountId, artisanDetailByArtisanId, getPortfolioByArtisanId, updatePortfolioArtisanId } from '~/controllers/artisan.controller';
+import {  artisanApplicationStatus, artisanDetailByAccountId, artisanDetailByArtisanId, getAllArtisans, getAllArtisansPagination, getPortfolioByArtisanId, updateArtisanStatus, updatePortfolioArtisanId } from '~/controllers/artisan.controller';
 import { validate } from '~/middlewares/zod.middleware';
-import { artisanUpdatePortfolioSchma } from '~/schemas/artisan';
+import { artisanStatusUpdateSchema, artisanUpdatePortfolioSchema, } from '~/schemas/artisan';
 
 
 const router = Router();
 
-router.get('/all', allArtisans)
+router.get('/pagination', getAllArtisansPagination)
+router.get('/all', getAllArtisans)
 router.get('/:artisanId', artisanDetailByArtisanId)
 router.get('/detail/:accountId', artisanDetailByAccountId)
 router.get('/application-status/:accountId', artisanApplicationStatus)
 router.get('/portfolio/:artisanId', getPortfolioByArtisanId)
-router.post('/portfolio', validate(artisanUpdatePortfolioSchma), updatePortfolioArtisanId)
+
+router.put('/toggle-status', updateArtisanStatus)
+router.post('/status', validate(artisanStatusUpdateSchema), updatePortfolioArtisanId)
+router.post('/portfolio', validate(artisanUpdatePortfolioSchema), updatePortfolioArtisanId)
 
 export const artisanRouter = router;

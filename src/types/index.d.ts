@@ -105,6 +105,10 @@ type ArtisanDetailProps = {
   craftId: string
   subCraftId: string
   dp: string
+  isActive: boolean;
+  craftId: string;
+  subCraftId: string;
+  accountId: string;
   subCraft: SubCraftProps
   craft: CraftProps
 }
@@ -177,12 +181,14 @@ type SafariUpdationProps = {
   address: string
   description: string
 }
+
 type SafariProps = {
   safariId: string
   firstName: string
   lastName: string
   dp: string
   address: string
+  isActive: boolean
   description: string
   accountId: string
 }

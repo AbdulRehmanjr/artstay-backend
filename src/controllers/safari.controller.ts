@@ -115,37 +115,24 @@ export const getTourById = async (req: Request, res: Response) => {
     }
 };
 
-export const allSafaris = async (req: Request, res: Response) => {
+export const getAllSafaris= async (req: Request, res: Response) => {
     try {
-        const queryParams = req.query
-        const limit = Number(queryParams.limit)
-        const skip = Number(queryParams.cursor ?? 0)
-        const totalCount = await prisma.artisan.count();
-
-        const safaris: SafariProps[] = await prisma.safari.findMany({
-            take: limit,
-            skip: skip,
-            orderBy: {
-                createdAt: "desc",
-            },
-            distinct: ['safariId']
-        })
-
-        const nextCursor = skip + limit;
-        const hasNextPage = nextCursor < totalCount;
-
-        res.status(201).json({
-            status: 'success', message: 'all safaris', data: {
-                safaris: safaris,
-                metadata: {
-                    cursor: hasNextPage ? nextCursor.toString() : undefined,
-                    hasNextPage,
-                    totalItems: totalCount, // Use total count here
-                    currentPage: Math.floor(skip / limit) + 1,
-                    totalPages: Math.ceil(totalCount / limit), // Use total count here
-                }
-            },
+       const result = await safariService.getAllSafaris()
+        res.status(201).json(result);
+    } catch (error) {
+        logger.error(error)
+        res.status(500).json({
+            status: 'error',
+            message: error instanceof Error ? error.message : 'Failed to fetch all safaris',
+            data: null
         });
+    }
+}
+
+export const getAllSafarisPagination = async (req: Request, res: Response) => {
+    try {
+       const result = await safariService.getAllSafarisPagination(req)
+        res.status(201).json(result);
     } catch (error) {
         logger.error(error)
         res.status(500).json({

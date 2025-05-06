@@ -5,8 +5,12 @@ export const artisanByAccount = z.object({
     accountId: z.string()
 })
 
+export const artisanUpdatePortfolioSchema = z.object({
+    images: z.string().array(),
+    accountId: z.string()
+})
 
-export const artisanUpdatePortfolioSchma = z.object({
+export const artisanStatusUpdateSchema= z.object({
     images: z.string().array(),
     accountId: z.string()
 })

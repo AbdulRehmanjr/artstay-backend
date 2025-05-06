@@ -64,7 +64,6 @@ model Artisan {
   craftId      String
   subCraftId   String
   accountId    String      @unique
-  portfolioId  String?
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
@@ -72,8 +71,8 @@ model Artisan {
   account        Account          @relation(fields: [accountId], references: [userId], onDelete: Cascade, onUpdate: Cascade)
   subCraft       SubCraft         @relation(fields: [subCraftId], references: [subCraftId], onDelete: Cascade, onUpdate: Cascade)
   craft          Craft            @relation(fields: [craftId], references: [craftId], onDelete: Cascade, onUpdate: Cascade)
-  Portfolio      Portfolio?       @relation(fields: [portfolioId], references: [portfolioId], onDelete: Cascade, onUpdate: Cascade)
   ArtisanPackage ArtisanPackage[]
+  Portfolio      Portfolio?
 }
 
 model ArtisanPackage {
@@ -90,9 +89,12 @@ model ArtisanPackage {
 }
 
 model Portfolio {
-  portfolioId String    @id @default(cuid())
-  images      String[]  @default([""])
-  Artisan     Artisan[]
+  portfolioId String   @id @default(cuid())
+  images      String[] @default([""])
+  artisanId   String   @unique
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  artisan     Artisan  @relation(fields: [artisanId], references: [artisanId], onDelete: Cascade, onUpdate: Cascade)
 }
 
 /**
