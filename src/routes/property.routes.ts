@@ -1,5 +1,5 @@
 import { Router } from 'express';
-import { createHotel, getAllRoomsByHotelId, getHotelByAccountId, updateHotel } from '~/controllers/propery.controller';
+import { createHotel, getAllRoomsByHotelId, getHotelByAccountId, updateHotel } from '~/controllers/property.controller';
 import { validate } from '~/middlewares/zod.middleware';
 import { PropertyCreationSchema, PropertyUpdateSchema } from '~/schemas/hotel';
 

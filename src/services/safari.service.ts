@@ -20,6 +20,27 @@ export const safariService = {
             throw new Error('Failed to fetch application status')
         }
     },
+    toggleStatus: async (req: Request) => {
+        try {
+            const { safariId, status } = req.body
+            await prisma.safari.update({
+                where: {
+                    safariId: safariId
+                },
+                data: {
+                    isActive: status
+                }
+            })
+            return {
+                status: 'success',
+                message: 'artisan toggle status',
+                data: null
+            }
+        } catch (error) {
+            logger.error(error)
+            throw new Error('Failed to fetch application status')
+        }
+    },
     getAllSafarisPagination: async (req: Request) => {
         try {
             const queryParams = req.query

@@ -18,6 +18,21 @@ export const getApplicationStatus = async (req: Request, res: Response) => {
         });
     }
 }
+
+export const updateSafariStatus = async (req: Request, res: Response) => {
+    try {
+        const result = await safariService.toggleStatus(req)
+        res.status(201).json(result);
+    } catch (error) {
+        logger.error(error)
+        res.status(500).json({
+            status: 'error',
+            message: error instanceof Error ? error.message : 'Failed to fetch application status',
+            data: null
+        });
+    }
+}
+
 export const safariDetailByAccountId = async (req: Request, res: Response) => {
     try {
         const { accountId } = req.params

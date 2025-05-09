@@ -1,0 +1,234 @@
+import prisma from "~/libs/prisma"
+import { logger } from "~/utils/logger"
+import { Request } from "express"
+
+export const fairService = {
+    getFairProfileByAccountId: async (accountId: string) => {
+        try {
+            const fair = await prisma.fair.findFirst({
+                where: {
+                    accountId: accountId
+                }
+            })
+            return {
+                status: 'success',
+                message: 'fair details',
+                data: fair
+            }
+        } catch (error) {
+            logger.error(error)
+            throw new Error('Failed to fetch fair details')
+        }
+    },
+
+    createFairEvent: async (event: FairEventCreationProps) => {
+        try {
+            const fair = await prisma.fair.findFirst({
+                where: {
+                    accountId: event.accountId
+                },
+                select: {
+                    fairId: true
+                }
+            })
+
+            if (!fair) throw new Error("Fair seller not found.")
+
+            await prisma.fairEvent.create({
+                data: {
+                    fairId: fair.fairId,
+                    title: event.title,
+                    startDate: event.startDate,
+                    endDate: event.endDate,
+                    fairType: event.fairType.toUpperCase() as FairTypeEnum,
+                    location: event.location.toUpperCase() as FairLocationEnum,
+                    longitude: event.longitude,
+                    latitude: event.latitude,
+                    description: event.description,
+                    vanue: event.vanue,
+                    organizer: event.organizer
+                }
+            })
+
+            return {
+                status: 'success',
+                message: 'fair event created',
+                data: null
+            }
+        } catch (error) {
+            logger.error(error)
+            throw new Error('Failed to create fair event')
+        }
+    },
+
+    updateFairEvent: async (event: FairEventUpdationProps) => {
+        try {
+            await prisma.fairEvent.update({
+                where: { eventId: event.eventId },
+                data: {
+                    title: event.title,
+                    startDate: event.startDate,
+                    endDate: event.endDate,
+                    fairType: event.fairType.toUpperCase() as FairTypeEnum,
+                    location: event.location.toUpperCase() as FairLocationEnum,
+                    longitude: event.longitude,
+                    latitude: event.latitude,
+                    description: event.description,
+                    vanue: event.vanue,
+                    organizer: event.organizer
+                }
+            })
+
+            return {
+                status: 'success',
+                message: 'fair event updated',
+                data: null
+            }
+        } catch (error) {
+            logger.error(error)
+            throw new Error('Failed to update fair event')
+        }
+    },
+
+    getFairEvents: async (accountId: string) => {
+        try {
+            const events = await prisma.fairEvent.findMany({
+                where: {
+                    fair: {
+                        accountId: accountId
+                    }
+                }
+            })
+
+            return {
+                status: 'success',
+                message: 'events fetched successfully',
+                data: events
+            }
+        } catch (error) {
+            logger.error(error)
+            throw new Error('Failed to fetch events')
+        }
+    },
+
+    getEventById: async (eventId: string) => {
+        try {
+            const event = await prisma.fairEvent.findUniqueOrThrow({
+                where: {
+                    eventId: eventId
+                }
+            })
+
+            return {
+                status: 'success',
+                message: 'event fetched successfully',
+                data: event
+            }
+        } catch (error) {
+            logger.error(error)
+            throw new Error('Failed to fetch event')
+        }
+    },
+
+    getAllFairsPagination: async (req: Request) => {
+        try {
+            const queryParams = req.query
+            const limit = Number(queryParams.limit)
+            const skip = Number(queryParams.cursor ?? 0)
+            const totalCount = await prisma.fair.count();
+
+            const fairs = await prisma.fair.findMany({
+                take: limit,
+                skip: skip,
+                orderBy: {
+                    createdAt: "desc",
+                },
+                distinct: ['fairId']
+            })
+
+            const nextCursor = skip + limit;
+            const hasNextPage = nextCursor < totalCount;
+
+            return {
+                status: 'success',
+                message: 'all fairs',
+                data: {
+                    fairs: fairs,
+                    metadata: {
+                        cursor: hasNextPage ? nextCursor.toString() : undefined,
+                        hasNextPage,
+                        totalItems: totalCount,
+                        currentPage: Math.floor(skip / limit) + 1,
+                        totalPages: Math.ceil(totalCount / limit),
+                    }
+                }
+            }
+        } catch (error) {
+            logger.error(error)
+            throw new Error('Failed to fetch all fairs')
+        }
+    },
+
+    toggleStatus: async (req: Request) => {
+        try {
+            const { fairId, status } = req.body
+            await prisma.fair.update({
+                where: {
+                    fairId: fairId
+                },
+                data: {
+                    isActive: status
+                }
+            })
+            return {
+                status: 'success',
+                message: 'artisan toggle status',
+                data: null
+            }
+        } catch (error) {
+            logger.error(error)
+            throw new Error('Failed to fetch application status')
+        }
+    },
+
+    getAllFairs: async () => {
+        try {
+
+            const fairs = await prisma.fair.findMany({
+                orderBy: {
+                    createdAt: "desc",
+                },
+            })
+            return {
+                status: 'success',
+                message: 'all fairs',
+                data: fairs
+            }
+        } catch (error) {
+            logger.error(error)
+            throw new Error('Failed to fetch all fairs')
+        }
+    },
+
+    getFairDetailById: async (fairId: string) => {
+        try {
+            const fair = await prisma.fair.findUnique({
+                where: {
+                    fairId: fairId
+                },
+                include: {
+                    FairEvent: true,
+                }
+            })
+
+            return {
+                status: 'success',
+                message: 'fair details',
+                data: fair
+            }
+        } catch (error) {
+            logger.error(error)
+            throw new Error('Failed to fetch fair details')
+        }
+    }
+}

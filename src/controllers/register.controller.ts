@@ -1,6 +1,7 @@
 import { Request, Response } from 'express';
 import { logger } from '~/utils/logger';
 import { registerationService } from '~/services/registeration.service';
+import { travelService } from '~/services/travel.service';
 
 export const createArtisan = async (req: Request, res: Response) => {
     try {
@@ -159,7 +160,7 @@ export const createTravelPlaner = async (req: Request, res: Response) => {
 
 export const updateTravelPlaner = async (req: Request, res: Response) => {
     try {
-        const result = await registerationService.updateTravelPlaner(req.body)
+        const result = await travelService.toggleStatus(req)
         res.status(201).json(result);
     } catch (error) {
         logger.error(error)
