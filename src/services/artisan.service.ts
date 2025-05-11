@@ -92,10 +92,10 @@ export const artisanService = {
       const { accountId, images } = req.body as {
         accountId: string;
         images: string[];
-      };    
+      };
       const artisan = await prisma.artisan.findUnique({
         where: { accountId: accountId },
-        select : {artisanId:true}
+        select: { artisanId: true },
       });
       if (!artisan) throw new Error("Artisan not found");
       await prisma.portfolio.upsert({
@@ -123,12 +123,12 @@ export const artisanService = {
   },
   getPortfolioByArtisanId: async (req: Request) => {
     try {
-      const { artisanId } = req.params
+      const { artisanId } = req.params;
       const portfolio = await prisma.portfolio.findUnique({
-          where: {
-              artisanId: artisanId
-          }
-      })
+        where: {
+          artisanId: artisanId,
+        },
+      });
       return {
         status: "success",
         message: "portfolio fetched",
@@ -141,17 +141,17 @@ export const artisanService = {
   },
   getPortfolioByAccountId: async (req: Request) => {
     try {
-      const { accountId } = req.params
+      const { accountId } = req.params;
       const artisan = await prisma.artisan.findUnique({
         where: { accountId: accountId },
-        select : {artisanId:true}
+        select: { artisanId: true },
       });
       if (!artisan) throw new Error("Artisan not found");
       const portfolio = await prisma.portfolio.findUnique({
-          where: {
-              artisanId: artisan.artisanId
-          }
-      })
+        where: {
+          artisanId: artisan.artisanId,
+        },
+      });
       return {
         status: "success",
         message: "portfolio fetched",
@@ -160,6 +160,41 @@ export const artisanService = {
     } catch (error) {
       logger.error(error);
       throw new Error("Failed to fetch portfolio");
+    }
+  },
+
+  createArtisanBooking: async (req: Request) => {
+    try {
+      const booking = req.body as ArtisanBookingCreationProps;
+
+      const bookingDetail = await prisma.bookingDetail.create({
+        data: {
+          firstName: booking.firstName,
+          lastName: booking.lastName,
+          email: booking.email,
+          phone: booking.email,
+          additionalNote: booking.additionalNote,
+        },
+      });
+
+      await prisma.artisanBooking.create({
+        data: {
+          startDate: booking.startDate,
+          endDate: booking.endDate,
+          packageId: booking.packageId,
+          artisanId: booking.artisanId,
+          bookingDetailId: bookingDetail.bookingDetailId,
+        },
+      });
+
+      return {
+        status: "success",
+        message: "artisan booking created",
+        data: null,
+      };
+    } catch (error) {
+      logger.error(error);
+      throw new Error("Failed to create asrtisan booking");
     }
   },
 };

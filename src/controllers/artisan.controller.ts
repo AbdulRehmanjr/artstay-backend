@@ -158,23 +158,38 @@ export const getPortfolioByArtisanId = async (req: Request, res: Response) => {
 };
 
 export const getPortfolioByAccountId = async (req: Request, res: Response) => {
-    try {
-      const result = await artisanService.getPortfolioByAccountId(req);
-      res.status(201).json(result);
-    } catch (error) {
-      logger.error(error);
-      res.status(500).json({
-        status: "error",
-        message:
-          error instanceof Error ? error.message : "Failed to fetch all artisans",
-        data: null,
-      });
-    }
-  };
+  try {
+    const result = await artisanService.getPortfolioByAccountId(req);
+    res.status(201).json(result);
+  } catch (error) {
+    logger.error(error);
+    res.status(500).json({
+      status: "error",
+      message:
+        error instanceof Error ? error.message : "Failed to fetch all artisans",
+      data: null,
+    });
+  }
+};
 
 export const updatePortfolioArtisanId = async (req: Request, res: Response) => {
   try {
     const result = await artisanService.updateProtfolio(req);
+    res.status(201).json(result);
+  } catch (error) {
+    logger.error(error);
+    res.status(500).json({
+      status: "error",
+      message:
+        error instanceof Error ? error.message : "Failed to fetch all artisans",
+      data: null,
+    });
+  }
+};
+
+export const artisanBooking = async (req: Request, res: Response) => {
+  try {
+    const result = await artisanService.createArtisanBooking(req);
     res.status(201).json(result);
   } catch (error) {
     logger.error(error);

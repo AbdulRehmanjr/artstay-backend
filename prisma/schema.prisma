@@ -43,6 +43,18 @@ model SubCraft {
   Artisan      Artisan[]
 }
 
+model BookingDetail {
+  bookingDetailId String           @id @default(cuid()) // Fixed the field name from bookingDetailid to bookingDetailId
+  firstName       String           @default("none")
+  lastName        String           @default("none")
+  email           String           @default("none")
+  phone           String           @default("none")
+  additionalNote  String           @default("none")
+  createdAt       DateTime         @default(now())
+  updatedAt       DateTime         @updatedAt
+  ArtisanBooking  ArtisanBooking[] // Added relation
+}
+
 /**
  * *
  * ARTISAN
@@ -73,19 +85,21 @@ model Artisan {
   craft          Craft            @relation(fields: [craftId], references: [craftId], onDelete: Cascade, onUpdate: Cascade)
   ArtisanPackage ArtisanPackage[]
   Portfolio      Portfolio?
+  ArtisanBooking ArtisanBooking[] // Added relation
 }
 
 model ArtisanPackage {
-  packageId  String   @id @default(cuid())
-  duration   Int      @default(0)
-  features   String[] @default([])
-  experience String   @default("none")
-  price      Int      @default(0)
-  title      String   @default("none")
-  artisanId  String
-  createdAt  DateTime @default(now())
-  updatedAt  DateTime @updatedAt
-  artisan    Artisan  @relation(fields: [artisanId], references: [artisanId], onDelete: Cascade, onUpdate: Cascade)
+  packageId      String           @id @default(cuid())
+  duration       Int              @default(0)
+  features       String[]         @default([])
+  experience     String           @default("none")
+  price          Int              @default(0)
+  title          String           @default("none")
+  artisanId      String
+  createdAt      DateTime         @default(now())
+  updatedAt      DateTime         @updatedAt
+  artisan        Artisan          @relation(fields: [artisanId], references: [artisanId], onDelete: Cascade, onUpdate: Cascade)
+  ArtisanBooking ArtisanBooking[] 
 }
 
 model Portfolio {
@@ -95,6 +109,25 @@ model Portfolio {
   createdAt   DateTime @default(now())
   updatedAt   DateTime @updatedAt
   artisan     Artisan  @relation(fields: [artisanId], references: [artisanId], onDelete: Cascade, onUpdate: Cascade)
+}
+
+model ArtisanBooking {
+  artisanBookingId String   @id @default(cuid())
+  startDate        String   @default("none")
+  endDate          String   @default("none")
+  createdAt        DateTime @default(now())
+  updatedAt        DateTime @updatedAt
+  status           String   @default("new") 
+  
+  // Added required relations
+  packageId       String
+  artisanId       String
+  bookingDetailId String
+  
+  // Define the relations to other models
+  package        ArtisanPackage @relation(fields: [packageId], references: [packageId], onDelete: Cascade, onUpdate: Cascade)
+  artisan        Artisan        @relation(fields: [artisanId], references: [artisanId], onDelete: Cascade, onUpdate: Cascade)
+  bookingDetail  BookingDetail  @relation(fields: [bookingDetailId], references: [bookingDetailId], onDelete: Cascade, onUpdate: Cascade)
 }
 
 /**
@@ -435,10 +468,10 @@ model RoomBooking {
   createdAt       DateTime       @default(now())
   updatedAt       DateTime       @updatedAt
   room            Room           @relation(fields: [roomId], references: [roomId], onDelete: Cascade, onUpdate: Cascade)
-  BookingDetail   BookingDetail? @relation(fields: [bookingDetailId], references: [bookingDetailId], onDelete: Cascade, onUpdate: Cascade)
+  BookingDetail   RoomBookingDetail @relation(fields: [bookingDetailId], references: [bookingDetailId], onDelete: Cascade, onUpdate: Cascade)
 }
 
-model BookingDetail {
+model RoomBookingDetail {
   bookingDetailId      String        @id @default(cuid())
   city                 String        @default("none")
   country              String        @default("none")
