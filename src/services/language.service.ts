@@ -1,0 +1,227 @@
+import prisma from "~/libs/prisma";
+import { logger } from "~/utils/logger";
+
+export const languageServiceService = {
+  createLanguageService: async (data: LanguageServiceCreationProps) => {
+    try {
+      const languageService = await prisma.languageService.create({
+        data: {
+          profileName: data.profileName,
+          firstName: data.firstName,
+          lastName: data.lastName,
+          description: data.description,
+          experience: data.experience,
+          languages: data.languages,
+          specialization: data.specialization,
+          hourlyRate: data.hourlyRate,
+          minBookingHours: data.minBookingHours,
+          maxBookingHours: data.maxBookingHours,
+          availability: data.availability,
+          startTime: data.startTime,
+          endTime: data.endTime,
+          location: data.location,
+          serviceMode: data.serviceMode,
+          certification: data.certification,
+          qualification: data.qualification,
+          profileImage: data.profileImage,
+          portfolio: data.portfolio,
+          accountId: data.accountId,
+        },
+      });
+
+      return {
+        status: "success",
+        message: "Language service created successfully",
+        data: languageService,
+      };
+    } catch (error) {
+      logger.error(error);
+      throw new Error("Failed to create language service");
+    }
+  },
+
+  updateLanguageService: async (data: LanguageServiceUpdateProps) => {
+    try {
+      const { languageServiceId, ...updateData } = data;
+
+      const languageService = await prisma.languageService.update({
+        where: {
+          languageServiceId: languageServiceId,
+        },
+        data: updateData,
+      });
+
+      return {
+        status: "success",
+        message: "Language service updated successfully",
+        data: languageService,
+      };
+    } catch (error) {
+      logger.error(error);
+      throw new Error("Failed to update language service");
+    }
+  },
+
+  deleteLanguageService: async (languageServiceId: string) => {
+    try {
+      await prisma.languageService.delete({
+        where: {
+          languageServiceId: languageServiceId,
+        },
+      });
+
+      return {
+        status: "success",
+        message: "Language service deleted successfully",
+        data: null,
+      };
+    } catch (error) {
+      logger.error(error);
+      throw new Error("Failed to delete language service");
+    }
+  },
+
+  getLanguageServiceById: async (languageServiceId: string) => {
+    try {
+      const languageService = await prisma.languageService.findUnique({
+        where: {
+          languageServiceId: languageServiceId,
+        },
+      });
+
+      if (!languageService) {
+        throw new Error("Language service not found");
+      }
+
+      return {
+        status: "success",
+        message: "Language service fetched successfully",
+        data: languageService,
+      };
+    } catch (error) {
+      logger.error(error);
+      throw new Error("Failed to fetch language service");
+    }
+  },
+
+  getAllLanguageServices: async () => {
+    try {
+      const languageServices = await prisma.languageService.findMany({
+        where: {
+          isActive: true,
+        },
+        orderBy: {
+          createdAt: "desc",
+        },
+      });
+
+      return {
+        status: "success",
+        message: "All language services fetched successfully",
+        data: languageServices,
+      };
+    } catch (error) {
+      logger.error(error);
+      throw new Error("Failed to fetch language services");
+    }
+  },
+
+  getLanguageServiceFilters: async () => {
+    try {
+      const languageServices = await prisma.languageService.findMany({
+        where: {
+          isActive: true,
+        },
+        select: {
+          languages: true,
+          specialization: true,
+          location: true,
+          serviceMode: true,
+          hourlyRate: true,
+        },
+      });
+
+      // Extract unique languages
+      const allLanguages = new Set();
+      languageServices.forEach((service) => {
+        service.languages.forEach((lang) => {
+          allLanguages.add(lang);
+        });
+      });
+
+      // Extract unique specializations
+      const allSpecializations = new Set();
+      languageServices.forEach((service) => {
+        service.specialization.forEach((spec) => {
+          allSpecializations.add(spec);
+        });
+      });
+
+      // Extract unique locations
+      const locations = [
+        ...new Set(languageServices.map((service) => service.location)),
+      ].filter((location) => location && location !== "none");
+
+      // Extract unique service modes
+      const allServiceModes = new Set();
+      languageServices.forEach((service) => {
+        service.serviceMode.forEach((mode) => {
+          allServiceModes.add(mode);
+        });
+      });
+
+      // Create price ranges based on hourly rates
+      const rates = languageServices.map((service) => service.hourlyRate);
+      const minRate = Math.min(...rates);
+      const maxRate = Math.max(...rates);
+
+      const priceRanges = [];
+      if (minRate < 50) priceRanges.push("Under $50/hr");
+      if (rates.some((rate) => rate >= 50 && rate < 100))
+        priceRanges.push("$50-$100/hr");
+      if (rates.some((rate) => rate >= 100 && rate < 200))
+        priceRanges.push("$100-$200/hr");
+      if (maxRate >= 200) priceRanges.push("$200+/hr");
+
+      return {
+        status: "success",
+        message: "Language service filters fetched successfully",
+        data: {
+          languages: Array.from(allLanguages).sort(),
+          specializations: Array.from(allSpecializations).sort(),
+          locations: locations.sort(),
+          serviceModes: Array.from(allServiceModes).sort(),
+          priceRanges: priceRanges,
+        },
+      };
+    } catch (error) {
+      logger.error(error);
+      throw new Error("Failed to fetch language service filters");
+    }
+  },
+
+  toggleLanguageServiceStatus: async (
+    languageServiceId: string,
+    status: boolean
+  ) => {
+    try {
+      const languageService = await prisma.languageService.update({
+        where: {
+          languageServiceId: languageServiceId,
+        },
+        data: {
+          isActive: status,
+        },
+      });
+
+      return {
+        status: "success",
+        message: "Language service status updated successfully",
+        data: languageService,
+      };
+    } catch (error) {
+      logger.error(error);
+      throw new Error("Failed to update language service status");
+    }
+  },
+};

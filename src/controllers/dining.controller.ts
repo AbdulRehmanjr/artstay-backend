@@ -16,6 +16,20 @@ export const getAllRestaurantsPagination = async (req: Request, res: Response) =
     }
 }
 
+export const getAllRestaurants = async (req: Request, res: Response) => {
+    try {
+        const result = await diningService.getAllRestaurants()
+        res.status(201).json(result);
+    } catch (error) {
+        logger.error(error)
+        res.status(500).json({
+            status: 'error',
+            message: error instanceof Error ? error.message : 'Failed to fetch all dinings',
+            data: null
+        });
+    }
+}
+
 export const restaurantDetailByAccountId = async (req: Request, res: Response) => {
     try {
         const { accountId } = req.params
@@ -87,6 +101,20 @@ export const updateMenuItem = async (req: Request, res: Response) => {
         res.status(500).json({
             status: 'error',
             message: error instanceof Error ? error.message : 'Failed to update menu item',
+            data: null
+        });
+    }
+}
+
+export const getAllRestaurantsFilters = async (req: Request, res: Response) => {
+    try {
+        const result = await diningService.getDiningFilterOptions()
+        res.status(201).json(result);
+    } catch (error) {
+        logger.error(error)
+        res.status(500).json({
+            status: 'error',
+            message: error instanceof Error ? error.message : 'Failed to fetch all dinings',
             data: null
         });
     }

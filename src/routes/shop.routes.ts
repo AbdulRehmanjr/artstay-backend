@@ -1,11 +1,12 @@
 import { Router } from 'express';
-import { createProduct, getAllShopsPagination, getProductById, getProductsByAccountId, shopDetailByAccountId, shopDetailByShopId, updateProduct } from '~/controllers/shop.controller';
+import { createProduct, getAllFilters, getAllShops, getAllShopsPagination, getProductById, getProductsByAccountId, shopDetailByAccountId, shopDetailByShopId, updateProduct } from '~/controllers/shop.controller';
 import { validate } from '~/middlewares/zod.middleware';
 import { productCreationSchema, productUpdateSchema } from '~/schemas/shop';
 
 const router = Router();
 
-router.get('/all', getAllShopsPagination)
+router.get('/filters',getAllFilters)
+router.get('/all', getAllShops)
 router.get('/pagination', getAllShopsPagination) 
 router.get('/:shopId', shopDetailByShopId)
 router.get('/detail/:accountId', shopDetailByAccountId)

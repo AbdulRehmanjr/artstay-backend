@@ -774,3 +774,58 @@ type ArtisanBookingCreationProps = {
   artisanId: string;
   packageId: string;
 };
+
+type LanguageServiceCreationProps = {
+  profileName: string;
+  firstName: string;
+  lastName: string;
+  description: string;
+  experience: string;
+  languages: string[];
+  specialization: string[];
+  hourlyRate: number;
+  minBookingHours: number;
+  maxBookingHours: number;
+  availability: string[];
+  startTime: string;
+  endTime: string;
+  location: string;
+  serviceMode: string[];
+  certification: string[];
+  qualification: string;
+  profileImage: string;
+  portfolio: string[];
+  accountId:string
+};
+
+type LanguageServiceUpdateProps = {
+  languageServiceId: string;
+  languageServiceId: string;
+  profileName: string;
+  firstName: string;
+  lastName: string;
+  description: string;
+  experience: string;
+  languages: string[];
+  specialization: string[];
+  hourlyRate: number;
+  minBookingHours: number;
+  maxBookingHours: number;
+  availability: string[];
+  startTime: string;
+  endTime: string;
+  location: string;
+  serviceMode: string[];
+  certification: string[];
+  qualification: string;
+  profileImage: string;
+  portfolio: string[];
+};
+
+type LanguageServiceFilterOptions = {
+  languages: string[];
+  specializations: string[];
+  locations: string[];
+  serviceModes: string[];
+  priceRanges: string[];
+};

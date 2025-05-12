@@ -1,207 +1,254 @@
-import prisma from "~/libs/prisma"
-import { logger } from "~/utils/logger"
-import { Request } from "express"
+import prisma from "~/libs/prisma";
+import { logger } from "~/utils/logger";
+import { Request } from "express";
 
 export const travelService = {
-    getTravelProfileByAccountId: async (accountId: string) => {
-        try {
-            const travel = await prisma.travelPlaner.findUnique({
-                where: {
-                    accountId: accountId
-                }
-            })
-            
-            return {
-                status: 'success',
-                message: 'travel profile',
-                data: travel
-            }
-        } catch (error) {
-            logger.error(error)
-            throw new Error('Failed to fetch travel profile')
-        }
-    },
-    
-    createTravelTour: async (travelTour: TravelTourCreationProps) => {
-        try {
-            const travelPlaner = await prisma.travelPlaner.findUnique({
-                where: {
-                    accountId: travelTour.accountId
-                }
-            })
+  getTravelProfileByAccountId: async (accountId: string) => {
+    try {
+      const travel = await prisma.travelPlaner.findUnique({
+        where: {
+          accountId: accountId,
+        },
+      });
 
-            if (!travelPlaner) {
-                throw new Error('Travel Planer not found')
-            }
+      return {
+        status: "success",
+        message: "travel profile",
+        data: travel,
+      };
+    } catch (error) {
+      logger.error(error);
+      throw new Error("Failed to fetch travel profile");
+    }
+  },
+  createTravelTour: async (travelTour: TravelTourCreationProps) => {
+    try {
+      const travelPlaner = await prisma.travelPlaner.findUnique({
+        where: {
+          accountId: travelTour.accountId,
+        },
+      });
 
-            await prisma.travelTour.create({
-                data: {
-                    title: travelTour.title,
-                    description: travelTour.description,
-                    price: travelTour.price,
-                    image: travelTour.image,
-                    duration: travelTour.duration,
-                    isPricePerPerson: travelTour.isPricePerPerson,
-                    maxGroupSize: travelTour.maxGroupSize,
-                    languages: travelTour.languages,
-                    features: travelTour.features,
-                    isActive: travelTour.isActive,
-                    travelPlanerId: travelPlaner.travelPlanerId,
-                }
-            })
-            
-            return {
-                status: 'success',
-                message: 'travel tour created',
-                data: travelTour
-            }
-        } catch (error) {
-            logger.error(error)
-            throw new Error(error instanceof Error ? error.message : 'Failed to create travel tour')
-        }
-    },
-    
-    updateTravelTour: async (travelTour: TravelTourUpdateProps) => {
-        try {
-            await prisma.travelTour.update({
-                where: {
-                    tourId: travelTour.tourId
-                },
-                data: travelTour
-            })
-            
-            return {
-                status: 'success',
-                message: 'travel tour updated',
-                data: travelTour
-            }
-        } catch (error) {
-            logger.error(error)
-            throw new Error('Failed to update travel tour')
-        }
-    },
-    
-    getTravelTours: async (accountId: string) => {
-        try {
-            const travelTours = await prisma.travelTour.findMany({
-                where: {
-                    travelPlaner: {
-                        accountId: accountId
-                    }
-                },
-                orderBy: {
-                    createdAt: "desc",
-                },
-                distinct: ['tourId']
-            })
-            
-            return {
-                status: 'success',
-                message: 'travel tours',
-                data: travelTours
-            }
-        } catch (error) {
-            logger.error(error)
-            throw new Error('Failed to get travel tours')
-        }
-    },
-    
-    getTravelTourById: async (tourId: string) => {
-        try {
-            const tour = await prisma.travelTour.findUnique({
-                where: {
-                    tourId: tourId
-                }
-            })
-            
-            return {
-                status: 'success',
-                message: 'travel tour',
-                data: tour
-            }
-        } catch (error) {
-            logger.error(error)
-            throw new Error('Failed to get travel tour')
-        }
-    },
-    getAllTravelPlanersPagination: async (req: Request) => {
-        try {
-            const queryParams = req.query
-            const limit = Number(queryParams.limit)
-            const skip = Number(queryParams.cursor ?? 0)
-            const totalCount = await prisma.travelPlaner.count();
+      if (!travelPlaner) {
+        throw new Error("Travel Planer not found");
+      }
 
-            const travelPlaners = await prisma.travelPlaner.findMany({
-                take: limit,
-                skip: skip,
-                orderBy: {
-                    createdAt: "desc",
-                },
-                distinct: ['travelPlanerId']
-            })
+      await prisma.travelTour.create({
+        data: {
+          title: travelTour.title,
+          description: travelTour.description,
+          price: travelTour.price,
+          image: travelTour.image,
+          duration: travelTour.duration,
+          isPricePerPerson: travelTour.isPricePerPerson,
+          maxGroupSize: travelTour.maxGroupSize,
+          languages: travelTour.languages,
+          features: travelTour.features,
+          isActive: travelTour.isActive,
+          travelPlanerId: travelPlaner.travelPlanerId,
+        },
+      });
 
-            const nextCursor = skip + limit;
-            const hasNextPage = nextCursor < totalCount;
+      return {
+        status: "success",
+        message: "travel tour created",
+        data: travelTour,
+      };
+    } catch (error) {
+      logger.error(error);
+      throw new Error(
+        error instanceof Error ? error.message : "Failed to create travel tour"
+      );
+    }
+  },
+  updateTravelTour: async (travelTour: TravelTourUpdateProps) => {
+    try {
+      await prisma.travelTour.update({
+        where: {
+          tourId: travelTour.tourId,
+        },
+        data: travelTour,
+      });
 
-            return {
-                status: 'success', 
-                message: 'all travel planers', 
-                data: {
-                    travelPlaners: travelPlaners,
-                    metadata: {
-                        cursor: hasNextPage ? nextCursor.toString() : undefined,
-                        hasNextPage,
-                        totalItems: totalCount,
-                        currentPage: Math.floor(skip / limit) + 1,
-                        totalPages: Math.ceil(totalCount / limit),
-                    }
-                }
-            }
-        } catch (error) {
-            logger.error(error)
-            throw new Error('Failed to fetch all travel planers')
-        }
-    },
-    getAllTravelPlaners: async () => {
-        try {
-       
-            const travelPlaners = await prisma.travelPlaner.findMany({
-                orderBy: {
-                    createdAt: "desc",
-                },
+      return {
+        status: "success",
+        message: "travel tour updated",
+        data: travelTour,
+      };
+    } catch (error) {
+      logger.error(error);
+      throw new Error("Failed to update travel tour");
+    }
+  },
+  getTravelTours: async (accountId: string) => {
+    try {
+      const travelTours = await prisma.travelTour.findMany({
+        where: {
+          travelPlaner: {
+            accountId: accountId,
+          },
+        },
+        orderBy: {
+          createdAt: "desc",
+        },
+        distinct: ["tourId"],
+      });
 
-            })
+      return {
+        status: "success",
+        message: "travel tours",
+        data: travelTours,
+      };
+    } catch (error) {
+      logger.error(error);
+      throw new Error("Failed to get travel tours");
+    }
+  },
+  getTravelTourById: async (tourId: string) => {
+    try {
+      const tour = await prisma.travelTour.findUnique({
+        where: {
+          tourId: tourId,
+        },
+      });
 
-            return {
-                status: 'success', 
-                message: 'all travel planers', 
-                data: travelPlaners
-            }
-        } catch (error) {
-            logger.error(error)
-            throw new Error('Failed to fetch all travel planers')
-        }
-    },
-    toggleStatus: async (req: Request) => {
-        try {
-            const { travelPlanerId, status } = req.body
-            await prisma.travelPlaner.update({
-                where: {
-                    travelPlanerId: travelPlanerId
-                },
-                data: {
-                    isActive: status
-                }
-            })
-            return {
-                status: 'success',
-                message: 'artisan toggle status',
-                data: null
-            }
-        } catch (error) {
-            logger.error(error)
-            throw new Error('Failed to fetch application status')
-        }
-    },
-}
+      return {
+        status: "success",
+        message: "travel tour",
+        data: tour,
+      };
+    } catch (error) {
+      logger.error(error);
+      throw new Error("Failed to get travel tour");
+    }
+  },
+  getAllTravelPlanersPagination: async (req: Request) => {
+    try {
+      const queryParams = req.query;
+      const limit = Number(queryParams.limit);
+      const skip = Number(queryParams.cursor ?? 0);
+      const totalCount = await prisma.travelPlaner.count();
 
+      const travelPlaners = await prisma.travelPlaner.findMany({
+        take: limit,
+        skip: skip,
+        orderBy: {
+          createdAt: "desc",
+        },
+        distinct: ["travelPlanerId"],
+      });
+
+      const nextCursor = skip + limit;
+      const hasNextPage = nextCursor < totalCount;
+
+      return {
+        status: "success",
+        message: "all travel planers",
+        data: {
+          travelPlaners: travelPlaners,
+          metadata: {
+            cursor: hasNextPage ? nextCursor.toString() : undefined,
+            hasNextPage,
+            totalItems: totalCount,
+            currentPage: Math.floor(skip / limit) + 1,
+            totalPages: Math.ceil(totalCount / limit),
+          },
+        },
+      };
+    } catch (error) {
+      logger.error(error);
+      throw new Error("Failed to fetch all travel planers");
+    }
+  },
+  getAllTravelPlaners: async () => {
+    try {
+      const travelPlaners = await prisma.travelPlaner.findMany({
+        orderBy: {
+          createdAt: "desc",
+        },
+      });
+
+      return {
+        status: "success",
+        message: "all travel planers",
+        data: travelPlaners,
+      };
+    } catch (error) {
+      logger.error(error);
+      throw new Error("Failed to fetch all travel planers");
+    }
+  },
+  toggleStatus: async (req: Request) => {
+    try {
+      const { travelPlanerId, status } = req.body;
+      await prisma.travelPlaner.update({
+        where: {
+          travelPlanerId: travelPlanerId,
+        },
+        data: {
+          isActive: status,
+        },
+      });
+      return {
+        status: "success",
+        message: "artisan toggle status",
+        data: null,
+      };
+    } catch (error) {
+      logger.error(error);
+      throw new Error("Failed to fetch application status");
+    }
+  },
+  getTravelPlannerFilterOptions: async () => {
+    try {
+      const travelPlanners = await prisma.travelPlaner.findMany({
+        select: {
+          location: true,
+          priceRange: true,
+          language: true,
+          speciality: true,
+        },
+      });
+
+      // Extract unique locations
+      const locations = [
+        ...new Set(travelPlanners.map((tp) => tp.location)),
+      ].filter((location) => location && location !== "none");
+
+      // Extract unique price ranges
+      const priceRanges = [
+        ...new Set(travelPlanners.map((tp) => tp.priceRange)),
+      ].filter((range) => range && range !== "none");
+
+      // Extract unique languages
+      const allLanguages = new Set();
+      travelPlanners.forEach((tp) => {
+        tp.language.forEach((lang) => {
+          allLanguages.add(lang);
+        });
+      });
+
+      // Extract unique specialities
+      const allSpecialities = new Set();
+      travelPlanners.forEach((tp) => {
+        tp.speciality.forEach((spec) => {
+          allSpecialities.add(spec);
+        });
+      });
+
+      return {
+        status: "success",
+        message: "Fetched all travel planner",
+        data: {
+          locations: locations.sort(),
+          priceRanges: priceRanges.sort(),
+          languages: Array.from(allLanguages).sort(),
+          specialities: Array.from(allSpecialities).sort(),
+        },
+      };
+    } catch (error) {
+      logger.error(error);
+      throw new Error("Failed to fetch travel planner filters");
+    }
+  },
+};

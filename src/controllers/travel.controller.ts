@@ -118,3 +118,18 @@ export const updateTravelStatus = async (req: Request, res: Response) => {
         });
     }
 }
+
+
+export const getAllTravelPlannerFilters = async (req: Request, res: Response) => {
+    try {
+        const result = await travelService.getTravelPlannerFilterOptions()
+        res.status(201).json(result);
+    } catch (error) {
+        logger.error(error)
+        res.status(500).json({
+            status: 'error',
+            message: error instanceof Error ? error.message : 'Failed to fetch application status',
+            data: null
+        });
+    }
+}

@@ -2,6 +2,35 @@ import { Request, Response } from 'express';
 import { shopService } from '~/services/shop.service';
 import { logger } from '~/utils/logger';
 
+
+export const getAllFilters = async (req: Request, res: Response) => {
+    try {
+        const result = await shopService.getFilterOptions()
+        res.status(201).json(result);
+    } catch (error) {
+        logger.error(error)
+        res.status(500).json({
+            status: 'error',
+            message: error instanceof Error ? error.message : 'Failed to fetch all shops',
+            data: null
+        });
+    }
+}
+
+export const getAllShops = async (req: Request, res: Response) => {
+    try {
+        const result = await shopService.getAllShops()
+        res.status(201).json(result);
+    } catch (error) {
+        logger.error(error)
+        res.status(500).json({
+            status: 'error',
+            message: error instanceof Error ? error.message : 'Failed to fetch all shops',
+            data: null
+        });
+    }
+}
+
 export const getAllShopsPagination = async (req: Request, res: Response) => {
     try {
         const result = await shopService.getAllShopsPagination(req)

@@ -1,6 +1,6 @@
 import { Router } from 'express';
 import { updateTravelPlaner } from '~/controllers/register.controller';
-import { createTravelTour, getAllTravelPlaners, getAllTravelPlanersPagination, getTravelTourById, getTravelTours, travelDetailByAccountId, updateTravelTour } from '~/controllers/travel.controller';
+import { createTravelTour, getAllTravelPlaners, getAllTravelPlanersPagination, getAllTravelPlannerFilters, getTravelTourById, getTravelTours, travelDetailByAccountId, updateTravelTour } from '~/controllers/travel.controller';
 import { validate } from '~/middlewares/zod.middleware';
 import { TravelTourCreationSchema, TravelTourUpdateSchema } from '~/schemas/travel';
 
@@ -12,6 +12,7 @@ router.get('/tours/:accountId',getTravelTours)
 router.get('/tour/:tourId',getTravelTourById)
 router.get('/all',getAllTravelPlaners)
 router.get('/pagination',getAllTravelPlanersPagination)
+router.get('/filters',getAllTravelPlannerFilters)
 
 router.put('/toggle-status',updateTravelPlaner)
 router.patch('/update-tour',validate(TravelTourUpdateSchema),updateTravelTour)
