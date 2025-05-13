@@ -3,6 +3,23 @@ import { logger } from "~/utils/logger";
 import { Request } from "express";
 
 export const travelService = {
+  getApplicationStatus: async (accountId: string) => {
+    try {
+      const application = await prisma.travelPlaner.findUnique({
+        where: {
+          accountId: accountId,
+        },
+      });
+      return {
+        status: "success",
+        message: "application status",
+        data: application,
+      };
+    } catch (error) {
+      logger.error(error);
+      throw new Error("Failed to fetch application status");
+    }
+  },
   getTravelProfileByAccountId: async (accountId: string) => {
     try {
       const travel = await prisma.travelPlaner.findUnique({

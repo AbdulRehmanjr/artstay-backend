@@ -3,6 +3,23 @@ import { logger } from "~/utils/logger";
 import { Request } from "express";
 
 export const diningService = {
+  getApplicationStatus: async (accountId: string) => {
+    try {
+      const application = await prisma.restaurant.findUnique({
+        where: {
+          accountId: accountId,
+        },
+      });
+      return {
+        status: "success",
+        message: "application status",
+        data: application,
+      };
+    } catch (error) {
+      logger.error(error);
+      throw new Error("Failed to fetch application status");
+    }
+  },
   getAllRestaurantsPagination: async (req: Request) => {
     try {
       const queryParams = req.query;
@@ -85,11 +102,11 @@ export const diningService = {
       const locations = [...new Set(restaurants.map((r) => r.location))].filter(
         (location) => location && location !== "none"
       );
-      console.log( {
-          cuisines: Array.from(allCuisines).sort(),
-          priceRanges: priceRanges.sort(),
-          locations: locations.sort(),
-        })
+      console.log({
+        cuisines: Array.from(allCuisines).sort(),
+        priceRanges: priceRanges.sort(),
+        locations: locations.sort(),
+      });
       return {
         status: "success",
         message: "dining filter fetched",

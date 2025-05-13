@@ -134,3 +134,14 @@ export const getProductById = async (req: Request, res: Response) => {
         });
     }
 }
+
+export const shopApplicationStatus = async (req: Request, res: Response) => {
+  try {
+    const { accountId } = req.params;
+    const result = await shopService.getApplicationStatus(accountId);
+    res.status(201).json(result);
+  } catch (error) {
+    logger.error(error);
+    throw new Error("fair applcaition status error");
+  }
+};

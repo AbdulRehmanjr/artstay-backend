@@ -133,3 +133,14 @@ export const getAllTravelPlannerFilters = async (req: Request, res: Response) =>
         });
     }
 }
+
+export const travelApplicationStatus = async (req: Request, res: Response) => {
+  try {
+    const { accountId } = req.params;
+    const result = await travelService.getApplicationStatus(accountId);
+    res.status(201).json(result);
+  } catch (error) {
+    logger.error(error);
+    throw new Error("fair applcaition status error");
+  }
+};

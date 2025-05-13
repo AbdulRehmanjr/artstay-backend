@@ -3,6 +3,23 @@ import { logger } from "~/utils/logger";
 import { Request } from "express";
 
 export const shopService = {
+  getApplicationStatus: async (accountId: string) => {
+    try {
+      const application = await prisma.shop.findUnique({
+        where: {
+          accountId: accountId,
+        },
+      });
+      return {
+        status: "success",
+        message: "application status",
+        data: application,
+      };
+    } catch (error) {
+      logger.error(error);
+      throw new Error("Failed to fetch application status");
+    }
+  },
   getFilterOptions: async () => {
     try {
       const shops = await prisma.shop.findMany({
@@ -24,7 +41,7 @@ export const shopService = {
           allCategories.add(category);
         });
       });
-      
+
       return {
         status: "success",
         message: "fetched all filters",
