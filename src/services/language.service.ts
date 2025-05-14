@@ -1,67 +1,25 @@
 import prisma from "~/libs/prisma";
 import { logger } from "~/utils/logger";
 
-export const languageServiceService = {
-  createLanguageService: async (data: LanguageServiceCreationProps) => {
+export const languageService = {
+
+ getApplicationStatus: async (accountId: string) => {
     try {
-      const languageService = await prisma.languageService.create({
-        data: {
-          profileName: data.profileName,
-          firstName: data.firstName,
-          lastName: data.lastName,
-          description: data.description,
-          experience: data.experience,
-          languages: data.languages,
-          specialization: data.specialization,
-          hourlyRate: data.hourlyRate,
-          minBookingHours: data.minBookingHours,
-          maxBookingHours: data.maxBookingHours,
-          availability: data.availability,
-          startTime: data.startTime,
-          endTime: data.endTime,
-          location: data.location,
-          serviceMode: data.serviceMode,
-          certification: data.certification,
-          qualification: data.qualification,
-          profileImage: data.profileImage,
-          portfolio: data.portfolio,
-          accountId: data.accountId,
-        },
-      });
-
-      return {
-        status: "success",
-        message: "Language service created successfully",
-        data: languageService,
-      };
-    } catch (error) {
-      logger.error(error);
-      throw new Error("Failed to create language service");
-    }
-  },
-
-  updateLanguageService: async (data: LanguageServiceUpdateProps) => {
-    try {
-      const { languageServiceId, ...updateData } = data;
-
-      const languageService = await prisma.languageService.update({
+      const application = await prisma.languageService.findUnique({
         where: {
-          languageServiceId: languageServiceId,
+          accountId: accountId,
         },
-        data: updateData,
       });
-
       return {
         status: "success",
-        message: "Language service updated successfully",
-        data: languageService,
+        message: "application status",
+        data: application,
       };
     } catch (error) {
       logger.error(error);
-      throw new Error("Failed to update language service");
+      throw new Error("Failed to fetch application status");
     }
   },
-
   deleteLanguageService: async (languageServiceId: string) => {
     try {
       await prisma.languageService.delete({

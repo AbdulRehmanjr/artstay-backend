@@ -54,6 +54,8 @@ model BookingDetail {
   createdAt       DateTime         @default(now())
   updatedAt       DateTime         @updatedAt
   ArtisanBooking  ArtisanBooking[] // Added relation
+  SafariBooking   SafariBooking[]
+  FairBooking     FairBooking[]
 }
 
 /**
@@ -148,8 +150,9 @@ model Safari {
   createdAt   DateTime @default(now())
   updatedAt   DateTime @updatedAt
 
-  account    Account      @relation(fields: [accountId], references: [userId], onDelete: Cascade, onUpdate: Cascade)
-  SafariTour SafariTour[]
+  account       Account         @relation(fields: [accountId], references: [userId], onDelete: Cascade, onUpdate: Cascade)
+  SafariTour    SafariTour[]
+  SafariBooking SafariBooking[]
 }
 
 model SafariTour {
@@ -164,7 +167,33 @@ model SafariTour {
   createdAt   DateTime @default(now())
   updatedAt   DateTime @updatedAt
 
-  safari Safari @relation(fields: [safariId], references: [safariId], onDelete: Cascade, onUpdate: Cascade)
+  safari        Safari          @relation(fields: [safariId], references: [safariId], onDelete: Cascade, onUpdate: Cascade)
+  SafariBooking SafariBooking[]
+}
+
+model SafariBooking {
+  safariBookingId String @id @default(cuid())
+  tourDate        String @default("none")
+  numberOfGuests  Int    @default(1)
+  totalAmount     Int    @default(0)
+  status          String @default("new")
+
+  // Required relations
+  tourId          String
+  safariId        String
+  bookingDetailId String
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  // Relations
+  tour          SafariTour    @relation(fields: [tourId], references: [tourId], onDelete: Cascade, onUpdate: Cascade)
+  safari        Safari        @relation(fields: [safariId], references: [safariId], onDelete: Cascade, onUpdate: Cascade)
+  bookingDetail BookingDetail @relation(fields: [bookingDetailId], references: [bookingDetailId], onDelete: Cascade, onUpdate: Cascade)
+
+  @@index([tourId])
+  @@index([safariId])
+  @@index([tourDate])
 }
 
 /**
@@ -184,8 +213,9 @@ model Fair {
   createdAt   DateTime @default(now())
   updatedAt   DateTime @updatedAt
 
-  account   Account     @relation(fields: [accountId], references: [userId], onDelete: Cascade, onUpdate: Cascade)
-  FairEvent FairEvent[]
+  account     Account       @relation(fields: [accountId], references: [userId], onDelete: Cascade, onUpdate: Cascade)
+  FairEvent   FairEvent[]
+  FairBooking FairBooking[]
 }
 
 model FairEvent {
@@ -204,6 +234,33 @@ model FairEvent {
   createdAt   DateTime      @default(now())
   updatedAt   DateTime      @updatedAt
   fair        Fair          @relation(fields: [fairId], references: [fairId], onDelete: Cascade, onUpdate: Cascade)
+  FairBooking FairBooking[]
+}
+
+model FairBooking {
+  fairBookingId   String @id @default(cuid())
+  eventDate       String @default("none")
+  numberOfTickets Int    @default(1)
+  ticketType      String @default("general")
+  totalAmount     Int    @default(0)
+  status          String @default("new")
+
+  // Required relations
+  eventId         String
+  fairId          String
+  bookingDetailId String
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  // Relations
+  event         FairEvent     @relation(fields: [eventId], references: [eventId], onDelete: Cascade, onUpdate: Cascade)
+  fair          Fair          @relation(fields: [fairId], references: [fairId], onDelete: Cascade, onUpdate: Cascade)
+  bookingDetail BookingDetail @relation(fields: [bookingDetailId], references: [bookingDetailId], onDelete: Cascade, onUpdate: Cascade)
+
+  @@index([eventId])
+  @@index([fairId])
+  @@index([eventDate])
 }
 
 /**
@@ -600,6 +657,7 @@ enum AccountType {
   HOTEL
   RESTAURANT
   TRAVEL_PLANER
+  LANGUAGE
   SUPERADMIN
   ARTISAN_ADMIN
   SAFARI_ADMIN
@@ -608,4 +666,5 @@ enum AccountType {
   HOTEL_ADMIN
   RESTAURANT_ADMIN
   TRAVEL_PLANER_ADMIN
+  LANGUAGE_ADMIN
 }

@@ -2,6 +2,7 @@ import { Router } from "express";
 import {
   createFairEvent,
   fairApplicationStatus,
+  createFairBooking,
   fairDetailById,
   fairProfileByAccountId,
   getAllFairs,
@@ -24,6 +25,7 @@ router.get("/application-status/:accountId", fairApplicationStatus);
 router.get("/:fairId", fairDetailById);
 
 router.put("/toggle-status");
+router.post('/create-booking',createFairBooking)
 router.post("/event", validate(FairEventSchema), createFairEvent);
 router.patch("/event", validate(UpdateFairEventSchema), updateFairEvent);
 

@@ -1,62 +1,31 @@
-// controllers/languageService.controller.ts
-
 import { Request, Response } from 'express';
-import { languageServiceService } from '~/services/language.service';
+import { languageService } from '~/services/language.service';
 import { logger } from '~/utils/logger';
 
-export const createLanguageService = async (req: Request, res: Response) => {
-    try {
-        const languageService = req.body;
-        const result = await languageServiceService.createLanguageService(languageService);
-        res.status(201).json(result);
-    } catch (error) {
-        logger.error(error);
-        res.status(500).json({
-            status: 'error',
-            message: error instanceof Error ? error.message : 'Failed to create language service',
-            data: null
-        });
-    }
-};
 
-export const updateLanguageService = async (req: Request, res: Response) => {
-    try {
-        const { languageServiceId } = req.params;
-        const languageService = req.body;
-        const result = await languageServiceService.updateLanguageService({
-            ...languageService,
-            languageServiceId
-        });
-        res.status(200).json(result);
-    } catch (error) {
-        logger.error(error);
-        res.status(500).json({
-            status: 'error',
-            message: error instanceof Error ? error.message : 'Failed to update language service',
-            data: null
-        });
-    }
-};
 
-export const deleteLanguageService = async (req: Request, res: Response) => {
-    try {
-        const { languageServiceId } = req.params;
-        const result = await languageServiceService.deleteLanguageService(languageServiceId);
-        res.status(200).json(result);
-    } catch (error) {
-        logger.error(error);
-        res.status(500).json({
-            status: 'error',
-            message: error instanceof Error ? error.message : 'Failed to delete language service',
-            data: null
-        });
-    }
+export const languageApplicationStatus = async (req: Request, res: Response) => {
+  try {
+    const { accountId } = req.params;
+    const result = await languageService.getApplicationStatus(accountId);
+    res.status(201).json(result);
+  } catch (error) {
+    logger.error(error);
+    res.status(500).json({
+      status: "error",
+      message:
+        error instanceof Error
+          ? error.message
+          : "Failed to fetch application status",
+      data: null,
+    });
+  }
 };
 
 export const getLanguageServiceById = async (req: Request, res: Response) => {
     try {
         const { languageServiceId } = req.params;
-        const result = await languageServiceService.getLanguageServiceById(languageServiceId);
+        const result = await languageService.getLanguageServiceById(languageServiceId);
         res.status(200).json(result);
     } catch (error) {
         logger.error(error);
@@ -70,7 +39,7 @@ export const getLanguageServiceById = async (req: Request, res: Response) => {
 
 export const getAllLanguageServices = async (req: Request, res: Response) => {
     try {
-        const result = await languageServiceService.getAllLanguageServices();
+        const result = await languageService.getAllLanguageServices();
         res.status(200).json(result);
     } catch (error) {
         logger.error(error);
@@ -84,7 +53,7 @@ export const getAllLanguageServices = async (req: Request, res: Response) => {
 
 export const getLanguageServiceFilters = async (req: Request, res: Response) => {
     try {
-        const result = await languageServiceService.getLanguageServiceFilters();
+        const result = await languageService.getLanguageServiceFilters();
         res.status(200).json(result);
     } catch (error) {
         logger.error(error);
@@ -100,7 +69,7 @@ export const toggleLanguageServiceStatus = async (req: Request, res: Response) =
     try {
         const { languageServiceId } = req.params;
         const { status } = req.body;
-        const result = await languageServiceService.toggleLanguageServiceStatus(languageServiceId, status);
+        const result = await languageService.toggleLanguageServiceStatus(languageServiceId, status);
         res.status(200).json(result);
     } catch (error) {
         logger.error(error);

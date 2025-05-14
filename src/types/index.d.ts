@@ -6,6 +6,7 @@ type AccountTypeEnum =
   | "BUSINESS"
   | "HOTEL"
   | "RESTAURANT"
+  | "LANGUAGE"
   | "TRAVEL_PLANER"
   | "SUPERADMIN"
   | "ARTISAN_ADMIN"
@@ -14,7 +15,9 @@ type AccountTypeEnum =
   | "BUSINESS_ADMIN"
   | "HOTEL_ADMIN"
   | "RESTAURANT_ADMIN"
-  | "TRAVEL_PLANER_ADMIN";
+  | "TRAVEL_PLANER_ADMIN"
+  | "LANGUAGE_ADMIN"
+  ;
 
 type AccountProps = {
   userId: string;
@@ -214,6 +217,20 @@ type SafariTourProps = {
   updatedAt: Date;
 };
 
+type SafariBookingInput = {
+  firstName: string;
+  lastName: string;
+  email: string;
+  phone: string;
+  additionalNote: string;
+  
+  tourDate: string;
+  numberOfGuests: number;
+  totalAmount: number;
+  tourId: string;
+  safariId: string;
+};
+
 type SafariDetailProps = {
   safariId: string;
   firstName: string;
@@ -268,6 +285,20 @@ type FairEventCreationProps = {
   longitude: number;
   description: string;
   accountId: string;
+};
+
+ type FairBookingInput = {
+  firstName: string;
+  lastName: string;
+  email: string;
+  phone: string;
+  numberOfTickets: number;
+  ticketType: string;
+  additionalNote: string;
+  eventDate: string;
+  eventId: string;
+  fairId: string;
+  totalAmount: number;
 };
 
 type FairEventUpdationProps = {
@@ -779,6 +810,8 @@ type LanguageServiceCreationProps = {
   profileName: string;
   firstName: string;
   lastName: string;
+  email : string
+  password:string
   description: string;
   experience: string;
   languages: string[];
@@ -799,7 +832,6 @@ type LanguageServiceCreationProps = {
 };
 
 type LanguageServiceUpdateProps = {
-  languageServiceId: string;
   languageServiceId: string;
   profileName: string;
   firstName: string;

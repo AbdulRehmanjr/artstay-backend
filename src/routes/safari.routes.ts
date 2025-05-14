@@ -1,5 +1,5 @@
 import { Router } from 'express';
-import {  createSafariTour, getAllSafaris, getAllSafarisPagination, getApplicationStatus, getSafariTours, getTourById, safariDetailByAccountId, safariDetailById, updateSafariStatus } from '~/controllers/safari.controller';
+import {  createSafariBooking, createSafariTour, getAllSafaris, getAllSafarisPagination, getApplicationStatus, getSafariTours, getTourById, safariDetailByAccountId, safariDetailById, updateSafariStatus } from '~/controllers/safari.controller';
 import { validate } from '~/middlewares/zod.middleware';
 import { SafariTourSchema } from '~/schemas/safari';
 
@@ -15,5 +15,6 @@ router.get('/application-status/:accountId', getApplicationStatus)
 
 router.post('/tour',validate(SafariTourSchema), createSafariTour)
 router.put('/toggle-status', updateSafariStatus)
+router.post('/create-booking',createSafariBooking)
 
 export const safariRouter = router;

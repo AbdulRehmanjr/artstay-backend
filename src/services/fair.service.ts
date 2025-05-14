@@ -3,6 +3,47 @@ import { logger } from "~/utils/logger";
 import { Request } from "express";
 
 export const fairService = {
+   createFairBooking: async (bookingData: FairBookingInput) => {
+        try {
+            // First create the booking detail
+            const bookingDetail = await prisma.bookingDetail.create({
+                data: {
+                    firstName: bookingData.firstName,
+                    lastName: bookingData.lastName,
+                    email: bookingData.email,
+                    phone: bookingData.phone,
+                    additionalNote: bookingData.additionalNote,
+                }
+            })
+            
+            // Then create the fair booking
+            const fairBooking = await prisma.fairBooking.create({
+                data: {
+                    eventDate: bookingData.eventDate,
+                    numberOfTickets: bookingData.numberOfTickets,
+                    ticketType: bookingData.ticketType,
+                    totalAmount: bookingData.totalAmount,
+                    eventId: bookingData.eventId,
+                    fairId: bookingData.fairId,
+                    bookingDetailId: bookingDetail.bookingDetailId,
+                    status: "new"
+                }
+            })
+            
+            return {
+                status: 'success',
+                message: 'Fair booking created successfully',
+                data: {
+                    bookingId: fairBooking.fairBookingId,
+                    bookingDetailId: bookingDetail.bookingDetailId
+                }
+            }
+        } catch (error) {
+            logger.error(error)
+            throw new Error('Failed to create fair booking')
+        }
+    },
+    
   getApplicationStatus: async (accountId: string) => {
     try {
       const application = await prisma.fair.findUnique({

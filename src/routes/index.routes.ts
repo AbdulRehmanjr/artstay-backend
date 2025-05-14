@@ -10,6 +10,7 @@ import { shopRouter } from '~/routes/shop.routes';
 import { diningRouter } from '~/routes/dining.routes';
 import { travelRouter } from '~/routes/travel.routes';
 import { propertyRouter } from '~/routes/property.routes';
+import { languageRouter } from '~/routes/language.routes';
 
 const router = Router();
 
@@ -27,5 +28,6 @@ router.use('/shop', shopRouter)
 router.use('/dining', diningRouter)
 router.use('/travel', travelRouter)
 router.use('/property', propertyRouter)
+router.use('/language',languageRouter)
 
 export const mainRouter = router;

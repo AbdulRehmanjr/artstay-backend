@@ -20,6 +20,7 @@ export const safariService = {
             throw new Error('Failed to fetch application status')
         }
     },
+    
     toggleStatus: async (req: Request) => {
         try {
             const { safariId, status } = req.body
@@ -33,20 +34,130 @@ export const safariService = {
             })
             return {
                 status: 'success',
-                message: 'artisan toggle status',
+                message: 'safari toggle status',
                 data: null
             }
         } catch (error) {
             logger.error(error)
-            throw new Error('Failed to fetch application status')
+            throw new Error('Failed to toggle safari status')
         }
     },
+    
+    safariDetailByAccountId: async (accountId: string) => {
+        try {
+            const safari: SafariProps | null = await prisma.safari.findUnique({
+                where: {
+                    accountId: accountId
+                },
+            })
+            return { 
+                status: 'success', 
+                message: 'safari details', 
+                data: safari 
+            }
+        } catch (error) {
+            logger.error(error)
+            throw new Error('Failed to fetch safari details')
+        }
+    },
+    
+    createSafariTour: async (tour: SafariTourCreationProps) => {
+        try {
+            const safari = await prisma.safari.findUnique({
+                where: {
+                    accountId: tour.accountId
+                },
+                select: {
+                    safariId: true
+                }
+            })
+            if (!safari) throw new Error("Safari seller not found.")
+            
+            const newTour = await prisma.safariTour.create({
+                data: {
+                    safariId: safari.safariId,
+                    title: tour.title,
+                    fee: tour.fee,
+                    duration: tour.duration,
+                    description: tour.description,
+                    features: tour.features,
+                    operator: tour.operator
+                }
+            })
+            
+            return { 
+                status: 'success', 
+                message: 'safari tour created', 
+                data: newTour 
+            }
+        } catch (error) {
+            logger.error(error)
+            throw new Error('Failed to create safari tour')
+        }
+    },
+    
+    getSafariTours: async (accountId: string) => {
+        try {
+            const tours: SafariTourProps[] = await prisma.safariTour.findMany({
+                where: {
+                    safari: {
+                        accountId: accountId
+                    }
+                }
+            })
+            return { 
+                status: 'success', 
+                message: 'tours fetched successfully', 
+                data: tours 
+            }
+        } catch (error) {
+            logger.error(error)
+            throw new Error('Failed to fetch tours')
+        }
+    },
+    
+    getTourById: async (tourId: string) => {
+        try {
+            const tour: SafariTourProps = await prisma.safariTour.findUniqueOrThrow({
+                where: {
+                    tourId: tourId
+                }
+            })
+            return { 
+                status: 'success', 
+                message: 'tour fetched successfully', 
+                data: tour 
+            }
+        } catch (error) {
+            logger.error(error)
+            throw new Error('Failed to fetch tour')
+        }
+    },
+    
+    getAllSafaris: async () => {
+        try {
+            const safaris: SafariProps[] = await prisma.safari.findMany({
+                orderBy: {
+                    createdAt: "desc",
+                },
+            })
+            return {
+                status: 'success',
+                message: 'all safaris',
+                data: safaris
+            }
+        } catch (error) {
+            logger.error(error)
+            throw new Error('Something went wrong')
+        }
+    },
+    
     getAllSafarisPagination: async (req: Request) => {
         try {
             const queryParams = req.query
             const limit = Number(queryParams.limit)
             const skip = Number(queryParams.cursor ?? 0)
-            const totalCount = await prisma.artisan.count();
+            const totalCount = await prisma.safari.count();
 
             const safaris: SafariProps[] = await prisma.safari.findMany({
                 take: limit,
@@ -79,22 +190,143 @@ export const safariService = {
             throw new Error('Something went wrong')
         }
     },
-    getAllSafaris: async () => {
+    
+    safariDetailById: async (safariId: string) => {
         try {
-
-            const safaris: SafariProps[] = await prisma.safari.findMany({
-                orderBy: {
-                    createdAt: "desc",
+            const safari: SafariDetailProps | null = await prisma.safari.findUnique({
+                where: {
+                    safariId: safariId
                 },
+                include: {
+                    SafariTour: true,
+                }
             })
-            return {
-                status: 'success',
-                message: 'all safaris',
-                data: safaris
+            return { 
+                status: 'success', 
+                message: 'safari details', 
+                data: safari 
             }
         } catch (error) {
             logger.error(error)
-            throw new Error('Something went wrong')
+            throw new Error('Failed to fetch safari details')
+        }
+    },
+    
+    // Safari Booking Services
+    createSafariBooking: async (bookingData: SafariBookingInput) => {
+        try {
+            // First create the booking detail
+            const bookingDetail = await prisma.bookingDetail.create({
+                data: {
+                    firstName: bookingData.firstName,
+                    lastName: bookingData.lastName,
+                    email: bookingData.email,
+                    phone: bookingData.phone,
+                    additionalNote: bookingData.additionalNote,
+                }
+            })
+            
+            // Then create the safari booking
+            const safariBooking = await prisma.safariBooking.create({
+                data: {
+                    tourDate: bookingData.tourDate,
+                    numberOfGuests: bookingData.numberOfGuests,
+                    totalAmount: bookingData.totalAmount,
+                    tourId: bookingData.tourId,
+                    safariId: bookingData.safariId,
+                    bookingDetailId: bookingDetail.bookingDetailId,
+                    status: "new"
+                }
+            })
+            
+            return {
+                status: 'success',
+                message: 'Safari booking created successfully',
+                data: {
+                    bookingId: safariBooking.safariBookingId,
+                    bookingDetailId: bookingDetail.bookingDetailId
+                }
+            }
+        } catch (error) {
+            logger.error(error)
+            throw new Error('Failed to create safari booking')
+        }
+    },
+    
+    getSafariBookingById: async (bookingId: string) => {
+        try {
+            const booking = await prisma.safariBooking.findUnique({
+                where: {
+                    safariBookingId: bookingId
+                },
+                include: {
+                    bookingDetail: true,
+                    tour: true,
+                    safari: true
+                }
+            })
+            
+            if (!booking) {
+                throw new Error('Booking not found')
+            }
+            
+            return {
+                status: 'success',
+                message: 'Booking fetched successfully',
+                data: booking
+            }
+        } catch (error) {
+            logger.error(error)
+            throw new Error('Failed to fetch booking')
+        }
+    },
+    
+    getAllSafariBookings: async (safariId?: string) => {
+        try {
+            const whereClause = safariId ? { safariId } : {}
+            
+            const bookings = await prisma.safariBooking.findMany({
+                where: whereClause,
+                include: {
+                    bookingDetail: true,
+                    tour: true,
+                    safari: true
+                },
+                orderBy: {
+                    createdAt: 'desc'
+                }
+            })
+            
+            return {
+                status: 'success',
+                message: 'Bookings fetched successfully',
+                data: bookings
+            }
+        } catch (error) {
+            logger.error(error)
+            throw new Error('Failed to fetch bookings')
+        }
+    },
+    
+    updateBookingStatus: async (bookingId: string, status: string) => {
+        try {
+            const updatedBooking = await prisma.safariBooking.update({
+                where: {
+                    safariBookingId: bookingId
+                },
+                data: {
+                    status: status
+                }
+            })
+            
+            return {
+                status: 'success',
+                message: 'Booking status updated successfully',
+                data: updatedBooking
+            }
+        } catch (error) {
+            logger.error(error)
+            throw new Error('Failed to update booking status')
         }
     }
 }
