@@ -598,6 +598,24 @@ type RestaurantDetailByAccountIdProps = {
   updatedAt: Date;
 };
 
+type RestaurantBookingCreationProps = {
+  firstName: string;
+  lastName: string;
+  email: string;
+  phone: string;
+  tableNumber: string;
+  additionalNote: string;
+  resturantId: string;
+  subtotal: number;
+  tax: number;
+  total: number;
+  items: {
+    menuItemId: string;
+    quantity: number;
+  }[];
+};
+
+
 type MenuCategory = "STARTER" | "MAIN_COURSE" | "DESSERT" | "BEVERAGE";
 
 type MenuItemProps = {

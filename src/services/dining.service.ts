@@ -240,4 +240,113 @@ export const diningService = {
       throw new Error("Failed to update menu item");
     }
   },
+  createRestaurantBooking: async (req: Request) => {
+    try {
+      const booking = req.body as RestaurantBookingCreationProps;
+
+      // 1. Create booking detail
+      const bookingDetail = await prisma.bookingDetail.create({
+        data: {
+          firstName: booking.firstName,
+          lastName: booking.lastName,
+          email: booking.email,
+          phone: booking.phone,
+          additionalNote: booking.additionalNote,
+        },
+      });
+
+      // 2. Create restaurant booking
+      const restaurantBooking = await prisma.restaurantBooking.create({
+        data: {
+          isActive: true,
+          subtotal: booking.subtotal,
+          tax: booking.tax,
+          total: booking.total,
+          bookingDetailId: bookingDetail.bookingDetailId,
+          resturantId: booking.resturantId,
+        },
+      });
+
+      // 3. Create booking items
+      if (booking.items && booking.items.length > 0) {
+        const bookingItems = booking.items.map((item) => ({
+          bookingId: restaurantBooking.bookingId,
+          menuItemId: item.menuItemId,
+          quantity: item.quantity,
+        }));
+
+        await prisma.diningBookingItem.createMany({
+          data: bookingItems,
+        });
+      }
+
+      // 4. Get the complete booking with items
+      const completeBooking = await prisma.restaurantBooking.findUnique({
+        where: { bookingId: restaurantBooking.bookingId },
+        include: {
+          DiningBookingItem: {
+            include: {
+              menuItem: true,
+            },
+          },
+          bookingDetail: true,
+          resturant: {
+            select: {
+              name: true,
+              location: true,
+            },
+          },
+        },
+      });
+
+      return {
+        status: "success",
+        message: "Restaurant booking created successfully",
+        data: {
+          bookingId: restaurantBooking.bookingId,
+          booking: completeBooking,
+        },
+      };
+    } catch (error) {
+      logger.error(error);
+      throw new Error("Failed to create restaurant booking");
+    }
+  },
+
+  // Get booking details
+  getBookingDetails: async (bookingId: string) => {
+    try {
+      const booking = await prisma.restaurantBooking.findUnique({
+        where: { bookingId },
+        include: {
+          DiningBookingItem: {
+            include: {
+              menuItem: true,
+            },
+          },
+          bookingDetail: true,
+          resturant: {
+            select: {
+              name: true,
+              location: true,
+              image: true,
+            },
+          },
+        },
+      });
+
+      if (!booking) {
+        throw new Error("Booking not found");
+      }
+
+      return {
+        status: "success",
+        message: "Booking details fetched successfully",
+        data: booking,
+      };
+    } catch (error) {
+      logger.error(error);
+      throw new Error("Failed to fetch booking details");
+    }
+  },
 };

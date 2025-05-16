@@ -151,7 +151,26 @@ export const diningApplicationStatus = async (req: Request, res: Response) => {
     res.status(500).json({
       status: "error",
       message:
-        error instanceof Error ? error.message : "Failed to fetched application status",
+        error instanceof Error
+          ? error.message
+          : "Failed to fetched application status",
+      data: null,
+    });
+  }
+};
+
+export const createRestaurantBooking = async (req: Request, res: Response) => {
+  try {
+    const result = await diningService.createRestaurantBooking(req);
+    res.status(201).json(result);
+  } catch (error) {
+    logger.error(error);
+    res.status(500).json({
+      status: "error",
+      message:
+        error instanceof Error
+          ? error.message
+          : "Failed to fetched application status",
       data: null,
     });
   }

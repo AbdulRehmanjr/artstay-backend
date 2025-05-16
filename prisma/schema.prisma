@@ -45,17 +45,18 @@ model SubCraft {
 }
 
 model BookingDetail {
-  bookingDetailId String           @id @default(cuid()) // Fixed the field name from bookingDetailid to bookingDetailId
-  firstName       String           @default("none")
-  lastName        String           @default("none")
-  email           String           @default("none")
-  phone           String           @default("none")
-  additionalNote  String           @default("none")
-  createdAt       DateTime         @default(now())
-  updatedAt       DateTime         @updatedAt
-  ArtisanBooking  ArtisanBooking[] // Added relation
-  SafariBooking   SafariBooking[]
-  FairBooking     FairBooking[]
+  bookingDetailId   String              @id @default(cuid())
+  firstName         String              @default("none")
+  lastName          String              @default("none")
+  email             String              @default("none")
+  phone             String              @default("none")
+  additionalNote    String              @default("none")
+  createdAt         DateTime            @default(now())
+  updatedAt         DateTime            @updatedAt
+  ArtisanBooking    ArtisanBooking[]
+  SafariBooking     SafariBooking[]
+  FairBooking       FairBooking[]
+  RestaurantBooking RestaurantBooking[]
 }
 
 /**
@@ -336,39 +337,72 @@ model Product {
  * RESTAURANT
  */
 model Restaurant {
-  restaurantId String     @id @default(cuid())
-  name         String
-  description  String
-  location     String
-  cuisine      String[]
-  priceRange   String
-  image        String
-  rating       Float      @default(0)
-  isActive     Boolean    @default(false)
-  accountId    String     @unique
-  account      Account    @relation(fields: [accountId], references: [userId], onDelete: Cascade, onUpdate: Cascade)
-  createdAt    DateTime   @default(now())
-  updatedAt    DateTime   @updatedAt
-  menu         MenuItem[]
+  restaurantId      String              @id @default(cuid())
+  name              String
+  description       String
+  location          String
+  cuisine           String[]
+  priceRange        String
+  image             String
+  rating            Float               @default(0)
+  isActive          Boolean             @default(false)
+  accountId         String              @unique
+  account           Account             @relation(fields: [accountId], references: [userId], onDelete: Cascade, onUpdate: Cascade)
+  createdAt         DateTime            @default(now())
+  updatedAt         DateTime            @updatedAt
+  menu              MenuItem[]
+  RestaurantBooking RestaurantBooking[]
 }
 
 model MenuItem {
-  menuItemId   String       @id @default(cuid())
-  name         String
-  description  String
-  price        Float
-  category     MenuCategory
-  isVegetarian Boolean      @default(false)
-  isVegan      Boolean      @default(false)
-  isGlutenFree Boolean      @default(false)
-  spicyLevel   Int          @default(0)
-  image        String
-  restaurantId String
-  restaurant   Restaurant   @relation(fields: [restaurantId], references: [restaurantId], onDelete: Cascade, onUpdate: Cascade)
-  createdAt    DateTime     @default(now())
-  updatedAt    DateTime     @updatedAt
+  menuItemId        String              @id @default(cuid())
+  name              String
+  description       String
+  price             Float
+  category          MenuCategory
+  isVegetarian      Boolean             @default(false)
+  isVegan           Boolean             @default(false)
+  isGlutenFree      Boolean             @default(false)
+  spicyLevel        Int                 @default(0)
+  image             String
+  restaurantId      String
+  restaurant        Restaurant          @relation(fields: [restaurantId], references: [restaurantId], onDelete: Cascade, onUpdate: Cascade)
+  createdAt         DateTime            @default(now())
+  updatedAt         DateTime            @updatedAt
+  DiningBookingItem DiningBookingItem[]
 
   @@index([restaurantId])
+}
+
+model RestaurantBooking {
+  bookingId       String   @id @default(cuid())
+  isActive        Boolean  @default(false)
+  subtotal        Float    @default(0)
+  tax             Float    @default(0)
+  total           Float    @default(0)
+  bookingDetailId String
+  resturantId     String
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+
+  resturant         Restaurant          @relation(fields: [resturantId], references: [restaurantId], onDelete: Cascade, onUpdate: Cascade)
+  bookingDetail     BookingDetail       @relation(fields: [bookingDetailId], references: [bookingDetailId], onDelete: Cascade, onUpdate: Cascade)
+  DiningBookingItem DiningBookingItem[]
+}
+
+model DiningBookingItem {
+  bookingItemId String @id @default(cuid())
+  quantity      Int    @default(0)
+  bookingId     String
+  menuItemId    String
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  booking  RestaurantBooking @relation(fields: [bookingId], references: [bookingId], onDelete: Cascade, onUpdate: Cascade)
+  menuItem MenuItem          @relation(fields: [menuItemId], references: [menuItemId], onDelete: Cascade, onUpdate: Cascade)
+
+  @@index([bookingId])
 }
 
 /**
