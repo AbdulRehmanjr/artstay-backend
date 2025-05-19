@@ -166,3 +166,20 @@ export const createFairBooking = async (req: Request, res: Response) => {
         });
     }
 }
+
+export const toggleFairStatus = async (req: Request, res: Response) => {
+  try {
+    const result = await fairService.toggleStatus(req);
+    res.status(201).json(result);
+  } catch (error) {
+    logger.error(error);
+    res.status(500).json({
+      status: "error",
+      message:
+        error instanceof Error
+          ? error.message
+          : "Failed to update travel planer",
+      data: null,
+    });
+  }
+};

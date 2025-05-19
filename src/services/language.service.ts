@@ -3,7 +3,7 @@ import { logger } from "~/utils/logger";
 
 export const languageService = {
 
- getApplicationStatus: async (accountId: string) => {
+  getApplicationStatus: async (accountId: string) => {
     try {
       const application = await prisma.languageService.findUnique({
         where: {
@@ -65,9 +65,6 @@ export const languageService = {
   getAllLanguageServices: async () => {
     try {
       const languageServices = await prisma.languageService.findMany({
-        where: {
-          isActive: true,
-        },
         orderBy: {
           createdAt: "desc",
         },
@@ -163,7 +160,7 @@ export const languageService = {
     status: boolean
   ) => {
     try {
-      const languageService = await prisma.languageService.update({
+      await prisma.languageService.update({
         where: {
           languageServiceId: languageServiceId,
         },
@@ -175,11 +172,52 @@ export const languageService = {
       return {
         status: "success",
         message: "Language service status updated successfully",
-        data: languageService,
+        data: null,
       };
     } catch (error) {
       logger.error(error);
       throw new Error("Failed to update language service status");
+    }
+  },
+  createBooking: async (bookingData: LanguageServiceBookingInput) => {
+    try {
+      // First create the booking detail
+      const bookingDetail = await prisma.bookingDetail.create({
+        data: {
+          firstName: bookingData.firstName,
+          lastName: bookingData.lastName,
+          email: bookingData.email,
+          phone: bookingData.phone,
+          additionalNote: bookingData.additionalNote,
+        }
+      })
+  
+      // Then create the language service booking
+      const languageBooking = await prisma.languageServiceBooking.create({
+        data: {
+          bookingDate: bookingData.bookingDate,
+          bookingTime: bookingData.bookingTime,
+          hours: bookingData.hours,
+          sourceLanguage: bookingData.sourceLanguage,
+          targetLanguage: bookingData.targetLanguage,
+          totalAmount: bookingData.totalAmount,
+          languageServiceId: bookingData.languageServiceId,
+          bookingDetailId: bookingDetail.bookingDetailId,
+          status: "new"
+        }
+      })
+  
+      return {
+        status: 'success',
+        message: 'Language service booking created successfully',
+        data: {
+          bookingId: languageBooking.languageBookingId,
+          bookingDetailId: bookingDetail.bookingDetailId
+        }
+      }
+    } catch (error) {
+      logger.error(error)
+      throw new Error('Failed to create language service booking')
     }
   },
 };

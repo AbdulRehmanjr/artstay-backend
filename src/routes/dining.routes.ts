@@ -1,5 +1,5 @@
 import { Router } from 'express';
-import { createMenuItem, createRestaurantBooking, diningApplicationStatus, getAllRestaurants, getAllRestaurantsFilters, getAllRestaurantsPagination, getMenuItemsByRestaurant, restaurantDetailByAccountId, restaurantDetailByRestaurantId, updateMenuItem } from '~/controllers/dining.controller';
+import { createMenuItem, createRestaurantBooking, diningApplicationStatus, getAllRestaurants, getAllRestaurantsFilters, getAllRestaurantsPagination, getMenuItemsByRestaurant, restaurantDetailByAccountId, restaurantDetailByRestaurantId, updateMenuItem, updateDiningStatus } from '~/controllers/dining.controller';
 import { validate } from '~/middlewares/zod.middleware';
 import { createMenuItemSchema, updateMenuItemSchema } from '~/schemas/dining';
 
@@ -15,6 +15,7 @@ router.get('/:accountId', restaurantDetailByAccountId)
 
 router.post('/create-booking',createRestaurantBooking)
 router.post('/menu', validate(createMenuItemSchema), createMenuItem)
+router.patch('/toggle-status', updateDiningStatus)
 router.patch('/menu/:menuItemId', validate(updateMenuItemSchema), updateMenuItem)
 
 export const diningRouter = router;

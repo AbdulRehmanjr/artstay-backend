@@ -67,8 +67,7 @@ export const getLanguageServiceFilters = async (req: Request, res: Response) => 
 
 export const toggleLanguageServiceStatus = async (req: Request, res: Response) => {
     try {
-        const { languageServiceId } = req.params;
-        const { status } = req.body;
+        const { status,languageServiceId } = req.body;
         const result = await languageService.toggleLanguageServiceStatus(languageServiceId, status);
         res.status(200).json(result);
     } catch (error) {
@@ -80,3 +79,17 @@ export const toggleLanguageServiceStatus = async (req: Request, res: Response) =
         });
     }
 };
+
+export const createLanguageBooking = async (req: Request, res: Response) => {
+    try {
+        const result = await languageService.createBooking(req.body)
+        res.status(201).json(result);
+    } catch (error) {
+        logger.error(error)
+        res.status(500).json({
+            status: 'error',
+            message: error instanceof Error ? error.message : 'Failed to fetch fair details',
+            data: null
+        });
+    }
+}

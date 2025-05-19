@@ -349,4 +349,26 @@ export const diningService = {
       throw new Error("Failed to fetch booking details");
     }
   },
+
+  toggleStatus: async (req: Request) => {
+    try {
+      const { restaurantId, status } = req.body;
+      await prisma.restaurant.update({
+        where: {
+          restaurantId: restaurantId,
+        },
+        data: {
+          isActive: status,
+        },
+      });
+      return {
+        status: "success",
+        message: "restaurant toggle status",
+        data: null,
+      };
+    } catch (error) {
+      logger.error(error);
+      throw new Error("Failed to toggle restaurant status");
+    }
+  },
 };

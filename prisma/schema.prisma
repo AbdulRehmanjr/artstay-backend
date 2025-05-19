@@ -45,18 +45,19 @@ model SubCraft {
 }
 
 model BookingDetail {
-  bookingDetailId   String              @id @default(cuid())
-  firstName         String              @default("none")
-  lastName          String              @default("none")
-  email             String              @default("none")
-  phone             String              @default("none")
-  additionalNote    String              @default("none")
-  createdAt         DateTime            @default(now())
-  updatedAt         DateTime            @updatedAt
-  ArtisanBooking    ArtisanBooking[]
-  SafariBooking     SafariBooking[]
-  FairBooking       FairBooking[]
-  RestaurantBooking RestaurantBooking[]
+  bookingDetailId        String                   @id @default(cuid())
+  firstName              String                   @default("none")
+  lastName               String                   @default("none")
+  email                  String                   @default("none")
+  phone                  String                   @default("none")
+  additionalNote         String                   @default("none")
+  createdAt              DateTime                 @default(now())
+  updatedAt              DateTime                 @updatedAt
+  ArtisanBooking         ArtisanBooking[]
+  SafariBooking          SafariBooking[]
+  FairBooking            FairBooking[]
+  RestaurantBooking      RestaurantBooking[]
+  LanguageServiceBooking LanguageServiceBooking[]
 }
 
 /**
@@ -601,32 +602,58 @@ model BlockDate {
  */
 
 model LanguageService {
-  languageServiceId String   @id @default(cuid())
-  profileName       String   @default("none")
-  firstName         String   @default("none")
-  lastName          String   @default("none")
-  description       String   @default("none") @db.Text
-  experience        String   @default("none")
-  languages         String[] @default([])
-  specialization    String[] @default([])
-  hourlyRate        Float    @default(0)
-  minBookingHours   Int      @default(1)
-  maxBookingHours   Int      @default(8)
-  availability      String[] @default([])
-  startTime         String   @default("09:00")
-  endTime           String   @default("18:00")
-  location          String   @default("none")
-  serviceMode       String[] @default([])
-  certification     String[] @default([])
-  qualification     String   @default("none")
-  profileImage      String   @default("none")
-  portfolio         String[] @default([])
-  rating            Float    @default(0)
-  isActive          Boolean  @default(false)
-  accountId         String   @unique
-  account           Account  @relation(fields: [accountId], references: [userId], onDelete: Cascade, onUpdate: Cascade)
-  createdAt         DateTime @default(now())
-  updatedAt         DateTime @updatedAt
+  languageServiceId      String                   @id @default(cuid())
+  profileName            String                   @default("none")
+  firstName              String                   @default("none")
+  lastName               String                   @default("none")
+  description            String                   @default("none") @db.Text
+  experience             String                   @default("none")
+  languages              String[]                 @default([])
+  specialization         String[]                 @default([])
+  hourlyRate             Float                    @default(0)
+  minBookingHours        Int                      @default(1)
+  maxBookingHours        Int                      @default(8)
+  availability           String[]                 @default([])
+  startTime              String                   @default("09:00")
+  endTime                String                   @default("18:00")
+  location               String                   @default("none")
+  serviceMode            String[]                 @default([])
+  certification          String[]                 @default([])
+  qualification          String                   @default("none")
+  profileImage           String                   @default("none")
+  portfolio              String[]                 @default([])
+  rating                 Float                    @default(0)
+  isActive               Boolean                  @default(false)
+  accountId              String                   @unique
+  account                Account                  @relation(fields: [accountId], references: [userId], onDelete: Cascade, onUpdate: Cascade)
+  createdAt              DateTime                 @default(now())
+  updatedAt              DateTime                 @updatedAt
+  LanguageServiceBooking LanguageServiceBooking[]
+}
+
+model LanguageServiceBooking {
+  languageBookingId String @id @default(cuid())
+  bookingDate       String @default("none")
+  bookingTime       String @default("none")
+  hours             Int    @default(1)
+  sourceLanguage    String @default("none")
+  targetLanguage    String @default("none")
+  totalAmount       Float  @default(0)
+  status            String @default("new")
+
+  // Required relations
+  languageServiceId String
+  bookingDetailId   String
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  // Relations
+  languageService LanguageService @relation(fields: [languageServiceId], references: [languageServiceId], onDelete: Cascade, onUpdate: Cascade)
+  bookingDetail   BookingDetail   @relation(fields: [bookingDetailId], references: [bookingDetailId], onDelete: Cascade, onUpdate: Cascade)
+
+  @@index([languageServiceId])
+  @@index([bookingDate])
 }
 
 /**

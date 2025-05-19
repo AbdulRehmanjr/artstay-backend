@@ -879,3 +879,19 @@ type LanguageServiceFilterOptions = {
   serviceModes: string[];
   priceRanges: string[];
 };
+
+
+type LanguageServiceBookingInput =  {
+  firstName: string;
+  lastName: string;
+  email: string;
+  phone: string;
+  additionalNote: string;
+  bookingDate: string;
+  bookingTime: string;
+  hours: number;
+  sourceLanguage: string;
+  targetLanguage: string;
+  totalAmount: number;
+  languageServiceId: string;
+}

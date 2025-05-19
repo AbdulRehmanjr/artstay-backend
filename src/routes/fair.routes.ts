@@ -10,6 +10,7 @@ import {
   getEventById,
   getFairEvents,
   updateFairEvent,
+  toggleFairStatus,
 } from "~/controllers/fair.controller";
 import { validate } from "~/middlewares/zod.middleware";
 import { FairEventSchema, UpdateFairEventSchema } from "~/schemas/fair";
@@ -24,7 +25,7 @@ router.get("/pagination", getAllFairsPagination);
 router.get("/application-status/:accountId", fairApplicationStatus);
 router.get("/:fairId", fairDetailById);
 
-router.put("/toggle-status");
+router.put("/toggle-status",toggleFairStatus);
 router.post('/create-booking',createFairBooking)
 router.post("/event", validate(FairEventSchema), createFairEvent);
 router.patch("/event", validate(UpdateFairEventSchema), updateFairEvent);

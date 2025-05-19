@@ -175,3 +175,17 @@ export const createRestaurantBooking = async (req: Request, res: Response) => {
     });
   }
 };
+
+export const updateDiningStatus = async (req: Request, res: Response) => {
+  try {
+    const result = await diningService.toggleStatus(req);
+    res.status(200).json(result);
+  } catch (error) {
+    logger.error(error);
+    res.status(500).json({
+      status: "error",
+      message: error instanceof Error ? error.message : "Failed to update dining status",
+      data: null,
+    });
+  }
+};
