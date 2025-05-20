@@ -21,6 +21,7 @@ model Account {
   TravelPlaner    TravelPlaner?
   Hotel           Hotel?
   LanguageService LanguageService?
+  CraftDocumentor CraftDocumentor?
 }
 
 model Craft {
@@ -58,6 +59,7 @@ model BookingDetail {
   FairBooking            FairBooking[]
   RestaurantBooking      RestaurantBooking[]
   LanguageServiceBooking LanguageServiceBooking[]
+  TravelBooking          TravelBooking[]
 }
 
 /**
@@ -410,20 +412,21 @@ model DiningBookingItem {
  * TRAVEL PLANER
  */
 model TravelPlaner {
-  travelPlanerId String       @id @default(cuid())
-  name           String       @default("none")
-  dp             String       @default("none")
-  description    String       @default("none")
-  location       String       @default("none")
-  priceRange     String       @default("none")
-  language       String[]     @default([])
-  speciality     String[]     @default([])
-  isActive       Boolean      @default(false)
-  createdAt      DateTime     @default(now())
-  updatedAt      DateTime     @updatedAt
-  accountId      String       @unique
-  account        Account      @relation(fields: [accountId], references: [userId], onDelete: Cascade, onUpdate: Cascade)
+  travelPlanerId String          @id @default(cuid())
+  name           String          @default("none")
+  dp             String          @default("none")
+  description    String          @default("none")
+  location       String          @default("none")
+  priceRange     String          @default("none")
+  language       String[]        @default([])
+  speciality     String[]        @default([])
+  isActive       Boolean         @default(false)
+  createdAt      DateTime        @default(now())
+  updatedAt      DateTime        @updatedAt
+  accountId      String          @unique
+  account        Account         @relation(fields: [accountId], references: [userId], onDelete: Cascade, onUpdate: Cascade)
   TravelTour     TravelTour[]
+  TravelBooking  TravelBooking[]
 }
 
 model TravelTour {
@@ -442,7 +445,34 @@ model TravelTour {
   createdAt        DateTime @default(now())
   updatedAt        DateTime @updatedAt
 
-  travelPlaner TravelPlaner @relation(fields: [travelPlanerId], references: [travelPlanerId], onDelete: Cascade, onUpdate: Cascade)
+  travelPlaner  TravelPlaner    @relation(fields: [travelPlanerId], references: [travelPlanerId], onDelete: Cascade, onUpdate: Cascade)
+  TravelBooking TravelBooking[]
+}
+
+model TravelBooking {
+  travelBookingId String @id @default(cuid())
+  startDate       String @default("none")
+  endDate         String @default("none")
+  numberOfPeople  Int    @default(1)
+  totalAmount     Float  @default(0)
+  status          String @default("new")
+
+  // Required relations
+  tourId          String
+  travelPlanerId  String
+  bookingDetailId String
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  // These relations would need to be added to your schema
+  tour          TravelTour    @relation(fields: [tourId], references: [tourId], onDelete: Cascade, onUpdate: Cascade)
+  travelPlaner  TravelPlaner  @relation(fields: [travelPlanerId], references: [travelPlanerId], onDelete: Cascade, onUpdate: Cascade)
+  bookingDetail BookingDetail @relation(fields: [bookingDetailId], references: [bookingDetailId], onDelete: Cascade, onUpdate: Cascade)
+
+  @@index([tourId])
+  @@index([travelPlanerId])
+  @@index([startDate])
 }
 
 /**
@@ -657,6 +687,47 @@ model LanguageServiceBooking {
 }
 
 /**
+ * Documentor
+ */
+
+model CraftDocumentor {
+  documentorId       String   @id @default(cuid())
+  firstName          String   @default("none")
+  lastName           String   @default("none")
+  profileImage       String   @default("none")
+  bio                String   @default("none") @db.Text
+  expertise          String[] @default([])
+  location           String   @default("none")
+  equipment          String[] @default([])
+  yearsOfExperience  Int      @default(0)
+  documentationStyle String[] @default([])
+  mediaTypes         String[] @default([])
+  portfolioLinks     String[] @default([])
+  isActive           Boolean  @default(false)
+  accountId          String   @unique
+  createdAt          DateTime @default(now())
+  updatedAt          DateTime @updatedAt
+
+  // Relations
+  account          Account           @relation(fields: [accountId], references: [userId], onDelete: Cascade, onUpdate: Cascade)
+  documentedCrafts DocumentedCraft[]
+}
+
+model DocumentedCraft {
+  craftId      String   @id @default(cuid())
+  craftName    String   @default("none")
+  region       String   @default("none")
+  description  String   @default("none") @db.Text
+  mediaUrls    String[] @default([])
+  documentorId String
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+
+  // Relations
+  documentor CraftDocumentor @relation(fields: [documentorId], references: [documentorId], onDelete: Cascade, onUpdate: Cascade)
+}
+
+/**
  * ENUMS
  */
 
@@ -719,6 +790,7 @@ enum AccountType {
   RESTAURANT
   TRAVEL_PLANER
   LANGUAGE
+  CRAFT_DOCUMENTOR
   SUPERADMIN
   ARTISAN_ADMIN
   SAFARI_ADMIN
@@ -728,4 +800,5 @@ enum AccountType {
   RESTAURANT_ADMIN
   TRAVEL_PLANER_ADMIN
   LANGUAGE_ADMIN
+  CRAFT_DOCUMENTOR_ADMIN
 }

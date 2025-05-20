@@ -2,10 +2,25 @@ import { Request, Response } from 'express';
 import { travelService } from '~/services/travel.service';
 import { logger } from '~/utils/logger';
 
-export const travelDetailByAccountId = async (req: Request, res: Response) => {
+export const getTravelProfileByAccountId = async (req: Request, res: Response) => {
     try {
         const { accountId } = req.params
         const result = await travelService.getTravelProfileByAccountId(accountId)
+        res.status(201).json(result);
+    } catch (error) {
+        logger.error(error)
+        res.status(500).json({
+            status: 'error',
+            message: error instanceof Error ? error.message : 'Failed to fetch travel profile',
+            data: null
+        });
+    }
+}
+
+export const getTravelProfileDetailById = async (req: Request, res: Response) => {
+    try {
+        const { travelPlannerId } = req.params
+        const result = await travelService.getTravelProfileDetailById(travelPlannerId)
         res.status(201).json(result);
     } catch (error) {
         logger.error(error)

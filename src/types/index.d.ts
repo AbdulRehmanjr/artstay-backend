@@ -17,10 +17,9 @@ type AccountTypeEnum =
   | "RESTAURANT_ADMIN"
   | "TRAVEL_PLANER_ADMIN"
   | "LANGUAGE_ADMIN"
-  ;
 
 type AccountProps = {
-  userId: string;
+  userId: string
   email: string;
   password: string;
   accountType: AccountTypeEnum;
@@ -223,7 +222,7 @@ type SafariBookingInput = {
   email: string;
   phone: string;
   additionalNote: string;
-  
+
   tourDate: string;
   numberOfGuests: number;
   totalAmount: number;
@@ -287,7 +286,7 @@ type FairEventCreationProps = {
   accountId: string;
 };
 
- type FairBookingInput = {
+type FairBookingInput = {
   firstName: string;
   lastName: string;
   email: string;
@@ -615,7 +614,6 @@ type RestaurantBookingCreationProps = {
   }[];
 };
 
-
 type MenuCategory = "STARTER" | "MAIN_COURSE" | "DESSERT" | "BEVERAGE";
 
 type MenuItemProps = {
@@ -828,8 +826,8 @@ type LanguageServiceCreationProps = {
   profileName: string;
   firstName: string;
   lastName: string;
-  email : string
-  password:string
+  email: string;
+  password: string;
   description: string;
   experience: string;
   languages: string[];
@@ -846,7 +844,7 @@ type LanguageServiceCreationProps = {
   qualification: string;
   profileImage: string;
   portfolio: string[];
-  accountId:string
+  accountId: string;
 };
 
 type LanguageServiceUpdateProps = {
@@ -880,8 +878,7 @@ type LanguageServiceFilterOptions = {
   priceRanges: string[];
 };
 
-
-type LanguageServiceBookingInput =  {
+type LanguageServiceBookingInput = {
   firstName: string;
   lastName: string;
   email: string;
@@ -894,4 +891,40 @@ type LanguageServiceBookingInput =  {
   targetLanguage: string;
   totalAmount: number;
   languageServiceId: string;
+};
+
+type TravelBookingCreationProps = {
+  travelPlanerId: string
+  tourId: string
+  startDate: string
+  endDate: string
+  numberOfPeople: number
+  firstName: string
+  lastName: string
+  email: string
+  phone: string
+  additionalRequests: string
+  totalAmount: number
+}
+
+
+type CraftDocumentorInput = {
+  firstName: string;
+  lastName: string;
+  profileImage?: string;
+  bio: string;
+  expertise: string[];
+  location: string;
+  equipment: string[];
+  yearsOfExperience: number;
+  documentationStyle: string[];
+  mediaTypes: string[];
+  accountId: string;
+  portfolioLinks?: string[];
+  documentedCrafts?: {
+    craftName: string;
+    region: string;
+    description: string;
+    mediaUrls?: string[];
+  }[];
 }

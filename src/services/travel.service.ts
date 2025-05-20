@@ -38,6 +38,26 @@ export const travelService = {
       throw new Error("Failed to fetch travel profile");
     }
   },
+  getTravelProfileDetailById: async (travelPlannerId: string) => {
+    try {
+      const travel = await prisma.travelPlaner.findUnique({
+        where: {
+          travelPlanerId: travelPlannerId,
+        },
+        include: {
+          TravelTour: true,
+        },
+      });
+      return {
+        status: "success",
+        message: "travel profile",
+        data: travel,
+      };
+    } catch (error) {
+      logger.error(error);
+      throw new Error("Failed to fetch travel profile");
+    }
+  },
   createTravelTour: async (travelTour: TravelTourCreationProps) => {
     try {
       const travelPlaner = await prisma.travelPlaner.findUnique({
@@ -266,6 +286,40 @@ export const travelService = {
     } catch (error) {
       logger.error(error);
       throw new Error("Failed to fetch travel planner filters");
+    }
+  },
+
+  createTravelBooking: async (req: Request) => {
+    try {
+      const booking = req.body as TravelBookingCreationProps;
+
+      const bookingDetail = await prisma.bookingDetail.create({
+        data: {
+          firstName: booking.firstName,
+          lastName: booking.lastName,
+          email: booking.email,
+          phone: booking.phone,
+          additionalNote: booking.additionalRequests,
+        },
+      });
+      await prisma.travelBooking.create({
+        data: {
+          bookingDetailId: bookingDetail.bookingDetailId,
+          startDate: booking.startDate,
+          endDate: booking.endDate,
+          tourId: booking.tourId,
+          totalAmount: booking.totalAmount,
+          travelPlanerId: booking.travelPlanerId,
+        },
+      });
+      return {
+        status: "success",
+        message: "artisan toggle status",
+        data: null,
+      };
+    } catch (error) {
+      logger.error(error);
+      throw new Error("Failed to fetch application status");
     }
   },
 };
