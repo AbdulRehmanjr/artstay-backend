@@ -156,20 +156,20 @@ export const getSafariBookingById = async (req: Request, res: Response) => {
     }
 }
 
-export const getAllSafariBookings = async (req: Request, res: Response) => {
-    try {
-        const { safariId } = req.query
-        const result = await safariService.getAllSafariBookings(safariId as string)
-        res.status(200).json(result);
-    } catch (error) {
-        logger.error(error)
-        res.status(500).json({
-            status: 'error',
-            message: error instanceof Error ? error.message : 'Failed to fetch bookings',
-            data: null
-        });
-    }
-}
+// export const getAllSafariBookings = async (req: Request, res: Response) => {
+//     try {
+//         const { safariId } = req.query
+//         const result = await safariService.getAllSafariBookings(safariId as string)
+//         res.status(200).json(result);
+//     } catch (error) {
+//         logger.error(error)
+//         res.status(500).json({
+//             status: 'error',
+//             message: error instanceof Error ? error.message : 'Failed to fetch bookings',
+//             data: null
+//         });
+//     }
+// }
 
 export const updateBookingStatus = async (req: Request, res: Response) => {
     try {
@@ -186,3 +186,18 @@ export const updateBookingStatus = async (req: Request, res: Response) => {
         });
     }
 }
+
+export const getAllSafariBookings = async (req: Request, res: Response) => {
+  try {
+    const result = await safariService.getAllSafariBookings(req.params.accountId);
+    
+    res.status(200).json(result);
+  } catch (error) {
+    logger.error(error);
+    res.status(500).json({
+      status: "error",
+      message: error instanceof Error ? error.message : "Failed to fetch safari bookings",
+      data: null,
+    });
+  }
+};

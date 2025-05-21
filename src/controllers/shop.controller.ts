@@ -145,3 +145,20 @@ export const shopApplicationStatus = async (req: Request, res: Response) => {
     throw new Error("fair applcaition status error");
   }
 };
+
+export const createShopOrder = async (req: Request, res: Response) => {
+  try {
+    const result = await shopService.createShopOrder(req);
+    res.status(201).json(result);
+  } catch (error) {
+    logger.error(error);
+    res.status(500).json({
+      status: "error",
+      message:
+        error instanceof Error
+          ? error.message
+          : "Failed to create shop order",
+      data: null,
+    });
+  }
+};

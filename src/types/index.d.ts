@@ -907,7 +907,6 @@ type TravelBookingCreationProps = {
   totalAmount: number
 }
 
-
 type CraftDocumentorInput = {
   firstName: string;
   lastName: string;
@@ -928,3 +927,22 @@ type CraftDocumentorInput = {
     mediaUrls?: string[];
   }[];
 }
+
+type ShopOrderCreationProps = {
+  firstName: string;
+  lastName: string;
+  email: string;
+  phone: string;
+  address: string;
+  city: string;
+  additionalNote?: string;
+  shopId: string;
+  subtotal: number;
+  tax: number;
+  shipping: number;
+  total: number;
+  items: Array<{
+    productId: string;
+    quantity: number;
+  }>;
+};

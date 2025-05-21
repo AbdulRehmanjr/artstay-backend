@@ -312,8 +312,6 @@ export const diningService = {
       throw new Error("Failed to create restaurant booking");
     }
   },
-
-  // Get booking details
   getBookingDetails: async (bookingId: string) => {
     try {
       const booking = await prisma.restaurantBooking.findUnique({
@@ -369,6 +367,63 @@ export const diningService = {
     } catch (error) {
       logger.error(error);
       throw new Error("Failed to toggle restaurant status");
+    }
+  },
+   getAllRestaurantBookings: async (restaurantId: string) => {
+    try {
+      // Get all bookings for this restaurant, optimized for client-side processing
+      const bookings = await prisma.restaurantBooking.findMany({
+        where: {
+          resturantId: restaurantId,
+        },
+        orderBy: {
+          createdAt: 'desc', // Default newest first
+        },
+        include: {
+          // Only include the fields we need
+          bookingDetail: {
+            select: {
+              bookingDetailId: true,
+              firstName: true,
+              lastName: true,
+              email: true,
+              phone: true,
+              additionalNote: true,
+            },
+          },
+          resturant: {
+            select: {
+              restaurantId: true,
+              name: true,
+              location: true,
+              cuisine: true,
+              priceRange: true,
+            },
+          },
+          DiningBookingItem: {
+            select: {
+              bookingItemId: true,
+              quantity: true,
+              menuItem: {
+                select: {
+                  menuItemId: true,
+                  name: true,
+                  price: true,
+                  category: true,
+                }
+              }
+            }
+          }
+        },
+      });      
+      return {
+        status: "success",
+        message: "Restaurant bookings fetched successfully",
+        data: bookings,
+      };
+    } catch (error) {
+      logger.error(error);
+      throw new Error("Failed to fetch restaurant bookings");
     }
   },
 };

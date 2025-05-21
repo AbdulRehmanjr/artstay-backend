@@ -3,47 +3,47 @@ import { logger } from "~/utils/logger";
 import { Request } from "express";
 
 export const fairService = {
-   createFairBooking: async (bookingData: FairBookingInput) => {
-        try {
-            // First create the booking detail
-            const bookingDetail = await prisma.bookingDetail.create({
-                data: {
-                    firstName: bookingData.firstName,
-                    lastName: bookingData.lastName,
-                    email: bookingData.email,
-                    phone: bookingData.phone,
-                    additionalNote: bookingData.additionalNote,
-                }
-            })
-            
-            // Then create the fair booking
-            const fairBooking = await prisma.fairBooking.create({
-                data: {
-                    eventDate: bookingData.eventDate,
-                    numberOfTickets: bookingData.numberOfTickets,
-                    ticketType: bookingData.ticketType,
-                    totalAmount: bookingData.totalAmount,
-                    eventId: bookingData.eventId,
-                    fairId: bookingData.fairId,
-                    bookingDetailId: bookingDetail.bookingDetailId,
-                    status: "new"
-                }
-            })
-            
-            return {
-                status: 'success',
-                message: 'Fair booking created successfully',
-                data: {
-                    bookingId: fairBooking.fairBookingId,
-                    bookingDetailId: bookingDetail.bookingDetailId
-                }
-            }
-        } catch (error) {
-            logger.error(error)
-            throw new Error('Failed to create fair booking')
-        }
-    },
-    
+  createFairBooking: async (bookingData: FairBookingInput) => {
+    try {
+      // First create the booking detail
+      const bookingDetail = await prisma.bookingDetail.create({
+        data: {
+          firstName: bookingData.firstName,
+          lastName: bookingData.lastName,
+          email: bookingData.email,
+          phone: bookingData.phone,
+          additionalNote: bookingData.additionalNote,
+        },
+      });
+
+      // Then create the fair booking
+      const fairBooking = await prisma.fairBooking.create({
+        data: {
+          eventDate: bookingData.eventDate,
+          numberOfTickets: bookingData.numberOfTickets,
+          ticketType: bookingData.ticketType,
+          totalAmount: bookingData.totalAmount,
+          eventId: bookingData.eventId,
+          fairId: bookingData.fairId,
+          bookingDetailId: bookingDetail.bookingDetailId,
+          status: "new",
+        },
+      });
+
+      return {
+        status: "success",
+        message: "Fair booking created successfully",
+        data: {
+          bookingId: fairBooking.fairBookingId,
+          bookingDetailId: bookingDetail.bookingDetailId,
+        },
+      };
+    } catch (error) {
+      logger.error(error);
+      throw new Error("Failed to create fair booking");
+    }
+  },
+
   getApplicationStatus: async (accountId: string) => {
     try {
       const application = await prisma.fair.findUnique({
@@ -285,6 +285,61 @@ export const fairService = {
     } catch (error) {
       logger.error(error);
       throw new Error("Failed to fetch fair details");
+    }
+  },
+
+  getAllFairBookings: async (accountId: string) => {
+    try {
+      // Get all bookings for this fair, optimized for client-side processing
+      const bookings = await prisma.fairBooking.findMany({
+        where: {
+          fair: {
+            accountId: accountId,
+          },
+        },
+        orderBy: {
+          createdAt: "desc", // Default newest first
+        },
+        include: {
+          // Only include the fields we need
+          bookingDetail: {
+            select: {
+              bookingDetailId: true,
+              firstName: true,
+              lastName: true,
+              email: true,
+              phone: true,
+              additionalNote: true,
+            },
+          },
+          event: {
+            select: {
+              eventId: true,
+              title: true,
+              location: true,
+              vanue: true,
+              fairType: true,
+              organizer: true,
+            },
+          },
+          fair: {
+            select: {
+              fairId: true,
+              firstName: true,
+              lastName: true,
+            },
+          },
+        },
+      });
+
+      return {
+        status: "success",
+        message: "Fair bookings fetched successfully",
+        data: bookings,
+      };
+    } catch (error) {
+      logger.error(error);
+      throw new Error("Failed to fetch fair bookings");
     }
   },
 };

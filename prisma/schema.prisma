@@ -52,6 +52,9 @@ model BookingDetail {
   email                  String                   @default("none")
   phone                  String                   @default("none")
   additionalNote         String                   @default("none")
+  address                String                   @default("none")
+  city                   String                   @default("none")
+  postalCode             String                   @default("none")
   createdAt              DateTime                 @default(now())
   updatedAt              DateTime                 @updatedAt
   ArtisanBooking         ArtisanBooking[]
@@ -60,6 +63,7 @@ model BookingDetail {
   RestaurantBooking      RestaurantBooking[]
   LanguageServiceBooking LanguageServiceBooking[]
   TravelBooking          TravelBooking[]
+  ShopOrder              ShopOrder[]
 }
 
 /**
@@ -126,12 +130,10 @@ model ArtisanBooking {
   updatedAt        DateTime @updatedAt
   status           String   @default("new")
 
-  // Added required relations
   packageId       String
   artisanId       String
   bookingDetailId String
 
-  // Define the relations to other models
   package       ArtisanPackage @relation(fields: [packageId], references: [packageId], onDelete: Cascade, onUpdate: Cascade)
   artisan       Artisan        @relation(fields: [artisanId], references: [artisanId], onDelete: Cascade, onUpdate: Cascade)
   bookingDetail BookingDetail  @relation(fields: [bookingDetailId], references: [bookingDetailId], onDelete: Cascade, onUpdate: Cascade)
@@ -201,7 +203,6 @@ model SafariBooking {
 }
 
 /**
- * *
  * FAIR
  */
 
@@ -310,8 +311,9 @@ model Shop {
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 
-  account  Account   @relation(fields: [accountId], references: [userId], onDelete: Cascade, onUpdate: Cascade)
-  products Product[]
+  account   Account     @relation(fields: [accountId], references: [userId], onDelete: Cascade, onUpdate: Cascade)
+  products  Product[]
+  ShopOrder ShopOrder[]
 }
 
 model Product {
@@ -333,7 +335,46 @@ model Product {
   createdAt   DateTime @default(now())
   updatedAt   DateTime @updatedAt
 
-  shop Shop @relation(fields: [shopId], references: [shopId], onDelete: Cascade, onUpdate: Cascade)
+  shop          Shop            @relation(fields: [shopId], references: [shopId], onDelete: Cascade, onUpdate: Cascade)
+  ShopOrderItem ShopOrderItem[]
+}
+
+model ShopOrder {
+  orderId         String   @id @default(cuid())
+  isActive        Boolean  @default(true)
+  status          String   @default("new")
+  subtotal        Float    @default(0)
+  tax             Float    @default(0)
+  shipping        Float    @default(0)
+  total           Float    @default(0)
+  shopId          String
+  bookingDetailId String
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+
+  // Relations
+  shop          Shop            @relation(fields: [shopId], references: [shopId], onDelete: Cascade, onUpdate: Cascade)
+  bookingDetail BookingDetail   @relation(fields: [bookingDetailId], references: [bookingDetailId])
+  orderItems    ShopOrderItem[]
+
+  @@index([shopId])
+}
+
+model ShopOrderItem {
+  orderItemId String   @id @default(cuid())
+  quantity    Int      @default(1)
+  price       Float    @default(0)
+  orderId     String
+  productId   String
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  // Relations
+  order   ShopOrder @relation(fields: [orderId], references: [orderId], onDelete: Cascade, onUpdate: Cascade)
+  product Product   @relation(fields: [productId], references: [productId], onDelete: Cascade, onUpdate: Cascade)
+
+  @@index([orderId])
+  @@index([productId])
 }
 
 /**

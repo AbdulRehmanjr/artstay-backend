@@ -271,4 +271,117 @@ export const shopService = {
       throw new Error("Failed to get product");
     }
   },
+  createShopOrder: async (req: Request) => {
+    try {
+      const order = req.body as ShopOrderCreationProps;
+
+      // Start a transaction to ensure all operations succeed or fail together
+      return await prisma.$transaction(async (tx) => {
+        // 1. Create order detail
+        const orderDetail = await tx.bookingDetail.create({
+          data: {
+            firstName: order.firstName,
+            lastName: order.lastName,
+            email: order.email,
+            phone: order.phone,
+            additionalNote: order.additionalNote || "",
+          },
+        });
+
+        // 2. Create shop order
+        const shopOrder = await tx.shopOrder.create({
+          data: {
+            isActive: true,
+            status: "new",
+            subtotal: order.subtotal,
+            tax: order.tax,
+            shipping: order.shipping,
+            total: order.total,
+            bookingDetailId: orderDetail.bookingDetailId, // Fixed typo in field name
+            shopId: order.shopId,
+          },
+        });
+
+        // 3. Get product details for each item to save the correct price and update stock
+        const products = await tx.product.findMany({
+          where: {
+            productId: {
+              in: order.items.map((item) => item.productId),
+            },
+          },
+          select: {
+            productId: true,
+            price: true,
+            stock: true,
+            name: true,
+          },
+        });
+
+        const productPriceMap = new Map(
+          products.map((product) => [product.productId, product.price])
+        );
+
+        // Check if any products are out of stock
+        for (const item of order.items) {
+          const product = products.find((p) => p.productId === item.productId);
+
+          if (!product) {
+            throw new Error(`Product with ID ${item.productId} not found`);
+          }
+
+          if (product.stock < item.quantity) {
+            throw new Error(
+              `Insufficient stock for product "${product.name}". Available: ${product.stock}, Requested: ${item.quantity}`
+            );
+          }
+        }
+
+        // 4. Create order items
+        if (order.items && order.items.length > 0) {
+          const orderItems = order.items.map((item) => ({
+            orderId: shopOrder.orderId,
+            productId: item.productId,
+            quantity: item.quantity,
+            price: productPriceMap.get(item.productId) || 0,
+          }));
+
+          await tx.shopOrderItem.createMany({
+            data: orderItems,
+          });
+
+          // 5. Update stock for each product
+          for (const item of order.items) {
+            const product = products.find(
+              (p) => p.productId === item.productId
+            );
+            if (product) {
+              await tx.product.update({
+                where: { productId: item.productId },
+                data: {
+                  stock: product.stock - item.quantity,
+                  // If stock reaches 0, mark product as unavailable
+                  isAvailable: product.stock - item.quantity > 0,
+                },
+              });
+            }
+          }
+        }
+
+        return {
+          status: "success",
+          message: "Shop order created successfully",
+          data: {
+            orderId: shopOrder.orderId,
+          },
+        };
+      });
+    } catch (error) {
+      logger.error(error);
+      // Provide more specific error message to the user
+      if (error instanceof Error) {
+        throw new Error(error.message);
+      }
+      throw new Error("Failed to create shop order");
+    }
+  },
 };

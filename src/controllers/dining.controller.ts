@@ -189,3 +189,20 @@ export const updateDiningStatus = async (req: Request, res: Response) => {
     });
   }
 };
+
+export const getAllRestaurantBookings = async (req: Request, res: Response) => {
+  try {
+
+    // Get all bookings from service for client-side processing
+    const result = await diningService.getAllRestaurantBookings(req.params.accountId);
+    
+    res.status(200).json(result);
+  } catch (error) {
+    logger.error(error);
+    res.status(500).json({
+      status: "error",
+      message: error instanceof Error ? error.message : "Failed to fetch restaurant bookings",
+      data: null,
+    });
+  }
+};

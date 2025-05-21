@@ -162,7 +162,6 @@ export const artisanService = {
       throw new Error("Failed to fetch portfolio");
     }
   },
-
   createArtisanBooking: async (req: Request) => {
     try {
       const booking = req.body as ArtisanBookingCreationProps;
@@ -195,6 +194,57 @@ export const artisanService = {
     } catch (error) {
       logger.error(error);
       throw new Error("Failed to create asrtisan booking");
+    }
+  },
+   getAllArtisanBookings: async (accountId: string) => {
+    try {
+      // Get all bookings for this artisan
+      const bookings = await prisma.artisanBooking.findMany({
+        where: {
+          artisan : {
+            accountId: accountId,
+          }
+        },
+        orderBy: {
+          createdAt: 'desc',
+        },
+        include: {
+          bookingDetail: {
+            select: {
+              bookingDetailId: true,
+              firstName: true,
+              lastName: true,
+              email: true,
+              phone: true,
+              additionalNote: true,
+            },
+          },
+          package: {
+            select: {
+              packageId: true,
+              title: true,
+              price: true,
+              duration: true,
+            },
+          },
+          artisan: {
+            select: {
+              artisanId: true,
+              firstName: true,
+              lastName: true,
+            }
+          }
+        },
+      });
+      
+      return {
+        status: "success",
+        message: "Artisan bookings fetched successfully",
+        data: bookings,
+      };
+    } catch (error) {
+      logger.error(error);
+      throw new Error("Failed to fetch artisan bookings");
     }
   },
 };

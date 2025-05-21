@@ -201,3 +201,17 @@ export const artisanBooking = async (req: Request, res: Response) => {
     });
   }
 };
+
+export const getAllArtisanBookings = async (req: Request, res: Response) => {
+  try {
+    const result = await artisanService.getAllArtisanBookings(req.params.accountId);
+    res.status(200).json(result);
+  } catch (error) {
+    logger.error(error);
+    res.status(500).json({
+      status: "error",
+      message: error instanceof Error ? error.message : "Failed to fetch artisan bookings",
+      data: null,
+    });
+  }
+};
