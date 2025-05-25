@@ -64,10 +64,10 @@ model BookingDetail {
   LanguageServiceBooking LanguageServiceBooking[]
   TravelBooking          TravelBooking[]
   ShopOrder              ShopOrder[]
+  DocumentorBooking      DocumentorBooking[]
 }
 
 /**
- * *
  * ARTISAN
  */
 
@@ -525,8 +525,8 @@ model Hotel {
   code        String     @default(cuid())
   name        String     @default("none")
   address     String     @default("none")
-  longitude   Float      @default(0.0)
-  latitude    Float      @default(0.0)
+  longitude   String     @default("")
+  latitude    String     @default("")
   description String     @default("none")
   firstName   String     @default("none")
   lastName    String     @default("none")
@@ -730,42 +730,80 @@ model LanguageServiceBooking {
 /**
  * Documentor
  */
-
 model CraftDocumentor {
-  documentorId       String   @id @default(cuid())
-  firstName          String   @default("none")
-  lastName           String   @default("none")
-  profileImage       String   @default("none")
-  bio                String   @default("none") @db.Text
-  expertise          String[] @default([])
-  location           String   @default("none")
-  equipment          String[] @default([])
-  yearsOfExperience  Int      @default(0)
-  documentationStyle String[] @default([])
-  mediaTypes         String[] @default([])
-  portfolioLinks     String[] @default([])
-  isActive           Boolean  @default(false)
-  accountId          String   @unique
-  createdAt          DateTime @default(now())
-  updatedAt          DateTime @updatedAt
+  documentorId    String   @id @default(cuid())
+  firstName       String   @default("none")
+  lastName        String   @default("none")
+  dp              String   @default("none")
+  address         String   @default("none")
+  description     String   @default("none")
+  yearsExperience Int      @default(0)
+  specialization  String[] @default([])
+  craftFocusAreas String[] @default([])
+  languages       String[] @default([])
+  isActive        Boolean  @default(false)
+  accountId       String   @unique
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
 
-  // Relations
-  account          Account           @relation(fields: [accountId], references: [userId], onDelete: Cascade, onUpdate: Cascade)
-  documentedCrafts DocumentedCraft[]
+  account             Account              @relation(fields: [accountId], references: [userId], onDelete: Cascade, onUpdate: Cascade)
+  DocumentorPackage   DocumentorPackage[]
+  DocumentorPortfolio DocumentorPortfolio?
+  DocumentorBooking   DocumentorBooking[]
 }
 
-model DocumentedCraft {
-  craftId      String   @id @default(cuid())
-  craftName    String   @default("none")
-  region       String   @default("none")
-  description  String   @default("none") @db.Text
-  mediaUrls    String[] @default([])
-  documentorId String
+model DocumentorPortfolio {
+  portfolioId  String   @id @default(cuid())
+  images       String[] @default([])
+  documentorId String   @unique
   createdAt    DateTime @default(now())
   updatedAt    DateTime @updatedAt
 
-  // Relations
   documentor CraftDocumentor @relation(fields: [documentorId], references: [documentorId], onDelete: Cascade, onUpdate: Cascade)
+}
+
+model DocumentorPackage {
+  packageId    String         @id @default(cuid())
+  title        String         @default("none")
+  description  String         @default("none")
+  duration     Int            @default(1)
+  deliverables String[]       @default([])
+  price        Int            @default(0)
+  documentorId String
+  packageType  DocumentorType @default(PHOTOGRAPHY)
+  createdAt    DateTime       @default(now())
+  updatedAt    DateTime       @updatedAt
+
+  documentor        CraftDocumentor     @relation(fields: [documentorId], references: [documentorId], onDelete: Cascade, onUpdate: Cascade)
+  DocumentorBooking DocumentorBooking[]
+}
+
+model DocumentorBooking {
+  bookingId       String @id @default(cuid())
+  startDate       String @default("none")
+  endDate         String @default("none")
+  location        String @default("none")
+  specialRequests String @default("none")
+  status          String @default("new")
+  totalAmount     Int    @default(0)
+
+  packageId       String
+  documentorId    String
+  bookingDetailId String
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  package       DocumentorPackage @relation(fields: [packageId], references: [packageId], onDelete: Cascade, onUpdate: Cascade)
+  documentor    CraftDocumentor   @relation(fields: [documentorId], references: [documentorId], onDelete: Cascade, onUpdate: Cascade)
+  bookingDetail BookingDetail     @relation(fields: [bookingDetailId], references: [bookingDetailId], onDelete: Cascade, onUpdate: Cascade)
+}
+
+enum DocumentorType {
+  PHOTOGRAPHY
+  VIDEOGRAPHY
+  DRONE
+  HYBRID
 }
 
 /**

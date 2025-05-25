@@ -400,6 +400,49 @@ export const registerationService = {
       };
     }
   },
+  createHotel: async (hotel: HotelCreationProps) => {
+    try {
+      const hashedPassword = await hash(hotel.password, 10);
+      const account = await prisma.account.create({
+        data: {
+          email: hotel.email,
+          password: hashedPassword,
+          accountType: "HOTEL" as AccountTypeEnum,
+        },
+      });
+
+      await prisma.hotel.create({
+        data: {
+          name: hotel.hotelName,
+          address: hotel.address,
+          description: hotel.description,
+          firstName: hotel.firstName,
+          lastName: hotel.lastName,
+          email: hotel.email,
+          phone: hotel.phone,
+          longitude: hotel.longitude ,
+          latitude: hotel.latitude,
+          checkIn: hotel.checkIn,
+          checkOut: hotel.checkOut,
+          accountId: account.userId,
+        },
+      });
+
+      return {
+        status: "success",
+        message: "Hotel created successfully",
+        data: null,
+      };
+    } catch (error) {
+      logger.error(error);
+      return {
+        status: "error",
+        message:
+          error instanceof Error ? error.message : "Failed to create hotel",
+        data: null,
+      };
+    }
+  },
   createLanguageService: async (data: LanguageServiceCreationProps) => {
     try {
       const hashedPassword = await hash(data.password, 10);

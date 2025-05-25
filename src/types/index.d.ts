@@ -17,9 +17,11 @@ type AccountTypeEnum =
   | "RESTAURANT_ADMIN"
   | "TRAVEL_PLANER_ADMIN"
   | "LANGUAGE_ADMIN"
+  | "CRAFT_DOCUMENTOR_ADMIN"
+  | "CRAFT_DOCUMENTOR";
 
 type AccountProps = {
-  userId: string
+  userId: string;
   email: string;
   password: string;
   accountType: AccountTypeEnum;
@@ -759,21 +761,20 @@ type HotelProps = {
   accountId: string;
 };
 
-type HotelCreationProps = {
-  name: string;
-  address: string;
-  longitude: number;
-  latitude: number;
-  description: string;
+type HotelCreationProps =  {
+  email: string;
+  password: string;
   firstName: string;
   lastName: string;
-  email: string;
+  hotelName: string;
+  address: string;
+  description: string;
   phone: string;
+  longitude?: string;
+  latitude?: string;
   checkIn: string;
   checkOut: string;
-  images: string[];
-  accountId: string;
-};
+}
 
 type HotelUpdateProps = {
   hotelId: string;
@@ -894,39 +895,18 @@ type LanguageServiceBookingInput = {
 };
 
 type TravelBookingCreationProps = {
-  travelPlanerId: string
-  tourId: string
-  startDate: string
-  endDate: string
-  numberOfPeople: number
-  firstName: string
-  lastName: string
-  email: string
-  phone: string
-  additionalRequests: string
-  totalAmount: number
-}
-
-type CraftDocumentorInput = {
+  travelPlanerId: string;
+  tourId: string;
+  startDate: string;
+  endDate: string;
+  numberOfPeople: number;
   firstName: string;
   lastName: string;
-  profileImage?: string;
-  bio: string;
-  expertise: string[];
-  location: string;
-  equipment: string[];
-  yearsOfExperience: number;
-  documentationStyle: string[];
-  mediaTypes: string[];
-  accountId: string;
-  portfolioLinks?: string[];
-  documentedCrafts?: {
-    craftName: string;
-    region: string;
-    description: string;
-    mediaUrls?: string[];
-  }[];
-}
+  email: string;
+  phone: string;
+  additionalRequests: string;
+  totalAmount: number;
+};
 
 type ShopOrderCreationProps = {
   firstName: string;
@@ -945,4 +925,97 @@ type ShopOrderCreationProps = {
     productId: string;
     quantity: number;
   }>;
+};
+
+type DocumentorBookingInput = {
+  firstName: string;
+  lastName: string;
+  email: string;
+  phone: string;
+  address?: string;
+  city?: string;
+  postalCode?: string;
+  additionalNote?: string;
+  startDate: string;
+  endDate: string;
+  location: string;
+  specialRequests?: string;
+  totalAmount: number;
+  packageId: string;
+  documentorId: string;
+};
+
+type DocumentorProfileInput = {
+  email: string;
+  password: string;
+  firstName: string;
+  lastName: string;
+  dp: string;
+  address: string;
+  description: string;
+  yearsExperience: number;
+  specialization: string[];
+  craftFocusAreas: string[];
+  languages: string[];
+};
+
+type DocumentorProfile = {
+  documentorId: string;
+  firstName: string;
+  lastName: string;
+  profileImage?: string;
+  bio: string;
+  location: string;
+  yearsExperience: number;
+  specialization: string[];
+  equipment: string[];
+  documentationStyle: string[];
+  mediaTypes: string[];
+  portfolioLinks?: string[];
+  isActive: boolean;
+  accountId: string;
+  account: {
+    email: string;
+    accountType: AccountType;
+  };
+  DocumentorPortfolio?: {
+    images: string[];
+    videos: string[];
+    droneShots: string[];
+  };
+  documents?: {
+    name: string;
+    url: string;
+    type: string;
+  }[];
+};
+
+
+type CraftDocumentorProps =  {
+  documentorId    :string
+  firstName       :string
+  lastName        :string
+  dp              :string
+  address         :string
+  description     :string
+  yearsExperience :number
+  specialization  :string[]
+  craftFocusAreas :string[]
+  languages       :string[]
+  isActive        :boolean
+  accountId       :string
+  createdAt       :Date
+  updatedAt       :Date
+}
+
+type DocumentorProfileUpdateInputProps = {
+  firstName: string;
+  lastName: string;
+  dp: string;
+  description: string;
+  address: string;
+  yearsExperience: number;
+  specialization: string[];
+  languages: string[];
+  craftFocusAreas: string[];
 };

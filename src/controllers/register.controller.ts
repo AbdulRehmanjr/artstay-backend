@@ -170,6 +170,23 @@ export const createTravelPlaner = async (req: Request, res: Response) => {
   }
 };
 
+export const createHotel = async (req: Request, res: Response) => {
+  try {
+    const result = await registerationService.createHotel(req.body);
+    res.status(201).json(result);
+  } catch (error) {
+    logger.error(error);
+    res.status(500).json({
+      status: "error",
+      message:
+        error instanceof Error
+          ? error.message
+          : "Failed to create travel planer",
+      data: null,
+    });
+  }
+};
+
 export const createTravelBooking = async (req: Request, res: Response) => {
   try {
     const result = await travelService.toggleStatus(req);

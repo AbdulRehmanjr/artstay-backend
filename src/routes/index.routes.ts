@@ -11,6 +11,8 @@ import { diningRouter } from '~/routes/dining.routes';
 import { travelRouter } from '~/routes/travel.routes';
 import { propertyRouter } from '~/routes/property.routes';
 import { languageRouter } from '~/routes/language.routes';
+import { documentorRouter } from '~/routes/documentor.routes';
+import { hotelRouter } from '~/routes/hotel.routes';
 
 const router = Router();
 
@@ -29,5 +31,7 @@ router.use('/dining', diningRouter)
 router.use('/travel', travelRouter)
 router.use('/property', propertyRouter)
 router.use('/language',languageRouter)
+router.use('/documentor',documentorRouter)
+router.use('/hotel',hotelRouter)
 
 export const mainRouter = router;
