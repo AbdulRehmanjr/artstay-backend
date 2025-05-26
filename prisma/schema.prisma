@@ -590,8 +590,6 @@ model RatePlan {
 model RoomRatePlan {
   rrpId      String      @id @default(uuid())
   occupancy  Int         @default(0)
-  hotelName  String      @default("none")
-  hotelId    String      @default("none")
   rateId     String
   roomId     String
   createdAt  DateTime    @default(now())

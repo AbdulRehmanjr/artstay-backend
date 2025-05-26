@@ -761,7 +761,7 @@ type HotelProps = {
   accountId: string;
 };
 
-type HotelCreationProps =  {
+type HotelCreationProps = {
   email: string;
   password: string;
   firstName: string;
@@ -774,14 +774,14 @@ type HotelCreationProps =  {
   latitude?: string;
   checkIn: string;
   checkOut: string;
-}
+};
 
 type HotelUpdateProps = {
   hotelId: string;
   name: string;
   address: string;
-  longitude: number;
-  latitude: number;
+  longitude: string;
+  latitude: string;
   description: string;
   firstName: string;
   lastName: string;
@@ -808,6 +808,50 @@ type RoomProps = {
   minimumstay: number;
   images: string[];
   hotelId: string;
+};
+
+type RoomCreationProps = {
+  name: string;
+  capacity: number;
+  area: number;
+  features: string[];
+  description: string;
+  roomType: string;
+  dp: string;
+  beds: number;
+  quantity: number;
+  price: number;
+  isActive: boolean;
+  minimumstay: number;
+  images: string[];
+  accountId:string
+};
+
+type RoomTableProps = {
+  roomId: string;
+  code: string;
+  name: string;
+  capacity: number;
+  area: number;
+  features: string[];
+  description: string;
+  roomType: string;
+  dp: string;
+  beds: number;
+  quantity: number;
+  price: number;
+  images: string[];
+  hotelId: string;
+  isActive: boolean;
+  minimumstay: number;
+  images: string[];
+  hotel: {
+    name: string;
+    hotelId: string;
+    phone: string;
+    code: string;
+    accountId: string;
+  };
 };
 
 type ArtisanBookingCreationProps = {
@@ -990,23 +1034,22 @@ type DocumentorProfile = {
   }[];
 };
 
-
-type CraftDocumentorProps =  {
-  documentorId    :string
-  firstName       :string
-  lastName        :string
-  dp              :string
-  address         :string
-  description     :string
-  yearsExperience :number
-  specialization  :string[]
-  craftFocusAreas :string[]
-  languages       :string[]
-  isActive        :boolean
-  accountId       :string
-  createdAt       :Date
-  updatedAt       :Date
-}
+type CraftDocumentorProps = {
+  documentorId: string;
+  firstName: string;
+  lastName: string;
+  dp: string;
+  address: string;
+  description: string;
+  yearsExperience: number;
+  specialization: string[];
+  craftFocusAreas: string[];
+  languages: string[];
+  isActive: boolean;
+  accountId: string;
+  createdAt: Date;
+  updatedAt: Date;
+};
 
 type DocumentorProfileUpdateInputProps = {
   firstName: string;
@@ -1018,4 +1061,174 @@ type DocumentorProfileUpdateInputProps = {
   specialization: string[];
   languages: string[];
   craftFocusAreas: string[];
+};
+
+
+type RatePlanDetailProps = {
+  code: string;
+  description: string;
+  hotelId: string;
+  name: string;
+  isActive: boolean;
+  ratePlanId: string;
+  mealId: number;
+  roomrateplans: {
+    room: { capacity: number };
+    occupancy: number;
+    rrpId: string;
+  }[];
+};
+
+type DiscountProps = {
+  discountId: string;
+  discount: number;
+  title: string;
+  startDate: string;
+  endDate: string;
+  redeemCode: string;
+  createdAt: Date;
+  updatedAt: Date;
+};
+
+type RatePlanProps = {
+  ratePlanId: string;
+  code: string;
+  name: string;
+  description: string;
+  isActive: boolean;
+  mealId: number;
+  hotelId: string;
+  createdAt: Date;
+  updatedAt: Date;
+};
+
+type RatePlanHotelDetailProps = {
+  ratePlanId: string;
+  code: string;
+  name: string;
+  description: string;
+  isActive: boolean;
+  mealId: number;
+  hotelId: string;
+  hotel: {
+    hotelId: string;
+    code: string;
+    name: string;
+    accountId: string;
+  };
+};
+
+type RatePlanCreationProps = {
+  rateName: string;
+  description: string;
+  accountId: string;
+  mealId: number;
+};
+
+type RatePlanUpdateProps = {
+  rateId: string;
+  rateName: string;
+  code: string;
+  description: string;
+  mealId: number;
+};
+
+type RatePlanStatusUpdateProps = {
+  rateId: string;
+  status: boolean;
+};
+
+type RatePlanDeleteProps = {
+  rateId: string;
+};
+
+type RoomRatePLanProps = {
+  rrpId: string;
+  occupancy: number;
+  hotelName: string;
+  hotelId: string;
+  rateId: string;
+  roomId: string;
+  createdAt: Date;
+  updatedAt: Date;
+};
+
+type RoomRatePlanCreationProps = {
+  rateId: string;
+  roomId: string;
+  occupancy: number;
+};
+
+type PriceProps = {
+  priceId: string;
+  startDate: string;
+  endDate: string;
+  planCode: string;
+  price: number;
+  rrpId: string;
+};
+
+type FilteredPricesProps = {
+  rrpId: string;
+  rateId: string;
+  roomId: string;
+  occupancy: number;
+  hotelName: string;
+  hotelId: string;
+  RoomPrices: {
+    startDate: string;
+    endDate: string;
+    price: number;
+    planCode: string;
+  }[];
+};
+
+type RatePriceProps = {
+  rrpId: string;
+  rateId: string;
+  roomId: string;
+  occupancy: number;
+  hotelName: string;
+  hotelId: string;
+  RoomPrices: {
+    startDate: string;
+    endDate: string;
+    price: number;
+    planCode: string;
+  }[];
+  Room: {
+    roomId: string;
+    roomName: string;
+    quantity: number;
+  };
+  Rate: {
+    ratePlanId: string;
+    name: string;
+    code: string;
+  };
+};
+
+type GroupedRatePriceProps = {
+  roomId: string;
+  roomName: string;
+  occupancy: number;
+  RoomRatePlans: {
+    rrpId: string;
+    rateId: string;
+    roomId: string;
+    occupancy: number;   
+    hotelName: string;
+    hotelId: string;
+    RoomPrices: {
+      startDate: string;
+      endDate: string;
+      price: number;
+      planCode: string;
+    }[];
+    Rate: {
+      ratePlanId: string;
+      name: string;
+      code: string;
+    };
+  }[];
 };

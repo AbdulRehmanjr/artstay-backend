@@ -12,7 +12,7 @@ import { travelRouter } from '~/routes/travel.routes';
 import { propertyRouter } from '~/routes/property.routes';
 import { languageRouter } from '~/routes/language.routes';
 import { documentorRouter } from '~/routes/documentor.routes';
-import { hotelRouter } from '~/routes/hotel.routes';
+import { rateplanRouter } from '~/routes/rateplan.route';
 
 const router = Router();
 
@@ -32,6 +32,6 @@ router.use('/travel', travelRouter)
 router.use('/property', propertyRouter)
 router.use('/language',languageRouter)
 router.use('/documentor',documentorRouter)
-router.use('/hotel',hotelRouter)
+router.use('/rateplan',rateplanRouter)
 
 export const mainRouter = router;
