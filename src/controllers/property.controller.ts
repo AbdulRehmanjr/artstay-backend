@@ -76,6 +76,23 @@ export const getAllRoomsByAccountId = async (req: Request, res: Response) => {
   }
 };
 
+export const getRoomByRoomId = async (req: Request, res: Response) => {
+  try {
+    const result = await propertyService.getRoomByRoomId(req);
+    res.status(201).json(result);
+  } catch (error) {
+    logger.error(error);
+    res.status(500).json({
+      status: "error",
+      message:
+        error instanceof Error
+          ? error.message
+          : "Failed to get all rooms by hotel id",
+      data: null,
+    });
+  }
+};
+
 export const createRoom = async (req: Request, res: Response) => {
   try {
     const result = await propertyService.createRoom(req);
@@ -109,3 +126,16 @@ export const updateRoomStatus = async (req: Request, res: Response) => {
     });
   }
 };
+
+export const getAllRoomsForBooking = async (req: Request, res: Response) => {
+    try {
+        const result = await propertyService.getRoomsBySellerIdForBooking(req.params.sellerId)
+        res.status(200).json(result)
+    } catch (error) {
+        console.log(error);
+        res.status(500).json({
+            status: 'error',
+            message: error instanceof Error ? error.message : 'An unexpected error occurred',
+        })
+    }
+}

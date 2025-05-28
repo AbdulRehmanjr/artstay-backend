@@ -1175,7 +1175,7 @@ type FilteredPricesProps = {
   occupancy: number;
   hotelName: string;
   hotelId: string;
-  RoomPrices: {
+  roomprices: {
     startDate: string;
     endDate: string;
     price: number;
@@ -1190,18 +1190,18 @@ type RatePriceProps = {
   occupancy: number;
   hotelName: string;
   hotelId: string;
-  RoomPrices: {
+  roomprices: {
     startDate: string;
     endDate: string;
     price: number;
     planCode: string;
   }[];
-  Room: {
+  room: {
     roomId: string;
-    roomName: string;
+    name: string;
     quantity: number;
   };
-  Rate: {
+  rate: {
     ratePlanId: string;
     name: string;
     code: string;
@@ -1210,25 +1210,41 @@ type RatePriceProps = {
 
 type GroupedRatePriceProps = {
   roomId: string;
-  roomName: string;
+  name: string;
   occupancy: number;
-  RoomRatePlans: {
+  roomrateplans: {
     rrpId: string;
     rateId: string;
     roomId: string;
     occupancy: number;   
     hotelName: string;
     hotelId: string;
-    RoomPrices: {
+    roomprices: {
       startDate: string;
       endDate: string;
       price: number;
       planCode: string;
     }[];
-    Rate: {
+    rate: {
       ratePlanId: string;
       name: string;
       code: string;
     };
+  }[];
+};
+
+type BlockDateCreationProps = {
+  startDate: string;
+  endDate: string;
+  roomId: string;
+  hotelCode: string;
+  roomCode: string;
+};
+
+type BlockDatesResponse = {
+  roomId: string;
+  blockdates: {
+    startDate: string;
+    endDate: string;
   }[];
 };

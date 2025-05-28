@@ -13,6 +13,7 @@ import { propertyRouter } from '~/routes/property.routes';
 import { languageRouter } from '~/routes/language.routes';
 import { documentorRouter } from '~/routes/documentor.routes';
 import { rateplanRouter } from '~/routes/rateplan.route';
+import { priceRouter } from '~/routes/price.routes';
 
 const router = Router();
 
@@ -33,5 +34,6 @@ router.use('/property', propertyRouter)
 router.use('/language',languageRouter)
 router.use('/documentor',documentorRouter)
 router.use('/rateplan',rateplanRouter)
+router.use('/price',priceRouter)
 
 export const mainRouter = router;

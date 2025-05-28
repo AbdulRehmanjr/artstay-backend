@@ -48,6 +48,20 @@ export const propertyService = {
       throw new Error("Failed to fetch rooms");
     }
   },
+  getRoomByRoomId: async (req: Request) => {
+    try {
+      const { roomId } = req.params;
+      const room = await prisma.room.findUnique({
+        where: {
+          roomId: roomId,
+        },
+      });
+      return { status: "success", message: "rooms fetched", data: room };
+    } catch (error) {
+      logger.error(error);
+      throw new Error("Failed to fetch rooms");
+    }
+  },
   getHotelByAccountId: async (req: Request) => {
     try {
       const { accountId } = req.params;
@@ -120,6 +134,39 @@ export const propertyService = {
     } catch (error) {
       logger.error(error);
       throw new Error("Failed to update room status");
+    }
+  },
+   getRoomsBySellerIdForBooking: async (sellerId: string) => {
+    try {
+      const rooms = await prisma.room.findMany({
+        where: {
+          hotel: {
+            accountId: sellerId,
+          },
+        },
+        select: {
+          roomId: true,
+          name: true,
+          code: true,
+          quantity: true,
+          minimumstay: true,
+          hotel: {
+            select: {
+              name: true,
+              code: true,
+            },
+          },
+        },
+      });
+
+      return {
+        status: "success",
+        message: "Rooms fetched successfully",
+        data: rooms,
+      };
+    } catch (error) {
+      console.error("Rooms fetching error:", error);
+      throw error;
     }
   },
 };
