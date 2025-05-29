@@ -824,7 +824,7 @@ type RoomCreationProps = {
   isActive: boolean;
   minimumstay: number;
   images: string[];
-  accountId:string
+  accountId: string;
 };
 
 type RoomTableProps = {
@@ -1063,7 +1063,6 @@ type DocumentorProfileUpdateInputProps = {
   craftFocusAreas: string[];
 };
 
-
 type RatePlanDetailProps = {
   code: string;
   description: string;
@@ -1216,7 +1215,7 @@ type GroupedRatePriceProps = {
     rrpId: string;
     rateId: string;
     roomId: string;
-    occupancy: number;   
+    occupancy: number;
     hotelName: string;
     hotelId: string;
     roomprices: {
@@ -1247,4 +1246,182 @@ type BlockDatesResponse = {
     startDate: string;
     endDate: string;
   }[];
+};
+
+type RoomBookingInfoProps = {
+  bookingDetailId: string;
+  firstName: string;
+  lastName: string;
+  email: string;
+  phone: string;
+  country: string;
+  city: string;
+  arrivalTime: string;
+  zip: string;
+  address: string;
+  additionalInfo: string;
+  status: string;
+  dob: string;
+};
+
+type BookingCancelProps = {
+  roomId: string;
+  bookingDetailId: string;
+};
+
+type RefundCreationProps = {
+  bookingId: string;
+  reason: string;
+  percentage: number;
+  accountId: string;
+};
+
+type BookingTableProps = {
+  bookingId: string;
+  startDate: string;
+  endDate: string;
+  price: number;
+  adults: number;
+  children: number;
+  isRefund: boolean;
+  createdAt: Date;
+  bookingDetailId: string;
+  BookingDetail: {
+    bookingDetailId: string;
+    firstName: string;
+    lastName: string;
+    email: string;
+    status: string;
+    bookingReservationId: string;
+  };
+  room: {
+    roomId: string;
+    name: string;
+  };
+};
+
+type RoomBookingDetailProps = {
+  bookingId: string;
+  startDate: string;
+  endDate: string;
+  price: number;
+  isRefund: boolean;
+  roomId: string;
+  bookingDetailId: string;
+  quantity: number;
+  adults: number;
+  children: number;
+  createdAt: Date;
+  BookingDetail: {
+    bookingDetailId: string;
+    city: string;
+    country: string;
+    phone: string;
+    zip: string;
+    address: string;
+    firstName: string;
+    lastName: string;
+    email: string;
+    arrivalTime: string;
+    status: string;
+    additionalInfo: string;
+  };
+  room: {
+    roomId: string;
+    name: string;
+    hotelId: string;
+    roomType: string;
+    hotel: {
+      name: string;
+      phone: string;
+    };
+  };
+};
+
+type BookingCreationProps = {
+  adults: number;
+  children: number;
+  quantity: number;
+  startDate: string;
+  roomId: string;
+  endDate: string;
+  price: number;
+  firstName: string;
+  lastName: string;
+  email: string;
+  phone: string;
+  country: string;
+  city: string;
+  zip: string;
+  address: string;
+  arrivalTime: string;
+  rateplan: string;
+  additional: string;
+  dob: string;
+};
+
+type BookingUpdateProps = {
+  bookingDetailId: string;
+  bookingId: string;
+  adults: number;
+  children: number;
+  infants: number;
+  quantity: number;
+  startDate: string;
+  roomId: string;
+  endDate: string;
+  price: number;
+  mealType: string;
+  firstName: string;
+  lastName: string;
+  email: string;
+  phone: string;
+  country: string;
+  city: string;
+  zip: string;
+  address: string;
+  arrivalTime: string;
+  type: string;
+  rateplan: string;
+  additional: string;
+  dob: string;
+};
+
+type BookingPreviewProps = {
+  room: {
+    hotel: {
+      name: string;
+    };
+    name: string;
+    roomType: string;
+  };
+  startDate: string;
+  endDate: string;
+  bookingId: string;
+  price: number;
+  adults: number;
+  children: number;
+  BookingDetail: {
+    bookingDetailId: string;
+    firstName: string;
+    email: string;
+    country: string;
+  };
+};
+
+type ReservationProps = {
+  bookingId: string;
+  startDate: string;
+  endDate: string;
+  quantity: number;
+  adults: number;
+  children: number;
+  roomId: string;
+  BookingDetail: {
+    bookingDetailId: string;
+    firstName: string;
+    lastName: string;
+    email: string;
+    phone: string;
+  };
 };

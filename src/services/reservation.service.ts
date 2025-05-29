@@ -1,8 +1,9 @@
 import dayjs from "dayjs";
 import { Request } from "express";
 import isBetween from "dayjs/plugin/isBetween";
-import { NotFoundError, AppError } from "@/utils/errors";
+import { NotFoundError, AppError } from "~/utils/error";
 import prisma from "~/libs/prisma";
+import { logger } from "~/utils/logger";
 
 dayjs.extend(isBetween);
 
@@ -29,9 +30,6 @@ export const mealPlanTypes = [
   { code: 20, name: "Modified" },
   { code: 21, name: "Breakfast & lunch" },
 ];
-
-
-
 
 const getBookingsForDate = async (date: string, sellerId: string) => {
   return prisma.roomBooking.findMany({
@@ -115,8 +113,8 @@ export const reservationService = {
     try {
       const bookings: ReservationProps[] = await prisma.roomBooking.findMany({
         where: {
-          Room: {
-            Hotel: {
+          room: {
+            hotel: {
               accountId: sellerId,
             },
           },
@@ -129,7 +127,6 @@ export const reservationService = {
         select: {
           bookingId: true,
           roomId: true,
-          type: true,
           startDate: true,
           endDate: true,
           adults: true,
@@ -170,71 +167,62 @@ export const reservationService = {
     accountId: string
   ) => {
     try {
-      const booking: BookingDetailProps | null =
-        await prisma.bookingDetail.findUnique({
-          where: { bookingDetailId: bookingId },
-          select: {
-            bookingDetailId: true,
-            city: true,
-            country: true,
-            phone: true,
-            zip: true,
-            address: true,
-            firstName: true,
-            lastName: true,
-            email: true,
-            arrivalTime: true,
-            status: true,
-            additionalInfo: true,
-            dob: true,
-            bookingReservationId: true,
-            RoomBookings: {
-              where: {
-                Room: {
-                  Hotel: {
-                    accountId: accountId,
-                  },
+      const booking = await prisma.roomBookingDetail.findUnique({
+        where: { bookingDetailId: bookingId },
+        select: {
+          bookingDetailId: true,
+          city: true,
+          country: true,
+          phone: true,
+          zip: true,
+          address: true,
+          firstName: true,
+          lastName: true,
+          email: true,
+          arrivalTime: true,
+          status: true,
+          additionalInfo: true,
+          dob: true,
+          bookingReservationId: true,
+          roombookings: {
+            where: {
+              room: {
+                hotel: {
+                  accountId: accountId,
                 },
               },
-              select: {
-                bookingId: true,
-                startDate: true,
-                endDate: true,
-                price: true,
-                isRefund: true,
-                payPalBookingId: true,
-                roomId: true,
-                bookingDetailId: true,
-                type: true,
-                mealType: true,
-                quantity: true,
-                adults: true,
-                children: true,
-                infants: true,
-                ratePlan: true,
-                extras: true,
-                createdAt: true,
-                Room: {
-                  select: {
-                    roomId: true,
-                    roomName: true,
-                    hotelId: true,
-                    roomType: true,
-                    Hotel: {
-                      select: {
-                        hotelName: true,
-                        island: true,
-                        phone: true,
-                        hotelLogo: true,
-                      },
+            },
+            select: {
+              bookingId: true,
+              startDate: true,
+              endDate: true,
+              price: true,
+              isRefund: true,
+              roomId: true,
+              bookingDetailId: true,
+              quantity: true,
+              adults: true,
+              children: true,
+              extras: true,
+              createdAt: true,
+              room: {
+                select: {
+                  roomId: true,
+                  name: true,
+                  hotelId: true,
+                  roomType: true,
+                  hotel: {
+                    select: {
+                      name: true,
+                      phone: true,
                     },
                   },
                 },
-                PayPalBooking: true,
               },
             },
           },
-        });
+        },
+      });
 
       if (!booking) throw new Error("Booking not found with given id");
 
@@ -261,8 +249,8 @@ export const reservationService = {
     try {
       const bookings: BookingTableProps[] = await prisma.roomBooking.findMany({
         where: {
-          Room: {
-            Hotel: {
+          room: {
+            hotel: {
               accountId: accountId,
             },
           },
@@ -273,18 +261,14 @@ export const reservationService = {
           endDate: true,
           price: true,
           isRefund: true,
-          payPalBookingId: true,
           bookingDetailId: true,
-          type: true,
-          mealType: true,
           createdAt: true,
           adults: true,
           children: true,
-          infants: true,
-          Room: {
+          room: {
             select: {
               roomId: true,
-              roomName: true,
+              name: true,
             },
           },
           BookingDetail: {
@@ -296,9 +280,6 @@ export const reservationService = {
               status: true,
               bookingReservationId: true,
             },
-          },
-          PayPalBooking: {
-            select: { paymentId: true },
           },
         },
         orderBy: {
@@ -329,8 +310,8 @@ export const reservationService = {
       const bookings: RoomBookingDetailProps[] =
         await prisma.roomBooking.findMany({
           where: {
-            Room: {
-              Hotel: {
+            room: {
+              hotel: {
                 accountId: sellerId,
               },
             },
@@ -341,15 +322,11 @@ export const reservationService = {
             endDate: true,
             price: true,
             isRefund: true,
-            payPalBookingId: true,
             roomId: true,
             bookingDetailId: true,
-            type: true,
-            mealType: true,
             quantity: true,
             adults: true,
             children: true,
-            infants: true,
             createdAt: true,
             BookingDetail: {
               select: {
@@ -367,26 +344,18 @@ export const reservationService = {
                 additionalInfo: true,
               },
             },
-            Room: {
+            room: {
               select: {
                 roomId: true,
-                roomName: true,
+                name: true,
                 hotelId: true,
                 roomType: true,
-                Hotel: {
+                hotel: {
                   select: {
-                    hotelName: true,
-                    island: true,
+                    name: true,
                     phone: true,
-                    hotelLogo: true,
                   },
                 },
-              },
-            },
-            PayPalBooking: {
-              select: {
-                paypalBookingId: true,
-                paymentId: true,
               },
             },
           },
@@ -416,27 +385,27 @@ export const reservationService = {
   makeBooking: async (req: Request) => {
     try {
       const input: BookingCreationProps = req.body;
-      
+
       const room = await prisma.room.findUnique({
         where: { roomId: input.roomId },
         select: {
           hotelId: true,
           code: true,
           quantity: true,
-          Hotel: {
+          hotel: {
             select: {
               code: true,
             },
           },
         },
       });
-      
+
       if (!room) throw new NotFoundError("Room not found");
 
       const rate = await prisma.roomRatePlan.findUnique({
         where: { rrpId: input.rateplan },
         include: {
-          Rate: {
+          rate: {
             select: {
               code: true,
             },
@@ -446,13 +415,12 @@ export const reservationService = {
 
       if (!rate) throw new NotFoundError("Rate plan not found");
 
-      const bookingInfo: BookingInfoProps = await prisma.bookingDetail.create({
+      const bookingInfo = await prisma.roomBookingDetail.create({
         data: {
           firstName: input.firstName,
           lastName: input.lastName,
           email: input.email,
           phone: input.phone,
-          country: input.country,
           city: input.city,
           arrivalTime: input.arrivalTime,
           zip: input.zip,
@@ -469,14 +437,10 @@ export const reservationService = {
         data: {
           adults: input.adults,
           children: input.children,
-          infants: input.infants,
           startDate: input.startDate,
           endDate: input.endDate,
           price: input.price,
-          ratePlan: rate.Rate.code,
-          type: input.type,
           quantity: input.quantity,
-          mealType: input.mealType,
           roomId: input.roomId,
           bookingDetailId: bookingInfo.bookingDetailId,
         },
@@ -512,70 +476,67 @@ export const reservationService = {
   updateBooking: async (req: Request) => {
     try {
       const input: BookingUpdateProps = req.body;
-      
+
       const room = await prisma.room.findUnique({
         where: { roomId: input.roomId },
         select: {
           hotelId: true,
           code: true,
           quantity: true,
-          Hotel: {
+          hotel: {
             select: {
               code: true,
             },
           },
         },
       });
-      
+
       if (!room) throw new NotFoundError("Room not found");
 
       const rate = await prisma.roomRatePlan.findUnique({
         where: { rrpId: input.rateplan },
         include: {
-          Rate: {
+          rate: {
             select: {
               code: true,
             },
           },
         },
       });
-      
+
       if (!rate) throw new NotFoundError("Rate plan not found");
 
-      const bookingInfo: BookingInfoProps = await prisma.bookingDetail.update({
-        where: { bookingDetailId: input.bookingDetailId },
-        data: {
-          firstName: input.firstName,
-          lastName: input.lastName,
-          email: input.email,
-          phone: input.phone,
-          country: input.country,
-          city: input.city,
-          arrivalTime: input.arrivalTime,
-          zip: input.zip,
-          address: input.address,
-          additionalInfo: input.additional,
-          status: "modified",
-          dob:
-            input.dob !== "none"
-              ? dayjs(input.dob).format("YYYY-MM-DD")
-              : "none",
-        },
-      });
+      const bookingInfo: RoomBookingInfoProps =
+        await prisma.roomBookingDetail.update({
+          where: { bookingDetailId: input.bookingDetailId },
+          data: {
+            firstName: input.firstName,
+            lastName: input.lastName,
+            email: input.email,
+            phone: input.phone,
+            country: input.country,
+            city: input.city,
+            arrivalTime: input.arrivalTime,
+            zip: input.zip,
+            address: input.address,
+            additionalInfo: input.additional,
+            status: "modified",
+            dob:
+              input.dob !== "none"
+                ? dayjs(input.dob).format("YYYY-MM-DD")
+                : "none",
+          },
+        });
 
       await prisma.roomBooking.update({
         where: { bookingId: input.bookingId },
         data: {
           adults: input.adults,
           children: input.children,
-          infants: input.infants,
           startDate: input.startDate,
           endDate: input.endDate,
           price: input.price,
-          ratePlan: rate.Rate.code,
-          type: input.type,
           quantity: input.quantity,
-          mealType: input.mealType,
           roomId: input.roomId,
           bookingDetailId: bookingInfo.bookingDetailId,
         },
@@ -608,26 +569,21 @@ export const reservationService = {
   cancelBooking: async (req: Request) => {
     try {
       const input: BookingCancelProps = req.body;
-      
+
       const room = await prisma.room.findUnique({
         where: { roomId: input.roomId },
-        include: {
-          Hotel: {
-            select: { code: true },
-          },
-        },
       });
-      
+
       if (!room) throw new NotFoundError("Room not found");
 
       const roomBooking = await prisma.roomBooking.findFirst({
         where: { bookingDetailId: input.bookingDetailId },
       });
-      
+
       if (!roomBooking) throw new NotFoundError("Booking not found");
 
       await Promise.all([
-        prisma.bookingDetail.update({
+        prisma.roomBookingDetail.update({
           where: { bookingDetailId: input.bookingDetailId },
           data: { status: "cancelled" },
         }),
@@ -659,111 +615,6 @@ export const reservationService = {
       }
 
       throw new AppError("Failed to cancel booking");
-    }
-  },
-
-  makeRefund: async (req: Request) => {
-    try {
-      const { bookingId, percentage, reason, accountId } =
-        req.body as RefundCreationProps;
-
-      const bookingDetail = await prisma.roomBooking.findUnique({
-        where: { bookingId: bookingId },
-        select: {
-          bookingId: true,
-          payPalBookingId: true,
-          price: true,
-          PayPalBooking: {
-            select: {
-              paymentId: true,
-              paypalBookingId: true,
-              transaction: true,
-              captureId: true,
-            },
-          },
-        },
-      });
-
-      if (!bookingDetail) throw new Error("Booking not found.");
-
-      // Calculate total booking amount
-      const totalBookingResult = await prisma.roomBooking.aggregate({
-        _sum: { price: true },
-        where: { payPalBookingId: bookingDetail.payPalBookingId },
-      });
-
-      const totalBookingAmount = totalBookingResult._sum.price || 0;
-
-      // Calculate refund amounts
-      const mainRefundAmount = Math.floor(
-        (totalBookingAmount * percentage) / 100
-      );
-
-      // Create refund record in database
-      await prisma.payPalRefund.create({
-        data: {
-          paypalBookingId: bookingDetail.payPalBookingId!,
-          amount: totalBookingAmount,
-          ssheaRemainingBalance: 0,
-          remainingBalance: totalBookingAmount - mainRefundAmount,
-          reason: reason || "Booking cancellation",
-        },
-      });
-
-      // Update room booking status
-      await prisma.roomBooking.updateMany({
-        where: { payPalBookingId: bookingDetail.payPalBookingId },
-        data: { isRefund: true },
-      });
-
-      logger.info("Refund processed successfully", {
-        logType: "Refund processing",
-        bookingId,
-        refundAmount: mainRefundAmount,
-        percentage,
-      });
-
-      return {
-        status: "success",
-        message: "Refund processed successfully",
-        data: null,
-      };
-    } catch (error) {
-      logger.error("Refund processing failed", {
-        logType: "Refund error",
-        error: error instanceof Error ? error.message : "Unknown error",
-      });
-
-      if (error instanceof Error) {
-        throw new Error(error.message);
-      }
-      throw new Error("Something went wrong");
-    }
-  },
-
-  updatePayPalBooking: async (input: PayPalBookingUpdateProps) => {
-    try {
-      await prisma.payPalBooking.update({
-        where: { paypalBookingId: input.payPalBookingId },
-        data: {
-          captureId: input.captureId,
-          paymentEmail: input.paymentEmail,
-          payerId: input.payerId,
-          paymentId: input.paymentId,
-        },
-      });
-
-      return {
-        status: "success",
-        message: "PayPal booking updated successfully",
-        data: null,
-      };
-    } catch (error) {
-      logger.error("PayPal booking update failed", {
-        error: error instanceof Error ? error.message : "Unknown error",
-      });
-      
-      throw new Error("Something went wrong");
     }
   },
 };

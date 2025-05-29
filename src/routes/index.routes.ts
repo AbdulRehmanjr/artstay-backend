@@ -14,6 +14,7 @@ import { languageRouter } from '~/routes/language.routes';
 import { documentorRouter } from '~/routes/documentor.routes';
 import { rateplanRouter } from '~/routes/rateplan.route';
 import { priceRouter } from '~/routes/price.routes';
+import { reservationRouter } from '~/routes/reservation.routes';
 
 const router = Router();
 
@@ -35,5 +36,6 @@ router.use('/language',languageRouter)
 router.use('/documentor',documentorRouter)
 router.use('/rateplan',rateplanRouter)
 router.use('/price',priceRouter)
+router.use('/reservation',reservationRouter)
 
 export const mainRouter = router;

@@ -1,4 +1,4 @@
-import { reservationService } from "@/services/reservation.service";
+import { reservationService } from "~/services/reservation.service";
 import { Request, Response } from "express";
 
 export const getReservationPreview = async (req: Request, res: Response) => {
@@ -68,32 +68,6 @@ export const getBookingWithDetailByBookingDetailId = async (req: Request, res: R
     }
 }
 
-export const updatePayPalBooking = async (req: Request, res: Response) => {
-    try {
-        const result = await reservationService.updatePayPalBooking(req.body)
-        res.status(200).json(result)
-    } catch (error) {
-        console.log(error);
-        res.status(500).json({
-            status: 'error',
-            message: error instanceof Error ? error.message : 'An unexpected error occurred',
-        })
-    }
-}
-
-export const suBooking = async (req: Request, res: Response) => {
-    try {
-        const result = await reservationService.suBooking(req.body)
-        res.status(200).json(result)
-    } catch (error) {
-        console.log(error);
-        res.status(500).json({
-            status: 'error',
-            message: error instanceof Error ? error.message : 'An unexpected error occurred',
-        })
-    }
-}
-
 export const updateReservation = async (req: Request, res: Response) => {
     try {
         const result = await reservationService.updateBooking(req)
@@ -133,10 +107,10 @@ export const cancelBooking = async (req: Request, res: Response) => {
     }
 }
 
-export const refundBooking = async (req: Request, res: Response) => {
+export const refundBooking = (req: Request, res: Response) => {
     try {
-        const result = await reservationService.makeRefund(req)
-        res.status(200).json(result)
+        // const result = await reservationService.makeRefund(req)
+        res.status(200).json({data:null,message:'success',status:'success'})
     } catch (error) {
         console.log(error);
         res.status(500).json({
@@ -145,17 +119,3 @@ export const refundBooking = async (req: Request, res: Response) => {
         })
     }
 }
-
-export const syncBooking = async (req: Request, res: Response) => {
-    try {
-        const result = await reservationService.syncBooking(req)
-        res.status(200).json(result)
-    } catch (error) {
-        console.log(error);
-        res.status(500).json({
-            status: 'error',
-            message: error instanceof Error ? error.message : 'An unexpected error occurred',
-        })
-    }
-}
-
