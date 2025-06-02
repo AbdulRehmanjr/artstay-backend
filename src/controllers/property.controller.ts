@@ -21,6 +21,21 @@ export const hotelApplicationtatus = async (req: Request, res: Response) => {
   }
 };
 
+export const getAllHotels = async (req: Request, res: Response) => {
+  try {
+    const result = await propertyService.getAllHotels();
+    res.status(201).json(result);
+  } catch (error) {
+    logger.error(error);
+    res.status(500).json({
+      status: "error",
+      message:
+        error instanceof Error ? error.message : "Failed to create product",
+      data: null,
+    });
+  }
+};
+
 export const getHotelByAccountId = async (req: Request, res: Response) => {
   try {
     const result = await propertyService.getHotelByAccountId(req);
@@ -59,9 +74,27 @@ export const updateHotel = async (req: Request, res: Response) => {
   }
 };
 
+
 export const getAllRoomsByAccountId = async (req: Request, res: Response) => {
   try {
     const result = await propertyService.getAllRoomsByAccountId(req);
+    res.status(201).json(result);
+  } catch (error) {
+    logger.error(error);
+    res.status(500).json({
+      status: "error",
+      message:
+        error instanceof Error
+          ? error.message
+          : "Failed to get all rooms by hotel id",
+      data: null,
+    });
+  }
+};
+
+export const getAllRoomsByHotelId = async (req: Request, res: Response) => {
+  try {
+    const result = await propertyService.getAllRoomsByHotelId(req);
     res.status(201).json(result);
   } catch (error) {
     logger.error(error);
