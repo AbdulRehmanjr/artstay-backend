@@ -48,6 +48,22 @@ export const propertyService = {
       throw new Error("Failed to fetch rooms");
     }
   },
+  getAllRoomsByHotelId: async (req: Request) => {
+    try {
+      const { hotelId } = req.params;
+      const rooms: RoomProps[] = await prisma.room.findMany({
+        where: {
+          hotel: {
+            hotelId: hotelId,
+          },
+        },
+      });
+      return { status: "success", message: "rooms fetched", data: rooms };
+    } catch (error) {
+      logger.error(error);
+      throw new Error("Failed to fetch rooms");
+    }
+  },
   getRoomByRoomId: async (req: Request) => {
     try {
       const { roomId } = req.params;
@@ -74,6 +90,19 @@ export const propertyService = {
         status: "success",
         message: "hotel detail fetched",
         data: hotel,
+      };
+    } catch (error) {
+      logger.error(error);
+      throw new Error("Failed to fetch hotel");
+    }
+  },
+  getAllHotels: async () => {
+    try {
+      const hotels = await prisma.hotel.findMany();
+      return {
+        status: "success",
+        message: "hotel detail fetched",
+        data: hotels,
       };
     } catch (error) {
       logger.error(error);
@@ -136,7 +165,7 @@ export const propertyService = {
       throw new Error("Failed to update room status");
     }
   },
-   getRoomsBySellerIdForBooking: async (sellerId: string) => {
+  getRoomsBySellerIdForBooking: async (sellerId: string) => {
     try {
       const rooms = await prisma.room.findMany({
         where: {
