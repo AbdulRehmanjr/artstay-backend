@@ -40,7 +40,6 @@ export const priceService = {
       throw new Error("Something went wrong");
     }
   },
-
   getPriceByRoomRateId: async (roomRateId: string) => {
     try {
       const roomRatePlans: FilteredPricesProps | null =
@@ -82,7 +81,6 @@ export const priceService = {
       throw new Error("Something went wrong");
     }
   },
-
   getAllPricesBySellerId: async (accountId: string) => {
     try {
       const roomRatePlans: RatePriceProps[] =
