@@ -448,10 +448,7 @@ export const reservationService = {
 
       logger.info("Booking created successfully", {
         logType: "Booking creation",
-        bookingDetailId: bookingInfo.bookingDetailId,
-        roomId: input.roomId,
-        startDate: input.startDate,
-        endDate: input.endDate,
+        data: input,
       });
 
       return {

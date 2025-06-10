@@ -742,26 +742,26 @@ type TravelTourUpdateProps = {
   isActive: boolean;
 };
 
-type HotelProps  = {
- hotelId: string;
- code: string;
- name: string;
- address: string;
- longitude: number;
- latitude: number;
- description: string;
- firstName: string;
- lastName: string;
- email: string;
- phone: string;
- checkIn: string;
- checkOut: string;
- isActive: boolean;
- images: string[];
- createdAt: Date;
- updatedAt: Date;
- accountId: string;
-}
+type HotelProps = {
+  hotelId: string;
+  code: string;
+  name: string;
+  address: string;
+  longitude: number;
+  latitude: number;
+  description: string;
+  firstName: string;
+  lastName: string;
+  email: string;
+  phone: string;
+  checkIn: string;
+  checkOut: string;
+  isActive: boolean;
+  images: string[];
+  createdAt: Date;
+  updatedAt: Date;
+  accountId: string;
+};
 
 type HotelCreationProps = {
   email: string;
@@ -1335,13 +1335,6 @@ type RoomBookingDetailProps = {
 };
 
 type BookingCreationProps = {
-  adults: number;
-  children: number;
-  quantity: number;
-  startDate: string;
-  roomId: string;
-  endDate: string;
-  price: number;
   firstName: string;
   lastName: string;
   email: string;
@@ -1351,9 +1344,17 @@ type BookingCreationProps = {
   zip: string;
   address: string;
   arrivalTime: string;
-  rateplan: string;
   additional: string;
   dob: string;
+  startDate: string;
+  endDate: string;
+  adults: number;
+  children: number;
+  quantity: number;
+  roomId: string;
+  price: number;
+  duration:number
+  rateplan: string;
 };
 
 type BookingUpdateProps = {
